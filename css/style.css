@@ -1,0 +1,24 @@
+ .nsw-docs__content{
+ background-color: var(--nsw-palette-grey-04);
+ }
+
+ img{
+	 max-width:100%;
+	 padding: 10px 0px;
+	 display: block;
+ }
+ 
+.img-inline{
+	    display: inline;
+		padding:0px 5px;
+}
+ 
+ @media (min-width: 62rem){
+	  .img-small{
+	 max-width:50%;
+ }
+ 
+  .img-medium{
+	 max-width:75%;
+ }
+ }
