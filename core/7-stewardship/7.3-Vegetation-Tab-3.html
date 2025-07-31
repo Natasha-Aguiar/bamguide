@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <title>NSW Biodiversity Assessment Method Calculator User guide</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://designsystem.nsw.gov.au/nsw-og-image.jpg">
+  <meta name="description" content="The NSW Biodiversity Assessment Method Calculator User guide is a toolkit to help navigate the calculator" />
+  <link rel="icon" href="/bamguide/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nsw-design-system@3/dist/css/main.css">
+   <link rel="stylesheet" href="/bamguide/css/docs.css">
+   <link rel="stylesheet" href="/bamguide/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/atom-one-light.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/xml.min.js"></script>
+  <!-- Hotjar Tracking Code for NSW Design System -->
+  <script data-category="analytics">
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 5063548, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1;
+      r.setAttribute('data-category', 'analytics');
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
+  <script src="/cookie-consent-config.js"></script>
+</head>
+
+<body class="nsw-docs nsw-docs--light">
+  <div class="nsw-docs__header">
+    <div class="nsw-docs__header-wrapper">
+      <div class="nsw-masthead">
+        <div class="nsw-container">A NSW Government website</div>
+      </div>
+      <header class="nsw-header nsw-header--simple">
+        <div class="nsw-header__container js-header">
+          <div class="nsw-header__inner">
+            <div class="nsw-header__main">
+              <div class="nsw-header__waratah">
+                <a href="/bamguide/index.html">
+                  <svg class="nsw-header__waratah-gov" viewBox="0 0 259 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="hide" fill-rule="evenodd" clip-rule="evenodd" d="M24.208 270.207h-5.045v-4.277l11.15.054v13.676H26.08v-2.491c-.266.278-.553.556-.86.833-.673.585-1.49 1.07-2.433 1.434-.96.373-2.143.564-3.513.564-2.33 0-4.385-.539-6.109-1.6-1.727-1.065-3.073-2.594-4.007-4.538-.926-1.927-1.395-4.231-1.395-6.85 0-2.657.494-4.994 1.47-6.946.971-1.96 2.363-3.498 4.132-4.571 1.768-1.065 3.849-1.604 6.183-1.604 1.515 0 2.915.245 4.156.725 1.255.485 2.36 1.157 3.273 1.985a9.61 9.61 0 0 1 2.192 2.852 8.196 8.196 0 0 1 .872 3.319l.021.435h-6.038l-.062-.339a5.22 5.22 0 0 0-.814-1.981 4.562 4.562 0 0 0-1.537-1.43c-.614-.352-1.345-.531-2.175-.531-1.005 0-1.931.261-2.741.775-.806.51-1.458 1.351-1.935 2.495-.486 1.169-.731 2.74-.731 4.679 0 1.579.162 2.897.482 3.925.311 1.011.739 1.819 1.266 2.403.523.581 1.117.991 1.773 1.219a6.036 6.036 0 0 0 2.089.369c.669 0 1.27-.112 1.79-.328.523-.224.98-.514 1.354-.866.377-.356.676-.746.884-1.152.216-.41.349-.816.399-1.21l.14-1.028Zm20.878-16.312c2.354 0 4.435.534 6.179 1.587 1.752 1.061 3.13 2.59 4.086 4.546.947 1.935 1.428 4.281 1.428 6.967 0 2.648-.473 4.969-1.412 6.9-.946 1.948-2.317 3.469-4.073 4.521-1.744 1.053-3.837 1.583-6.212 1.583-2.396 0-4.502-.534-6.254-1.583-1.753-1.044-3.135-2.557-4.099-4.505-.947-1.927-1.428-4.252-1.428-6.912 0-2.673.486-5.015 1.449-6.954.968-1.956 2.355-3.486 4.12-4.551 1.764-1.061 3.853-1.599 6.216-1.599Zm0 21.185c1.117 0 2.093-.265 2.898-.787.802-.523 1.433-1.372 1.881-2.516.453-1.185.686-2.772.686-4.712 0-1.993-.237-3.618-.698-4.832-.444-1.181-1.08-2.056-1.885-2.603-.814-.543-1.782-.82-2.878-.82-1.1 0-2.072.277-2.886.82-.81.543-1.453 1.422-1.906 2.611-.47 1.223-.706 2.843-.706 4.82 0 1.944.237 3.531.702 4.712.452 1.148 1.092 1.997 1.902 2.515.81.527 1.781.792 2.89.792Zm23.764-2.93-6.162-17.829H57.09l8.654 25.251h6.195l8.73-25.251h-5.607L68.85 272.15Zm30.312-2.827H88.863v5.206l12.043.016v5.027H83.103v-25.251h17.632l-.016 4.99H88.892v5.089h10.27v4.923Zm22.482-1.529c.685-.613 1.246-1.401 1.678-2.341.419-.933.635-2.081.635-3.419 0-1.497-.311-2.835-.93-3.983-.619-1.169-1.599-2.093-2.919-2.756-1.3-.647-2.973-.974-4.975-.974h-10.738v25.243h5.759v-9.404h4.24l3.991 9.404h6.046l-4.651-10.456c.673-.357 1.3-.8 1.864-1.314Zm-3.513-5.64c0 .999-.336 1.79-1.025 2.428-.69.63-1.649.949-2.857.949h-4.095v-6.606h4.456c1.038 0 1.873.286 2.545.875.657.576.976 1.347.976 2.354Zm15.159-7.833 10.527 15.23v-15.23h5.776v25.251h-5.086l-10.98-15.86v15.86h-5.759v-25.251h5.522Zm33.949 16.461-5.29-16.461h-7.894v25.251h5.809v-16.266l5.124 16.266h4.485l5.162-16.357v16.357h5.826v-25.251h-7.878l-5.344 16.461Zm33.727-1.459h-10.298v5.206l12.046.016v5.027h-17.806v-25.251h17.636l-.021 4.99h-11.818v5.089h10.261v4.923Zm21.494.228-10.523-15.23h-5.527v25.251h5.756v-15.86l10.979 15.86h5.087v-25.251h-5.772v15.23Zm15.586-10.004h-7.388v-5.226h20.402v5.226h-7.217v20.025h-5.797v-20.025Z" fill="#002664"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M146.699 209.236c-1.482-2.395-3.717-4.571-6.64-6.465-2.919-1.894-6.897-3.34-11.81-4.297l-13.678-2.814c-4.132-.891-6.981-2.043-8.468-3.419-1.449-1.343-2.184-3.129-2.184-5.309 0-1.388.316-2.652.943-3.759.623-1.111 1.528-2.093 2.687-2.922 1.166-.828 2.616-1.483 4.306-1.943 1.711-.469 3.633-.705 5.714-.705 2.74 0 5.211.361 7.346 1.078 2.109.713 3.857 1.881 5.194 3.481 1.338 1.6 2.16 3.775 2.442 6.465l.038.373h16.971l-.008-.427c-.075-4.575-1.371-8.773-3.85-12.474-2.483-3.705-6.141-6.681-10.879-8.852-4.726-2.164-10.623-3.262-17.528-3.262-5.801 0-11.117 1.011-15.805 3.009-4.7 2.002-8.475 4.89-11.212 8.587-2.749 3.717-4.12 8.164-4.078 13.224.112 6.175 1.99 11.186 5.577 14.903 3.576 3.697 8.476 6.158 14.567 7.306l13.795 2.81c2.529.502 4.825 1.16 6.823 1.96 1.96.784 3.525 1.803 4.651 3.03 1.1 1.197 1.657 2.772 1.657 4.67 0 2.114-.694 3.9-2.06 5.301-1.4 1.434-3.301 2.515-5.643 3.224-2.388.721-5.058 1.086-7.936 1.086-2.807 0-5.394-.435-7.686-1.297-2.28-.85-4.194-2.093-5.689-3.693-1.491-1.591-2.513-3.585-3.04-5.918l-.075-.327H83.846l.045.46c.407 4.045 1.666 7.629 3.738 10.659 2.068 3.009 4.717 5.545 7.873 7.551 3.148 1.993 6.677 3.514 10.494 4.513a46.33 46.33 0 0 0 11.693 1.5c6.466 0 12.2-1.019 17.046-3.034 4.867-2.022 8.717-4.807 11.449-8.276 2.753-3.493 4.148-7.476 4.148-11.848 0-2.064-.232-4.36-.697-6.822-.478-2.482-1.466-4.948-2.936-7.327ZM25.937 191.763l36.916 53.312H77.87v-79.724H61.072v51.282L25.754 165.53l-.125-.179H9.19v79.724h16.748v-53.312Zm196.637 24.577 14.388-50.987h16.457l-23.587 79.724h-13.367l-14.554-50.469-14.659 50.469h-13.147l-23.533-79.724h16.511l14.384 50.979 14.389-50.979h12.167l14.551 50.987Z" fill="#002664"/>
+                    <path d="M122.291 145.572c-19.75-2.424-38.934 3.904-72.69-5.263-3.447-.937-4.718 2.694-2.854 5.736 9.07 14.803 54.881 3.203 75.635 1.065.906-.095.814-1.426-.091-1.538ZM208.735 140.309c-33.756 9.167-52.941 2.839-72.691 5.263-.905.112-1 1.447-.091 1.538 20.759 2.138 66.566 13.738 75.635-1.065 1.864-3.042.594-6.673-2.853-5.736ZM59.882 119.132c-6.864-10.058-12.474-21.31-16.818-33.69-13.101 3.826-26.51 9.346-40.16 16.57a5.388 5.388 0 0 0-2.902 4.67 5.38 5.38 0 0 0 2.653 4.812c26.431 15.802 52.273 24.841 76.93 26.933-7.34-4.475-14.072-11.044-19.703-19.295ZM23.059 85.513a201.529 201.529 0 0 1 17.976-6.233c-2.126-6.896-3.87-14.12-5.249-21.658-6.827-.85-13.89-1.4-21.199-1.641-.062 0-.128-.004-.19-.004a5.391 5.391 0 0 0-4.647 2.602 5.383 5.383 0 0 0-.12 5.483c4.243 7.659 8.724 14.808 13.429 21.45ZM88.005 135.572c4.099 1.807 8.293 2.818 12.358 3.029-9.953-7.12-17.773-19.192-22.278-34.58-5.805-19.81-7.745-41.666-5.83-65.247-7.832-4.936-16.32-9.557-25.46-13.85a5.428 5.428 0 0 0-5.402.43 5.396 5.396 0 0 0-2.388 4.841c2.126 34.215 10.95 62.915 26.223 85.298 6.404 9.391 14.281 16.332 22.777 20.079ZM107.488 23.577A253.323 253.323 0 0 0 92.235 6.735c-1.063-1.078-2.433-1.65-3.85-1.65-.506 0-1.017.075-1.523.224-1.923.568-3.314 2.106-3.733 4.115-1.072 5.164-3.11 15.69-4.012 26.101 7.014 4.613 13.492 9.49 19.426 14.621 2.3-8.757 5.29-17.63 8.945-26.569ZM255.42 102.007c-13.65-7.223-27.058-12.744-40.16-16.569-4.343 12.38-9.953 23.631-16.818 33.689-5.63 8.255-12.362 14.82-19.708 19.296 24.658-2.093 50.5-11.132 76.931-26.934 1.715-1.024 2.707-2.822 2.653-4.811-.045-1.99-1.133-3.734-2.898-4.671ZM235.273 85.513c4.705-6.643 9.186-13.796 13.43-21.455.963-1.74.922-3.788-.121-5.483a5.4 5.4 0 0 0-4.837-2.598c-7.309.24-14.377.796-21.199 1.641-1.375 7.539-3.123 14.762-5.249 21.658a203.803 203.803 0 0 1 17.976 6.237ZM180.247 104.025c-4.505 15.384-12.329 27.46-22.278 34.58 4.065-.211 8.263-1.227 12.358-3.034 8.496-3.746 16.373-10.688 22.777-20.075 15.273-22.383 24.097-51.082 26.223-85.297a5.394 5.394 0 0 0-2.388-4.84 5.428 5.428 0 0 0-5.402-.432c-9.14 4.29-17.628 8.91-25.46 13.85 1.915 23.582-.029 45.434-5.83 65.248ZM179.214 35.52c-.901-10.406-2.94-20.932-4.011-26.1-.416-2.01-1.811-3.547-3.733-4.115a5.39 5.39 0 0 0-1.524-.224c-1.416 0-2.787.572-3.85 1.65-5.485 5.549-10.568 11.164-15.252 16.842 3.654 8.939 6.644 17.812 8.949 26.565 5.934-5.127 12.407-10.005 19.421-14.617ZM129.144 87.229c6.64-13.092 17.246-24.829 25.21-32.243-4.372-17.779-11.104-34.55-20.397-52.097C132.998 1.078 131.195 0 129.148 0s-3.845 1.082-4.808 2.889c-9.389 17.604-16.237 35.122-20.377 52.093 8.313 7.688 19.28 20.224 25.181 32.247Z" fill="#D7153A"/>
+                    <path d="M153.541 133.686c6.885-4.833 13.77-13.254 18.139-24.97 8.458-22.681 9.334-47.945 8.122-65.823-15.331 10.215-39.665 31.55-47.975 54.36-3.911 10.734-5.734 25.355-2.72 33.511 1.259 3.411 3.401 5.997 6.345 7.227 4.46 1.865 11.312.456 18.089-4.305ZM125.713 95.261c-2.027-4.724-4.261-9.18-7.728-14.186-9.809-14.16-23.026-26.933-39.475-38.185-.17 2.652-2.57 31.297 5.851 59.304 6.408 21.302 17.354 29.98 23.354 33.333 6.038 3.369 11.561 4.165 18.039 2.557-6.565-8.935-5.747-27.27-.041-42.823Z" fill="#D7153A"/>
+                  </svg>
+                  <span class="sr-only">NSW Government</span>
+                </a>
+              </div>
+              <div class="nsw-header__name">
+                <div class="nsw-header__title">BAM Calculator User guide <span class="nsw-docs__version"> v 1.0.0</span></div>
+              </div>
+              <div class="nsw-header__menu">
+                <button type="button" class="js-open-nav" aria-expanded="false" aria-controls="main-nav">
+                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">menu</span>
+                  <span><span class="sr-only">Open</span> Menu</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="nsw-header__search">
+              <button type="button" class="js-open-search" aria-expanded="false" aria-controls="header-autocomplete">
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span>
+                <span><span class="sr-only">Show</span> Search</span>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="nsw-header__search-area nsw-autocomplete js-search-area js-autocomplete" id="header-autocomplete" hidden>
+            <div role="search">
+              <label for="nsw-header-autocomplete" class="sr-only">Search site for:</label>
+              <input class="nsw-header__input js-autocomplete__input js-search-input" type="text" autocomplete="off" id="nsw-header-autocomplete" name="input-autocomplete">
+
+              <button class="nsw-icon-button nsw-icon-button--flex js-open-search" aria-expanded="true" aria-controls="header-autocomplete">
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span>
+                <span class="sr-only">Search</span>
+              </button>
+
+              <div class="nsw-autocomplete__results js-autocomplete__results">
+                <ul id="autocomplete" class="nsw-autocomplete__list js-autocomplete__list">
+                  <li class="nsw-autocomplete__item nsw-text-truncate js-autocomplete__item" data-autocomplete-template="result">
+                    <a href="" data-autocomplete-url data-autocomplete-label></a>
+                  </li>
+                  <li class="nsw-autocomplete__item nsw-autocomplete__no-results nsw-text-truncate js-autocomplete__item" data-autocomplete-template="no-results" role="presentation"></li>
+                </ul>
+              </div>
+
+              <p class="sr-only" aria-live="polite" aria-atomic="true">
+                <span class="js-autocomplete__aria-results">0</span> results found.
+              </p>
+
+            </div>
+            <button class="nsw-icon-button js-close-search" aria-expanded="true" aria-controls="header-autocomplete">
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+              <span class="sr-only">Close search</span>
+            </button>
+
+          </div>
+
+        </div>
+      </header>
+    </div>
+  </div>
+  <div class="nsw-docs__wrapper">
+    <div class="nsw-docs__nav">
+      <div class="nsw-docs__nav-wrapper">
+    
+        <nav class="nsw-main-nav js-mega-menu" id="main-nav" aria-label="Main menu">
+          <div class="nsw-main-nav__header">
+            <div class="nsw-main-nav__title">Menu</div>
+            <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+              <span class="sr-only">Close Menu</span>
+            </button>
+          </div>
+          <ul class="nsw-main-nav__list">
+      <li>
+              <a href="/bamguide/core/1-get-started/shortened-forms.html">
+                <span>Shortened Forms</span>
+              </a>
+            </li>
+      <li>
+              <a href="/bamguide/core/1-get-started/1-introduction.html">
+                <span>Introduction</span>
+              </a>
+            </li>
+            <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-intro">
+                <span>Using Biodiversity Offsets and Agreement Management System to access and manage BAM-C cases</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-intro" role="region" aria-label="Introduction Submenu">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-intro">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+
+                <ul class="nsw-main-nav__sub-list">
+          <li><a href="/bamguide/core/2-using-BOAMS/2-Using-BOAMS.html"><span>Get Started</span></a></li>
+                  <li><a href="/bamguide/core/2-using-BOAMS/2.1-creating-a-case-number.html"><span>Creating a case number</span></a></li>
+                  <li><a href="/bamguide/core/2-using-BOAMS/2.2-bam-c-user-access.html"><span>BAM-C user access</span></a></li>
+                  <li><a href="/bamguide/core/2-using-BOAMS/2.3-Updates-to-BAM-C.html"><span>Updates to BAM-C functionality or data</span></a></li>
+          <li><a href="/bamguide/core/2-using-BOAMS/2.4-download-supporting-documentation.html"><span>Download supporting documentation</span></a></li>
+          <li><a href="/bamguide/core/2-using-BOAMS/2.5-delete-cases.html"><span>Delete cases</span></a></li>
+                </ul>
+              </div>
+            </li>
+      
+      <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-gen-func">
+                <span>General functions</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-gen-func" role="region" aria-label="General functions">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-gen-func">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+
+                <ul class="nsw-main-nav__sub-list">
+        <li><a href="/bamguide/core/3-general-functions/3-general-functions.html"><span>Information</span></a></li>
+          <li><a href="/bamguide/core/3-general-functions/3.1-open-an-existing-assessment-revision.html"><span>Open an existing assessment revision</span></a></li>
+          <li><a href="/bamguide/core/3-general-functions/3.2-save-an-assessment.html"><span>Save an assessment</span></a></li>
+          <li><a href="/bamguide/core/3-general-functions/3.3-save-a-new-revision.html"><span>Save a new revision</span></a></li>
+          <li><a href="/bamguide/core/3-general-functions/3.4-Cancel-an-assessment.html"><span>Cancel an assessment</span></a></li>
+          <li><a href="/bamguide/core/3-general-functions/3.5-delete-an-assessment-revision.html"><span>Delete an assessment revision</span></a></li>
+          <li><a href="/bamguide/core/3-general-functions/3.6-finalise-an-assessment-revision.html"><span>Finalise an assessment revision</span></a></li>
+          <li><a href="/bamguide/core/3-general-functions/3.7-reopen-a-revision-after-finalising.html"><span>Reopen a revision after finalising</span></a></li>
+          <li><a href="/bamguide/core/3-general-functions/3.8-use-BOAMS-to-submit-consent-authority.html"><span>Use Biodiversity Offsets and Agreement Management System to submit a case to the consent authority</span></a></li>
+          <li><a href="/bamguide/core/3-general-functions/3.9-print-a-report.html"><span>Print a report</span></a></li>
+                </ul>
+              </div>
+            </li>
+      
+      <li>
+              <a role="button" aria-expanded="false" aria-controls="sub-nav-creating-dev-ass">
+                <span>Creating a development/clearing assessment</span>
+                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+              </a>
+
+              <div class="nsw-main-nav__sub-nav" id="sub-nav-creating-dev-ass" role="region" aria-label="Creating a development/clearing assessment">
+                <div class="nsw-main-nav__header">
+                  <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-creating-dev-ass">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+                    <span>Back<span class="sr-only"> to Main Menu</span></span>
+                  </button>
+
+                  <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+                    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+                    <span class="sr-only">Close Menu</span>
+                  </button>
+                </div>
+
+                <ul class="nsw-main-nav__sub-list">
+        <li><a href="/bamguide/core/4-development-clearing/4-Creating-a-development-clearing-assessment.html"><span>Information</span></a></li>
+          <li><a href="/bamguide/core/4-development-clearing/4.1-assessment-details-Tab-1.html"><span> Assessment details (Tab 1)</span></a></li>
+                  <li><a href="/bamguide/core/4-development-clearing/4.2-Site-context-Tab-2.html"><span>Site context (Tab 2)</span></a></li>
+                  <li><a href="/bamguide/core/4-development-clearing/4.3-Vegetation-Tab-3.html"><span>Vegetation (Tab 3)</span></a></li>
+                  <li><a href="/bamguide/core/4-development-clearing/4.4-Habitat-suitability-Predicted-Tab-4.html"><span>Habitat suitability: Predicted (Tab 4)</span></a></li>
+          <li><a href="/bamguide/core/4-development-clearing/4.5-Habitat-suitability-Candidate-Tab-5.html"><span>Habitat suitability: Candidate (Tab 5)</span></a></li>
+          <li><a href="/bamguide/core/4-development-clearing/4.6-Habitat-survey-Tab-6.html"><span>Habitat survey (Tab 6)</span></a></li>
+          <li><a href="/bamguide/core/4-development-clearing/4.7-Credits-Tab-7.html"><span>Credits (Tab 7)</span></a></li>
+          <li><a href="/bamguide/core/4-development-clearing/4.8-Credit-classes-Tab-8.html"><span>Credit classes (Tab 8)</span></a></li>
+          <li><a href="/bamguide/core/4-development-clearing/4.9-Price-Tab-9.html"><span>Price (Tab 9)</span></a></li>
+                </ul>
+              </div>
+            </li>
+
+            
+
+    <li>
+  <a role="button" aria-expanded="false" aria-controls="sub-nav-small-area-ass">
+    <span>Creating a small area assessment</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+  </a>
+  <div class="nsw-main-nav__sub-nav" id="sub-nav-small-area-ass" role="region" aria-label="Creating a small area assessment">
+    <div class="nsw-main-nav__header">
+      <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-small-area-ass">
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+        <span>Back<span class="sr-only"> to Main Menu</span></span>
+      </button>
+      <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+        <span class="sr-only">Close Menu</span>
+      </button>
+    </div>
+    <ul class="nsw-main-nav__sub-list">
+      <li><a href="/bamguide/core/5-small-area/5-Creating-a-small-area-assessment.html"><span>Information</span></a></li>
+      <li><a href="/bamguide/core/5-small-area/5.1-Assessment-details-Tab-1.html"><span>Assessment details (Tab 1)</span></a></li>
+      <li><a href="/bamguide/core/5-small-area/5.2-Site-context-Tab-2.html"><span>Site context (Tab 2)</span></a></li>
+      <li><a href="/bamguide/core/5-small-area/5.3-Vegetation-Tab-3.html"><span>Vegetation (Tab 3)</span></a></li>
+      <li><a href="/bamguide/core/5-small-area/5.4-Habitat-suitability-Predicted-Tab-4.html"><span>Habitat suitability: Predicted (Tab 4)</span></a></li>
+      <li><a href="/bamguide/core/5-small-area/5.5-Habitat-suitability-Candidate-Tab-5.html"><span>Habitat suitability: Candidate (Tab 5)</span></a></li>
+      <li><a href="/bamguide/core/5-small-area/5.6-Habitat-survey-Tab-6.html"><span>Habitat survey (Tab 6)</span></a></li>
+      <li><a href="/bamguide/core/5-small-area/5.7-Credits-Tab-7.html"><span>Credits (Tab 7)</span></a></li>
+      <li><a href="/bamguide/core/5-small-area/5.8-Credit-classes-Tab-8.html"><span>Credit classes (Tab 8)</span></a></li>
+      <li><a href="/bamguide/core/5-small-area/5.9-Price-Tab-9.html"><span>Price (Tab 9)</span></a></li>
+    </ul>
+  </div>
+</li>
+
+<li>
+  <a role="button" aria-expanded="false" aria-controls="sub-nav-scattered-trees-ass">
+    <span>Creating a scattered trees assessment</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+  </a>
+  <div class="nsw-main-nav__sub-nav" id="sub-nav-scattered-trees-ass" role="region" aria-label="Creating a scattered trees assessment">
+    <div class="nsw-main-nav__header">
+      <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-scattered-trees-ass">
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+        <span>Back<span class="sr-only"> to Main Menu</span></span>
+      </button>
+      <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+        <span class="sr-only">Close Menu</span>
+      </button>
+    </div>
+    <ul class="nsw-main-nav__sub-list">
+      <li><a href="/bamguide/core/6-scattered-trees/6-Creating-a-scattered-trees-assessment.html"><span>Information</span></a></li>
+      <li><a href="/bamguide/core/6-scattered-trees/6.1-Assessment-details-Tab-1.html"><span>Assessment details (Tab 1)</span></a></li>
+      <li><a href="/bamguide/core/6-scattered-trees/6.2-Site-context-Tab-2.html"><span>Site context (Tab 2)</span></a></li>
+      <li><a href="/bamguide/core/6-scattered-trees/6.3-Vegetation-Tab-3.html"><span>Vegetation (Tab 3)</span></a></li>
+      <li><a href="/bamguide/core/6-scattered-trees/6.4-Habitat-suitability-Predicted-Tab-4.html"><span>Habitat suitability: Predicted (Tab 4)</span></a></li>
+      <li><a href="/bamguide/core/6-scattered-trees/6.5-Habitat-suitability-Candidate-Tab-5.html"><span>Habitat suitability: Candidate (Tab 5)</span></a></li>
+      <li><a href="/bamguide/core/6-scattered-trees/6.6-Habitat-survey-Tab-6.html"><span>Habitat survey (Tab 6)</span></a></li>
+      <li><a href="/bamguide/core/6-scattered-trees/6.7-Credits-Tab-7.html"><span>Credits (Tab 7)</span></a></li>
+      <li><a href="/bamguide/core/6-scattered-trees/6.8-Credit-classes-Tab-8.html"><span>Credit classes (Tab 8)</span></a></li>
+      <li><a href="/bamguide/core/6-scattered-trees/6.9-Price-Tab-9.html"><span>Price (Tab 9)</span></a></li>
+    </ul>
+  </div>
+</li>
+
+<li>
+  <a role="button" aria-expanded="false" aria-controls="sub-nav-stewardship-ass">
+    <span>Creating a stewardship (for offset sites) assessment</span>
+    <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_right</span>
+  </a>
+
+  <div class="nsw-main-nav__sub-nav" id="sub-nav-stewardship-ass" role="region" aria-label="Creating a stewardship (for offset sites) assessment">
+    <div class="nsw-main-nav__header">
+      <button class="nsw-icon-button nsw-icon-button--flex js-close-sub-nav" type="button" aria-expanded="true" aria-controls="sub-nav-stewardship-ass">
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">keyboard_arrow_left</span>
+        <span>Back<span class="sr-only"> to Main Menu</span></span>
+      </button>
+
+      <button class="nsw-icon-button js-close-nav" type="button" aria-expanded="true">
+        <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
+        <span class="sr-only">Close Menu</span>
+      </button>
+    </div>
+    <ul class="nsw-main-nav__sub-list">
+      <li><a href="/bamguide/core/7-stewardship/7-Creating-a-stewardship-assessment.html"><span>Information</span></a></li>
+      <li><a href="/bamguide/core/7-stewardship/7.1-Assessment-details-Tab-1.html"><span>Assessment details (Tab 1)</span></a></li>
+      <li><a href="/bamguide/core/7-stewardship/7.2-Site-context-Tab-2.html"><span>Site context (Tab 2)</span></a></li>
+      <li><a href="/bamguide/core/7-stewardship/7.3-Vegetation-Tab-3.html"><span>Vegetation (Tab 3)</span></a></li>
+      <li><a href="/bamguide/core/7-stewardship/7.4-Habitat-suitability-Predicted-Tab-4.html"><span>Habitat suitability: Predicted (Tab 4)</span></a></li>
+      <li><a href="/bamguide/core/7-stewardship/7.5-Habitat-suitability-Candidate-Tab-5.html"><span>Habitat suitability: Candidate (Tab 5)</span></a></li>
+      <li><a href="/bamguide/core/7-stewardship/7.6-Habitat-survey-Tab-6.html"><span>Habitat survey (Tab 6)</span></a></li>
+      <li><a href="/bamguide/core/7-stewardship/7.7-Credits-Tab-7.html"><span>Credits (Tab 7)</span></a></li>
+      <li><a href="/bamguide/core/7-stewardship/7.8-Credit-classes-Tab-8.html"><span>Credit classes (Tab 8)</span></a></li>
+    </ul>
+  </div>
+</li>
+
+<li><a href="/bamguide/core/appendix/Appendix-A-Clearing-the-BAM-C-cache.html"><span>Appendix A – Clearing the BAM-C cache</span></a></li>
+<li><a href="/bamguide/core/appendix/appendix-b-resources.html"><span>Appendix B – Resources</span></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  <div class="nsw-docs__main nsw-docs__main--wide">
+    <div class="nsw-docs__intro">
+      <div class="nsw-docs__container">
+        <h2>7.3 Vegetation (Tab 3)</h2>
+
+<p>The ‘Vegetation’ tab records the PCTs on the site and captures individual plot data that is used to calculate the VI scores for each plot with and without management.</p>
+
+<p>The method for recording PCTs and TECs at a site and calculating current vegetation condition of a site is the same for all assessment types. Refer to Chapter 4 of the BAM 2020 for further information.</p>
+         </div>
+  </div>
+  
+  <div class="nsw-docs__content">
+        <div class="nsw-docs__container">
+<nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+  <div class="nsw-in-page-nav__title">On this page</div>
+  <ul class="nsw-in-page-nav__list">
+    <li><a href="#define-pcts">7.3.1 Define the PCTs and TECs</a></li>
+    <li><a href="#import-veg-zones">7.3.2 Import vegetation zones</a></li>
+    <li><a href="#manual-entry">7.3.3 Manually enter vegetation zone data</a></li>
+    <li><a href="#partial-loss">7.3.4 Calculate vegetation integrity for sites with partial loss</a></li>
+    <li><a href="#future-vi">7.3.5 Calculate future VI scores</a></li>
+  </ul>
+</nav>
+
+<h3 id="define-pcts">7.3.1 Define the PCTs and TECs</h3>
+<ol>
+  <li>The ‘Vegetation’ tab will be open if ‘Next’ was clicked on Tab 2. When reopening an assessment with existing information, click on Tab 3 to open it.</li>
+  <li>Note that if any tab headings are shaded in red, action is required, or information needs to be entered/confirmed on that tab. Remember to click ‘Next’ to move through the tabs if any changes are made.</li>
+  <li>If the PCT name or number is known, the ‘Plant community type’ field can be added as the first step, automatically populating the formation and class fields.<br>
+  If the PCT name or number is not known, use the ‘Formation’ drop-down to select the formation for the required PCT.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>If the PCT or number is known, enter this first and the formation and class fields will be populated automatically.</li>
+      <li>Only PCTs associated with the IBRA region and IBRA subregion will be available.</li>
+      <li>Refer to the webpage About BioNet Vegetation Classification (Veg-C) for further information about PCTs and TECs (see Appendix B).</li>
+    </ul>
+  </div>
+</div>
+<ol start="4">
+  <li>Use the ‘Class’ drop-down (if PCT name or number is not known) to select the required class. The classes available will be filtered to those associated with the formation if a formation was selected in step 3.</li>
+  <li>Use the ‘Plant community type’ drop-down to select the required PCT. The PCTs available will be filtered to those associated with the class if a class was selected in step 4.</li>
+  <li>The % cleared value for the PCT will be displayed under ‘PCT % cleared’. The % cleared value is an estimate of the extent to which a PCT has been cleared since European settlement and is used when assigning a non-threatened PCT to an OTG.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>Detailed information on each PCT and its geographic distribution is available as a downloadable and refreshable Power Query from NSW BioNet Resources (see Appendix B), ‘BioNet Vegetation Classification’ > ‘Power Queries’ > ‘Plant Community Type data’.</li>
+      <li>Refer to the Offset rules and ecosystem credits guidance for more information on % cleared and OTGs (see Appendix B).</li>
+    </ul>
+  </div>
+</div>
+<ol start="7">
+  <li>Use the ‘Associated TEC’ drop-down to select the relevant TEC. If no TEC is associated with the PCT, select ‘Not a TEC’.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>Only TECs associated with the selected PCT (in BioNet) are shown in the drop-down. Where a TEC is present at the site but is unavailable in the drop-down list, it may be because the TEC is not associated with the IBRA region and IBRA subregion chosen.</li>
+      <li>A detailed description of each TEC is available through the Threatened biodiversity profile search app (see Appendix B).</li>
+      <li>Detailed information on the PCT to TEC associations and the applicable subregions is available as a downloadable and refreshable Power Query from the NSW BioNet Resources webpage (see Appendix B). ‘BioNet Vegetation Classification’ > ‘Power queries’ > ‘Threatened Ecological Community to Plant Community Types (PCT) Association data’.</li>
+      <li>To request a review of a TEC association, contact the BOS Help Desk.</li>
+    </ul>
+  </div>
+</div>
+<ol start="8">
+  <li>The state and Commonwealth listing status of a TEC will be displayed under the ‘BC Act listing status’ and ‘EPBC Act listing status’ headings, respectively.</li>
+  <li>Click ‘Add veg zone’.</li>
+  <li>A vegetation zone record will be added to the following sections:<br>
+  − ‘Vegetation zones (Current vegetation integrity score)’<br>
+  − ‘Vegetation zones (Future vegetation integrity score, without management)’<br>
+  − ‘Vegetation zones (Future vegetation integrity score, with management)’.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>Adding a unique condition class name to each vegetation zone will help you distinguish the vegetation zones throughout the assessment, especially when both a TEC and non-TEC have been identified on site for the same PCT.</li>
+    </ul>
+  </div>
+</div>
+<ol start="11">
+  <li>For PCTs with multiple vegetation zones, click ‘Add veg zone’ beside the applicable PCT to add another vegetation zone.</li>
+  <li>A zone number will be generated for each vegetation zone and the relevant PCT number for each record displayed.</li>
+  <li>Click ‘Add another PCT’ (if required) and repeat the above steps for additional PCTs.</li>
+  <li>If the required PCT is missing from the PCT list, click ‘Search PCT outside IBRA’, enter the name or PCT number to search, and then select the PCT. Repeat the above steps for adding vegetation zones.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>You can only add PCTs that are associated with the selected IBRA region when you use the ‘Add Another PCT’ button.</li>
+      <li>With the ‘Search PCT outside IBRA’ button you can add any approved PCT, not only those associated with the selected IBRA region.</li>
+      <li>Some PCTs have no (or incomplete) benchmarks in Veg-C. For these PCTs, an error will be displayed, and the PCT cannot be used in the assessment.</li>
+    </ul>
+  </div>
+</div>
+<ol start="15">
+  <li>To delete a PCT or a vegetation zone click the button on the right under ‘Delete’.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>Vegetation zone and site data can be imported into the BAM-C in CSV file format (see Subsection 7.3.2) or added manually (see Subsection 7.3.3). See below for instructions.</li>
+    </ul>
+  </div>
+</div>
+<h3 id="import-veg-zones">7.3.2 Import vegetation zones</h3>
+<ol>
+  <li>To import vegetation zone data, click the import icon beside the vegetation zone.</li>
+  <li>Download the CSV template by selecting ‘this template file’ in the import pop-up and an excel import data template will become available.</li>
+  <li>Open and populate the template with observation values and save the template:
+    <ul>
+      <li>row 1 of the template is reserved for headers</li>
+      <li>row 2 of the template is reserved for example data</li>
+      <li>users must enter plot data into the template from row 3 onwards. Data for additional plots (for the same vegetation zone) can be imported by adding plot data to rows 4 onwards.</li>
+    </ul>
+  </li>
+  <li>Select and copy all column headings in rows 1 and 2 and the data from row 3 (and onwards if there is more than one plot). Make sure that no blank columns or rows are selected.</li>
+  <li>Click the import icon to reopen the ‘Import data’ pop-up (if not already open).</li>
+  <li>Paste the copied data from the template into the ‘Import data’ pop-up and click ‘Import’.</li>
+  <li>A pop-up will open asking you to confirm that all existing plots will be deleted. Click ‘Yes’ to delete any previous plot data or ‘No’ to cancel and retain the existing plot data.</li>
+  <li>If the import was unsuccessful or only partially successful, the ‘Import data’ pop-up will display an error message. Correct the error(s) in the CSV file, then copy and paste the corrected data, and re-import.</li>
+  <li>Click ‘Close’.</li>
+  <li>The data will be imported into the relevant condition score pop-up fields and the scores will be calculated automatically. The condition score fields for each attribute will change from showing no score (indicated by an ellipsis) to a numeric score value.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>If assessing a non-woody PCT, do not specify any values for function attributes other than HTW cover in the CSV import file.</li>
+      <li>When copying the data from the template, ensure no extra columns are selected or an error will occur.</li>
+      <li>The import template will not create management zones or detect all types of high risk lands. If the import template is used, ensure these fields are manually completed if relevant.</li>
+    </ul>
+  </div>
+</div>
+<ol start="11">
+  <li>To clear imported data, click the ‘Import’ icon to reopen the ‘Import’ pop-up.</li>
+  <li>Click ‘Clear plots’.</li>
+  <li>All imported data will be cleared and the condition score fields will revert to displaying no score (‘…’).</li>
+  <li>The above process can be performed for all zones at the site (rather than on a zone-by-zone basis) using the ‘Import site’ button and following the same process outlined in steps 1–12 above.</li>
+  <li>Individual zones can be removed by clicking the button on the right under ‘Delete’.</li>
+</ol>
+
+<h3 id="import-veg-zones">7.3.2 Import vegetation zones</h3>
+<ol>
+  <li>To import vegetation zone data, click the import icon beside the vegetation zone.</li>
+  <li>Download the CSV template by selecting ‘this template file’ in the import pop-up and an excel import data template will become available.</li>
+  <li>Open and populate the template with observation values and save the template:
+    <ul>
+      <li>row 1 of the template is reserved for headers</li>
+      <li>row 2 of the template is reserved for example data</li>
+      <li>users must enter plot data into the template from row 3 onwards. Data for additional plots (for the same vegetation zone) can be imported by adding plot data to rows 4 onwards.</li>
+    </ul>
+  </li>
+  <li>Select and copy all column headings in rows 1 and 2 and the data from row 3 (and onwards if there is more than one plot). Make sure that no blank columns or rows are selected.</li>
+  <li>Click the import icon to reopen the ‘Import data’ pop-up (if not already open).</li>
+  <li>Paste the copied data from the template into the ‘Import data’ pop-up and click ‘Import’.</li>
+  <li>A pop-up will open asking you to confirm that all existing plots will be deleted. Click ‘Yes’ to delete any previous plot data or ‘No’ to cancel and retain the existing plot data.</li>
+  <li>If the import was unsuccessful or only partially successful, the ‘Import data’ pop-up will display an error message. Correct the error(s) in the CSV file, then copy and paste the corrected data, and re-import.</li>
+  <li>Click ‘Close’.</li>
+  <li>The data will be imported into the relevant condition score pop-up fields and the scores will be calculated automatically. The condition score fields for each attribute will change from showing no score (indicated by an ellipsis) to a numeric score value.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>If assessing a non-woody PCT, do not specify any values for function attributes other than HTW cover in the CSV import file.</li>
+      <li>When copying the data from the template, ensure no extra columns are selected or an error will occur.</li>
+      <li>The import template will not create management zones or detect all types of high risk lands. If the import template is used, ensure these fields are manually completed if relevant.</li>
+      <li>‘BioNet Vegetation Classification’ &gt; ‘Power queries’ &gt; ‘Threatened Ecological Community to Plant Community Types (PCT) Association data’.</li>
+    </ul>
+  </div>
+</div>
+<ol start="11">
+  <li>To clear imported data, click the ‘Import’ icon to reopen the ‘Import’ pop-up.</li>
+  <li>Click ‘Clear plots’.</li>
+  <li>All imported data will be cleared and the condition score fields will revert to displaying no score (‘…’).</li>
+  <li>The above process can be performed for all zones at the site (rather than on a zone-by-zone basis) using the ‘Import site’ button and following the same process outlined in steps 1–12 above.</li>
+  <li>Individual zones can be removed by clicking the button on the right under ‘Delete’.</li>
+</ol>
+
+<h3 id="manual-entry">7.3.3 Manually enter vegetation zone data</h3>
+<p>This section describes how to manually enter the vegetation zone data into the BAM-C to calculate the current VI score.</p>
+<p>1. The ‘PCT code’ field is populated automatically when the ‘Add veg zone’ is clicked.</p>
+<p>2. Select ‘Condition class’ and enter a condition class label for the zone. The name must not include spaces, but hyphens or underscores can be used as an alternative (for example, do not enter ‘Mod TEC’, instead use ‘Mod-TEC’ or ‘Mod_TEC’).</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>Zone condition class is solely a label to help identify the zone and does not influence VI or credit calculations.</li>
+    </ul>
+  </div>
+</div>
+<p>3. A vegetation zone name will be generated automatically based on the condition class and PCT code and displays under the ‘Vegetation zone name’ heading.</p>
+<p>4. Select ‘Patch Size’ and enter the relevant patch size area (in hectares) for the zone.</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>The patch size value is used to filter the list of fauna species presented in the predicted and candidate species tabs. Refer to the BAM 2020, Subsection 4.3.2 for more information on patch size.</li>
+      <li>Making changes to the ‘patch size’ value may affect data in the ‘Habitat suitability’, ‘Habitat survey’, ‘Credits’ and ‘Credit classes’ tabs.</li>
+    </ul>
+  </div>
+</div>
+<p>5. Enter the area for the vegetation zone in the ‘Area (ha)’ field.</p>
+<p>6. The BAM-C will automatically select ‘High risk lands’ if the site is located in an NSW (Mitchell) landscape that is ≥30% cleared, or the native vegetation is listed as an endangered or critically endangered community. However, you can also tick the ‘High risk lands’ checkbox if the site meets other criteria identified in BAM 2020, Subsection 11.4.1(6a–f).</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>The area of a vegetation zone will determine the number of plots required. Refer to the BAM 2020, Subsection 4.3.4 (Table 3). The BAM-C automatically adds the number of plots required based on the ‘Area (ha)’ entered.</li>
+      <li>Ensure there is at least one vegetation zone for each PCT. Use the scroll bar to the right of the vegetation zone list to confirm each PCT has a vegetation zone.</li>
+      <li>The minimum vegetation zone ‘Area (ha)’ is 0.01 ha. If a zone is smaller than 0.01 ha, the BAM-C will automatically round-up the area to 0.01 ha (values of 0.005–0.009 ha will be rounded up). If the area is less than 0.005 ha, consider adding the area to another vegetation zone.</li>
+      <li>The ‘Patch size’ should be equal to or greater than the ‘Area (ha)’ size (when the total ‘Area’ of the vegetation zone represents native vegetation).</li>
+    </ul>
+  </div>
+</div>
+<p>7. Click the ‘Location’ icon and add plot location details.</p>
+<p>8. If additional plots are required, click ‘Add plot’. Once the required plot data has been added click ‘OK’. Note that adding a plot to the ‘Location’ field will also add a plot to the ‘Composition’, ‘Structure’ and ‘Function’ condition score fields.</p>
+<p>9. Select ‘Composition condition score’ and enter composition data.</p>
+<p>10. Click ‘Recalculate’ to update calculation of the composition score for the zone, or ‘OK’ to update and close the composition score pop-up.</p>
+<p>11. Select the ‘Calculation results’ tab on the ‘Zone composition data’ pop-up to see the underlying data used to calculate the score.</p>
+<p>12. Click ‘OK’.</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>The following calculations are shown in the zone:</li>
+      <li>Benchmarks – these values indicate benchmark reference values for the vegetation class/IBRA combination of the zone.</li>
+      <li>Observed mean – this is the average of observed values entered for all plots for a specific growth form group.</li>
+      <li>Unweighted composition score – BAM-C calculates and displays the unweighted condition score for the relevant growth form group. This calculation converts observed mean values to continuous unweighted condition scores using a Weibull (continuous probability) distribution.</li>
+      <li>Weighted composition score – BAM-C calculates and displays the weighted condition score for the relevant growth form group. This calculation applies a dynamic weighting based on the proportional contribution of each growth form group benchmark function to the benchmark total function (sum of benchmark function across all growth form groups).</li>
+      <li>Dynamic weighting – BAM-C calculates and displays a dynamic weighting based on the proportional contribution of each growth form group benchmark condition attribute to the benchmark total condition (sum of benchmark condition attributes across all growth form groups).</li>
+      <li>Weightings for structure and function are calculated using a similar approach. For further information on these weightings and calculations refer to Appendix H of the BAM 2020.</li>
+      <li>For further information on determining the VI score refer to Appendix H of the BAM 2020.</li>
+    </ul>
+  </div>
+</div>
+<p>13. Select ‘Structure condition score’ to open the pop-up and repeat steps 9–12 to calculate the structure score.</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>The same calculations as those described for composition are performed for structure (see BAM 2020, Appendix H).</li>
+    </ul>
+  </div>
+</div>
+<p>14. Select ‘Function condition score’ to open the pop-up and repeat steps 9–12 to calculate the function score.</p>
+<p>15. Select the ‘Calculation results’ tab to see the underlying data used to calculate the score.</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>Some fields in the function tab will be restricted based on the PCT selected. For example, for grassland PCTs the fields relating to trees will be greyed out.</li>
+      <li>Weightings for function are static rather than dynamic, as defined in BAM 2020, Appendix H.3.</li>
+      <li>Unwanted plot(s) can be removed by deleting them in the ‘Location’ pop-up. If you delete a plot, the applicable plot data will also be deleted from the composition, structure and function fields.</li>
+    </ul>
+  </div>
+</div>
+<p>16. After completing the composition, structure and function calculations, the current VI score will be displayed.</p>
+
+<h3 id="management-zones">7.3.4 Calculate vegetation integrity for sites with multiple management zones (optional)</h3>
+<p>Management zones can be added to an assessment to identify areas of a vegetation zone that will have different levels or types of management.</p>
+<ol>
+  <li>To add a management zone to the assessment, click the icon under ‘Management zones’.</li>
+  <li>The ‘Area’ value is automatically populated based on the area of the vegetation zone. Add a name, then click ‘Add zone’ and then ‘OK’.</li>
+  <li>The sum of the areas of all management zones in a vegetation zone must equal the ‘Area (ha)’ field value for the vegetation zone. If you add a second management zone, enter another name and the area, then correct the area entered for the first management zone so the sum of both management zones is equal to the area of the vegetation zone. Click ‘Add zone’, and then ‘OK’.</li>
+  <li>The management zones are displayed in the ‘Vegetation zones (Future vegetation integrity (VI) score, with management)’ section. The composition, structure and function scores can then be modified based on the management differences, for example, with and without active restoration.</li>
+</ol>
+
+<h3 id="management-zones">7.3.4 Calculate vegetation integrity for sites with multiple management zones (optional)</h3>
+<p>Management zones can be added to an assessment to identify areas of a vegetation zone that will have different levels or types of management.</p>
+<ol>
+  <li>To add a management zone to the assessment, click the icon under ‘Management zones’.</li>
+  <li>The ‘Area’ value is automatically populated based on the area of the vegetation zone. Add a name, then click ‘Add zone’ and then ‘OK’.</li>
+  <li>The sum of the areas of all management zones in a vegetation zone must equal the ‘Area (ha)’ field value for the vegetation zone. If you add a second management zone, enter another name and the area, then correct the area entered for the first management zone so the sum of both management zones is equal to the area of the vegetation zone. Click ‘Add zone’, and then ‘OK’.</li>
+  <li>The management zones are displayed in the ‘Vegetation zones (Future vegetation integrity (VI) score, with management)’ section. The composition, structure and function scores can then be modified based on the management differences, for example, with and without active restoration.</li>
+</ol>
+
+<h3 id="future-vi">7.3.5 Calculate the future vegetation integrity score, without management</h3>
+<p>In the ‘Vegetation zones (Future vegetation integrity score, without management)’ section, ‘Composition condition score’, ‘Structure condition score’, ‘Function condition score’ and ‘VI score’ will populate automatically. The calculation of these values is dependent on the annual rates of decline for the VI attributes, the presence of HTW, and the risk category of the land.</p>
+<p>Refer to the Biodiversity Assessment Method Operational Manual – Stage 3, Subsection 2.2.1 for more information on averted loss, and the homepage of the BAM-C for the intrinsic rates of increase and annual rate of decline (see Appendix B).</p>
+<ol>
+  <li>In some instances, the composition score can be modified when HTW are present. For more information, refer to the ‘Annual rate of decline’ tab within the Rates of increase/rates of decline document on the homepage of the BAM-C.</li>
+  <li>Select the 'Composition condition score' to modify the default composition condition rate of decline.</li>
+  <li>To modify the default rate of decline, click ‘Modify default rate of decline’. Data input fields under the default rate of decline row will be displayed.<br/>Click ‘Unlock’, enter the required modified rate of decline, and then click ‘Update’ to set the new rate of decline.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>You can vary the annual rate of decline for an attribute in circumstances defined in the Intrinsic rates of increase/annual rate of decline table provided in the BAM-C ‘Information’ tab. Refer to the BAM 2020, Section 11.4 for more information.</li>
+    </ul>
+  </div>
+</div>
+<ol start="4">
+  <li>Click ‘Recalculate’ to update the calculations or ‘OK’ to update and close the pop-up.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <p>The following calculations are shown in this pop-up:</p>
+    <ul>
+      <li>Rate of decline: the annual rate of decline for the growth form group. See BAM 2020, Chapter 11.</li>
+      <li>The BAM-C calculates and displays the predicted future condition (composition/structure/function) value for the growth form group. This calculation reapplies the logistic growth curve (Weibull curve) and the dynamic weighting approach to the attribute value without management to determine the future predicted condition score for composition, structure and function.</li>
+      <li>See BAM 2020, Appendix H, Equations 28–30. These equations are used to calculate the future VI score without management.</li>
+    </ul>
+  </div>
+</div>
+<ol start="5">
+  <li>In some instances, the structure score may be modified when HTW are present. For more information, refer to the ‘Annual rate of decline’ tab within the Rates of increase/rates of decline document on the homepage of the BAM-C.<br/>
+  To modify the default structure condition rate of decline, select the ‘Structure condition score’.</li>
+  <li>Click ‘Modify default rate of decline’.<br/>Data input fields under the default ‘Rate of decline’ row will be displayed.<br/>Click ‘Unlock’, enter the modified rate of decline, and then click ‘Update’ to confirm the new rate of decline.</li>
+  <li>Click ‘Recalculate’ to update the calculations, or ‘OK’ to update and close the pop-up.</li>
+  <li>To modify the default rate of decline for function condition select ‘Function condition score’.</li>
+  <li>Click ‘Modify default rate of decline’. Data input fields under the default rate of decline row will be displayed.<br/>Click ‘Unlock’, enter the required modified rate of decline, and click ‘Update’ to confirm the new rate of decline.</li>
+  <li>Click ‘Recalculate’ to update the calculations, or ‘OK’ to update and close the pop-up.</li>
+  <li>After completing the composition, structure and function calculations, the future VI score after 20 years without management is calculated and displayed in the ‘VI score’ field. The changes in VI between current and future without management scores (also known as averted loss) will be displayed in the ‘Total change in VI score’ column.</li>
+</ol>
+
+<h3 id="future-vi-management">7.3.6 Calculate the future vegetation integrity score, with management</h3>
+<p>In the ‘Vegetation zones (Future vegetation integrity score, with management’) section, the ‘composition condition score’, ‘structure condition score’ and ‘function condition score’ will be calculated automatically and displayed. These can be modified, where appropriate, if active restoration is being undertaken.</p>
+<p>The ‘Security Benefit Score’ and ‘VI score’ will also be calculated and displayed but cannot be modified.<br/>The ‘High Threat Weed Cover’ and ‘CL or conservation obligation’ fields are editable.</p>
+<p>The current list of HTW is published on the homepage of the BAM-C as a BioNet Power Query export from the BioNet Species Names database. </p>
+<p>Each HTW is categorised as either ‘manageable’ or ‘not manageable’, and this categorisation is displayed in the BioNet Power Query.</p>
+<ol>
+  <li>Where ‘manageable’ HTW occur in the vegetation zone and they will be actively managed, as detailed in the management plan, plus there is evidence to support their successful control, the HTW score may be modified to display only the percentage of ‘non-manageable’ HTW. Refer to BAM 2020, Appendix G.7.6, and Subsection 2.2.2 of the Biodiversity Assessment Method Operational Manual – Stage 3 for more information:
+    <ol type="a">
+      <li>Tick the ‘High Threat Weed Cover’ checkbox, which unlocks the field.</li>
+      <li>Edit the HTW value to display the percentage cover of ‘non-manageable’ HTW plus any ‘manageable’ HTW not being actively managed.</li>
+    </ol>
+    <p>If the condition score fields already contain data, these will automatically update based on the revised risk weighting for HTW as outlined in BAM 2020, Equations 35 and 36.</p>
+    <p>Note, the values contributing to the composition and structure scores should be unlocked and modified to reflect the predicted outcomes of the active management being undertaken. For instructions, refer to the steps below.</p>
+  </li>
+  <li>Where active restoration is being undertaken, it may be appropriate to modify the ‘Future value with active restoration gain’ for one or more growth form groups in the zone composition data fields. Refer to BAM 2020, Subsection 11.3.2 for more information.<br/>To alter the composition score, select the ‘Composition condition score’ field and click ‘Unlock’ under ‘Future value with active restoration gain’. Data input fields for capturing future value with active restoration gain will become editable. Enter the proposed future value and click ‘Lock’ to update the proposed value.</li>
+  <li>Click ‘Recalculate’ to update the calculations, or ‘OK to update and close the pop-up.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>The BAM-C calculates and displays the current mean of observed values of the relevant growth form group over all plots (from the ‘Current vegetation integrity score’ pop-up). Equation 25 or Equation 26 is then used to calculate the future VI score with management.</li>
+      <li>See BAM 2020, Appendix H: Determining the vegetation integrity score.</li>
+    </ul>
+  </div>
+</div>
+<ol start="4">
+  <li>Where active restoration is being undertaken, it may be appropriate to modify the ‘Future value with active restoration gain’ for one or more growth form groups in the zone structure data fields. Refer to the BAM 2020, Subsection 11.3.2 for more information.<br/>
+  To alter the structure score, select the structure condition score and click ‘Unlock’ under ‘Future value with active restoration gain’. Data input fields for specifying future value with active restoration gain will be enabled. Enter the proposed future value and click ‘Lock’ to update the proposed value.</li>
+  <li>Click ‘Recalculate’ to update the calculations, or ‘OK’ to update and close the pop-up.</li>
+  <li>Where active restoration is being undertaken, it may be appropriate to modify the ‘Future value with active restoration gain’ for one or more function attributes. Refer to the BAM 2020, Subsection 11.3.2 for more information.<br/>To alter the function score, select the function condition score and click ‘Unlock’ under ‘Future value with active restoration gain’. Data input fields for specifying future value with active restoration gain will be enabled. Enter the proposed future value and click ‘Lock’ to update the proposed value.</li>
+  <li>Click ‘Recalculate’ to update the calculations, or ‘OK’ to update and close the pop-up.</li>
+  <li>After completing the composition, structure and function calculations, the future VI score (with management), security benefit score, change in VI scores between current and future with management, and total gain will be displayed.</li>
+  <li>The ‘Security Benefit Score’ will be applied if the vegetation zone meets the criteria set out in the BAM, Section 11.5, that it:
+    <ul>
+      <li>has a current VI score of ≥60</li>
+      <li>has a current HTW cover of ≤10%</li>
+      <li>is not already secured under an existing conservation obligation</li>
+      <li>is not Crown land.</li>
+    </ul>
+  </li>
+  <li>Tick the ‘CL [Crown land] or conservation obligation’ checkbox if appropriate. Refer to the BAM 2020, Section 11.9, to identify the types of actions or measures that are applicable.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>Definitions relating to existing conservation obligations and management actions:</li>
+      <ul>
+      <li>‘Existing conservation obligation’ does not include management actions that are undertaken voluntarily and are not secured by any legal obligation.</li>
+      <li>‘Publicly owned land’ means land owned by, or under the control of, the state, the Commonwealth or a public authority under a long-term lease, licence, or other arrangement. It does not include land that is under a perpetual lease, or land that is being managed by a person or a body (other than the state, the Commonwealth, or a public authority).</li>
+      </ul>
+      <li>See BAM 2020, Section 11.9.</li>
+    </ul>
+  </div>
+</div>
+<ol start="11">
+  <li>When all required information has been entered, click ‘Next’ to move to Tab 4.</li>
+</ol>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>The security benefit score is an addition to the overall gain achieved at a site and is applied to zones in high to very high condition.</li>
+      <li>Save your assessment regularly to ensure data is not lost.</li>
+    </ul>
+  </div>
+</div>
+  </div>
+  </div>
+     
+      <footer class="nsw-footer nsw-docs-footer">
+        <div class="nsw-footer__lower">
+          <div class="nsw-container">
+            <p>We pay respect to the Traditional Custodians and First Peoples of NSW, and acknowledge their continued connection to their country and culture.</p>
+            <hr>
+            <ul>
+              <li><a href="#cookie-consent" class="js-open-dialog-cookie-consent-preferences" aria-haspopup="dialog">Cookie preferences</a></li>
+              <li><a href="mailto:digital@customerservice.nsw.gov.au">Contact us</a></li>
+            </ul>
+            <div class="nsw-footer__info">
+              <div class="nsw-footer__copyright">Copyright © <script>document.write(new Date().getFullYear())</script></div>
+            </div>
+          </div>
+        </div>
+      </footer>
+  </div>
+ <script src="/bamguide/js/main.js"></script>
+  <script>
+    window.NSW.initSite()
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/bamguide/js/docs.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

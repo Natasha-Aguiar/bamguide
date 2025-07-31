@@ -334,41 +334,287 @@
         </nav>
       </div>
     </div>
-<div class="nsw-docs__main nsw-docs__main--wide">
-	
-	<div class="nsw-docs__intro">
-        <div class="nsw-docs__container">
+  <div class="nsw-docs__main nsw-docs__main--wide">
+    <div class="nsw-docs__intro">
+      <div class="nsw-docs__container">
+<h1>5.3 Vegetation (Tab 3)</h1>
 
-<h2>Download supporting documentation</h2>
+<p>The ‘Vegetation’ tab is used to record the PCT(s) present on the site and to capture individual plot data that is used to calculate the VI scores for each plot.</p>
+<p>The method for recording PCTs and TECs at a site and calculating current vegetation condition of a site is the same for all assessment types. Refer to Chapter 4 of the BAM 2020 for further information.</p>
+<p>Small area assessments can record a maximum of 2 PCTs. Where 2 PCTs require assessment, at least one PCT must be a TEC to use the small area assessment method. For any assessment that does not meet this requirement, refer to Chapter 4 of this guide for the available alternatives.</p>
+
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>Where the total assessment area meets the small area threshold but there are more than 2 TECs, or more than one PCT (but none are TECs), the small area module can still be applied. Add the dominant TEC(s) and/or PCT into the BAM-C, then include all areas of the smaller, non-dominant PCT(s) or TEC(s) in the vegetation zones of the dominant PCT and/or TEC(s).</li>
+    </ul>
   </div>
 </div>
+ </div>
+  </div>
+  
   <div class="nsw-docs__content">
         <div class="nsw-docs__container">
-<p>The <img class="img-inline" src="../img/download-supporting-documentation-1.png" alt="support icon"/> icon in the BAM-C, to the left of Tab 1, provides downloadable supporting information.</p>
 
-<ol>
-  <li>
-    Click on the <img class="img-inline" src="../img/download-supporting-documentation-1.png" alt="support icon"/> icon to see the available documents, including:
+ <nav class="nsw-in-page-nav" aria-labelledby="in-page-nav">
+          <div class="nsw-in-page-nav__title">On this page</div>
+          <ul class="nsw-in-page-nav__list">
+  <li><a href="#define-pcts-tecs">5.3.1 Define the PCTs and TECs</a></li>
+  <li><a href="#import-vegetation-zones">5.3.2 Import vegetation zones</a></li>
+  <li><a href="#manual-vegetation-zone-entry">5.3.3 Manually enter vegetation zone data</a></li>
+  <li><a href="#calculate-management-zones">5.3.4 Calculate vegetation integrity for sites with multiple management zones (optional)</a></li>
+  <li><a href="#calculate-future-vi">5.3.5 Calculate the future vegetation integrity score</a></li>
+</ul>
+</nav>
+
+<h2 id="define-pcts-tecs">5.3.1 Define the PCTs and TECs</h2>
+  <ol>
+    <li>The ‘Vegetation’ tab will be open if ‘Next’ was clicked on Tab 2. When reopening an assessment with existing information, click on Tab 3 to open it.</li>
+    <li>Note that if any of the tab headings are shaded in red, this indicates that action is required, or information needs to be entered/confirmed on that tab. Remember to click ‘Next’ to move through the tabs if any changes are made.</li>
+    <li>If the PCT name or number is known, the ‘Plant community type’ field can be added as the first step, which will automatically populate the formation and class fields.<br>
+    If the PCT name or number is not known, use the ‘Formation’ drop-down to select the formation for the required PCT.</li>
+  </ol>
+  <div class="nsw-in-page-alert nsw-in-page-alert--info">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+    <div class="nsw-in-page-alert__content">
+      <p class="nsw-h5">Tip</p>
+      <ul>
+        <li>If the PCT or number is known, enter this first and the formation and class fields will be populated automatically.</li>
+        <li>Only PCTs associated with the IBRA region and IBRA subregion will be available.</li>
+        <li>Refer to the webpage About BioNet Vegetation Classification (Veg-C) for further information about PCTs and TECs (see Appendix B).</li>
+      </ul>
+    </div>
+  </div>
+  <ol start="4">
+    <li>Use the ‘Class’ drop-down (if PCT name or number is not known) to select the required class. The classes available will be filtered to those associated with the formation if a formation was selected in step 3.</li>
+    <li>Use the ‘Plant community type’ drop-down to select the required PCT. The PCTs available will be filtered to those associated with the class if a class was selected in step 4.</li>
+    <li>The % cleared value for the PCT will display under ‘PCT % cleared’. The % cleared value is an estimate of the extent to which a PCT has been cleared since European settlement and is used when assigning a non-threatened PCT to an OTG.</li>
+  </ol>
+  <div class="nsw-in-page-alert nsw-in-page-alert--info">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+    <div class="nsw-in-page-alert__content">
+      <p class="nsw-h5">Tip</p>
+      <ul>
+        <li>Detailed information on each PCT and its geographic distribution is available as a downloadable and refreshable Power Query from NSW BioNet Resources (see Appendix B).</li>
+        <li>Refer to the Offset rules and ecosystem credits guidance for more information on % cleared and OTGs (see Appendix B).</li>
+      </ul>
+    </div>
+  </div>
+  <ol start="7">
+    <li>Use the ‘Associated TEC’ drop-down to select the relevant TEC. If no TEC is associated with the PCT, select ‘Not a TEC’.</li>
+  </ol>
+  <div class="nsw-in-page-alert nsw-in-page-alert--info">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+    <div class="nsw-in-page-alert__content">
+      <p class="nsw-h5">Tip</p>
+      <ul>
+        <li>Only TECs with an association with the selected PCT (in BioNet) are shown in the drop-down. Where a TEC is present at the site but is unavailable in the drop-down list, it may be because the TEC is not associated with the IBRA region and IBRA subregion chosen.</li>
+        <li>A detailed description of each TEC is available through the Threatened biodiversity profile search app (see Appendix B).</li>
+        <li>Detailed information on the PCT to TEC associations and the applicable subregions is available as a downloadable and refreshable Power Query from the NSW BioNet Resources webpage (see Appendix B). ‘BioNet Vegetation Classification’ > ‘Power queries’ > ‘Threatened Ecological Community to Plant Community Types (PCT) Association data’.</li>
+        <li>To request a review of a TEC association, contact the BOS Help Desk.</li>
+      </ul>
+    </div>
+  </div>
+  <ol start="8">
+    <li>The state and Commonwealth listing status of a TEC will be displayed under the ‘BC Act listing status’ and ‘EPBC Act listing status’ headings, respectively.</li>
+    <li>Click ‘Add veg zone’.</li>
+    <li>A vegetation zone record will be added to sections:<br/>
+− ‘Vegetation zones (Current vegetation integrity score)’<br/>
+− ‘Vegetation zones (Future vegetation integrity score)’.</li>
+  </ol>
+  <div class="nsw-in-page-alert nsw-in-page-alert--info">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+    <div class="nsw-in-page-alert__content">
+      <p class="nsw-h5">Tip</p>
+      <ul>
+        <li>Adding a unique condition class name to each vegetation zone will help you distinguish the vegetation zones throughout the assessment, especially when both a TEC and non-TEC have been identified on site for the same PCT.</li>
+        <li>The future VI score fields display the remaining VI values after the development or clearing has occurred at a site. Only edit this section if partial loss of VI is occurring, rather than total loss.</li>
+      </ul>
+    </div>
+  </div>
+  <ol start="11">
+    <li>For PCTs with multiple vegetation zones, click ‘Add veg zone’ beside the applicable PCT to add another vegetation zone.</li>
+    <li>A zone number will be generated for each vegetation zone and the relevant PCT number for each record displayed.</li>
+    <li>Click ‘Add another PCT’ (if required) and repeat the above steps to add additional PCTs.</li>
+    <li>If the required PCT is missing from the PCT list, click ‘Search PCT outside IBRA’ and enter the name or PCT number to search and then select the PCT. Repeat the above steps for adding vegetation zones.</li>
+  </ol>
+  <div class="nsw-in-page-alert nsw-in-page-alert--info">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+    <div class="nsw-in-page-alert__content">
+      <p class="nsw-h5">Tip</p>
+      <ul>
+        <li>For small area assessments PCTs are generally restricted to one PCT, however, 2 can be added if at least one is a TEC.</li>
+        <li>You can only add PCTs that are associated with the selected IBRA region when you use the ‘Add Another PCT’ button.</li>
+        <li>With the ‘Search PCT outside IBRA’ button you can add any approved PCT, not only those associated with the selected IBRA region.</li>
+        <li>Some PCTs have no (or incomplete) benchmarks in Veg-C. For these PCTs, an error will display and the PCT cannot be used in the assessment.</li>
+      </ul>
+    </div>
+  </div>
+  <ol start="15">
+    <li>To delete a PCT or a vegetation zone click the button on the right under ‘Delete’.</li>
+  </ol>
+  <div class="nsw-in-page-alert nsw-in-page-alert--info">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+    <div class="nsw-in-page-alert__content">
+      <p class="nsw-h5">Tip</p>
+      <p>Vegetation zone and site data can be imported into the BAM-C in CSV file format (Subsection 5.3.2) or added manually (Subsection 5.3.3). See below for the instructions.</p>
+    </div>
+  </div>
+
+<h2 id="import-vegetation-zones">5.3.2 Import vegetation zones</h2>
+  <ol>
+    <li>To import vegetation zone data, click the import icon beside the vegetation zone.</li>
+    <li>Download the CSV template by selecting ‘this template file’ in the import pop-up and an excel import data template will become available.</li>
+    <li>Open and populate the template with observation values and save the template:<br/>
+      − row 1 of the template is reserved for headers<br/>
+      − row 2 of the template is reserved for example data<br/>
+      − users must enter plot data into the template from row 3 onwards.</li>
+    <li>Select and copy all column headings in rows 1 and 2 and the data from row 3 (and onwards if there is more than one plot). Make sure no blank columns or rows are selected.</li>
+    <li>Click the import icon to reopen the ‘Import data’ pop-up (if not already open).</li>
+    <li>Paste the copied data from the template into the ‘Import data’ pop-up and click ‘Import’.</li>
+    <li>A pop-up will open asking you to confirm that all existing plots will be deleted. Click ‘Yes’ to delete any previous plot data or ‘No’ to cancel and retain the existing plot data.</li>
+    <li>If the import was not successful, or only partially successful, the ‘Import data’ pop-up will display an error message. Correct the error(s) in the CSV file, copy and paste the corrected data, and re-import.</li>
+    <li>Click ‘Close’ to close the pop-up once the data has imported.</li>
+    <li>The data will be imported into the relevant condition score pop-ups and the scores will be calculated automatically. The condition score fields for each condition attribute will change from showing no score (indicated by an ellipsis) to showing a numeric score value.</li>
+  </ol>
+  <div class="nsw-in-page-alert nsw-in-page-alert--info">
+    <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+    <div class="nsw-in-page-alert__content">
+      <p class="nsw-h5">Tip</p>
+      <ul>
+        <li>If assessing a non-woody PCT, do not specify any values for function attributes other than HTW cover in the CSV import file.</li>
+        <li>When copying the data from the template ensure no extra columns are selected or an error will occur.</li>
+      </ul>
+    </div>
+  </div>
+  <ol start="11">
+    <li>To clear imported data, click the ‘Import’ icon to reopen the ‘Import’ pop-up.</li>
+    <li>Click ‘Clear plots’.</li>
+    <li>All imported data will be cleared, and the condition score fields will revert to displaying no score (‘…’).</li>
+    <li>The above process can be performed for all zones at the site (rather than on a zone-by-zone basis) using ‘Import site’ and following the same process outlined in steps 1–12 above.</li>
+    <li>Individual zones can be removed by clicking the button on the right under ‘Delete’.</li>
+  </ol>
+
+
+  <h2 id="manual-vegetation-zone-entry">5.3.3 Manually enter vegetation zone data</h2>
+<p>This section describes how to manually enter the vegetation zone data into the BAM-C to calculate the VI score.</p>
+<p>1. The ‘PCT code’ field is populated automatically when ‘Add veg zone’ is clicked.</p>
+<p>2. Select ‘Condition class’ and enter a condition class label for the zone. The name must not include spaces, but hyphens or underscores can be used as an alternative (for example, do not enter ‘Mod TEC’, instead use ‘Mod-TEC’ or ‘Mod_TEC’).</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <p>Zone condition class is solely a label to help identify the zone and does not have any influence on VI or credit calculations.</p>
+  </div>
+</div>
+<p>3. A vegetation zone name will be generated automatically based on the condition class and PCT code and displays under the ‘Vegetation zone name’ heading.</p>
+<p>4. Select ‘Patch Size’ and enter the relevant patch size area (in hectares) for the zone.</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
     <ul>
-      <li>this guide</li>
-      <li>Version 1.1 Benchmarks – archived data</li>
-      <li>rates of increase/rates of decline tables – estimates of gain and decline for each attribute</li>
-      <li>species with specific survey requirements list</li>
-      <li>native species by growth form list – BioNet Power Query</li>
-      <li>high threat weeds list – BioNet Power Query</li>
-      <li>serious and irreversible impact (SAII) examples – how to assess SAII</li>
-      <li>koala use tree list</li>
+      <li>The patch size value is used to filter the list of fauna species presented in the predicted and candidate species tabs. Refer to the BAM 2020, Subsection 4.3.2 for more information on patch size.</li>
+      <li>Making changes to the ‘patch size’ value may affect data in the ‘Habitat suitability’, ‘Habitat survey’, ‘Credits’ and ‘Credit classes’ tabs.</li>
     </ul>
-	<img src="../img/download-supporting-documentation-2.png" alt="BAM C Screenshot"/>
-  </li>
-  <li>
-    Click ‘Download’ below the document you need. If the downloaded file does not open automatically, go to your downloads folder and open the file from there.
-	<img src="../img/download-supporting-documentation-3.png" alt="BAM C Screenshot"/>
-  </li>
-</ol>
-		
-	</div>
-	</div>
+  </div>
+</div>
+<p>5. Enter the area for the vegetation zone in the ‘Area (ha)’ field.</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>The area of a vegetation zone will determine the number of plots required. Refer to the BAM 2020, Subsection 4.3.4 (Table 3). The BAM-C automatically adds the number of plots required based on the ‘Area (ha)’ entered.</li>
+      <li>Ensure there is at least one vegetation zone for each PCT. Use the scroll bar to the right of the vegetation zone list to confirm each PCT has a vegetation zone.</li>
+      <li>The minimum vegetation zone ‘Area (ha)’ accepted is 0.01 ha. If an area is smaller than this, the BAM-C will automatically round it up to 0.01 ha (values of 0.005–0.009 ha will be rounded up). If the area is less than 0.005 ha, consider adding the area to another vegetation zone.</li>
+      <li>The ‘Patch size’ should be equal to or greater than the ‘Area (ha)’ size (when the total ‘Area’ of the vegetation zone).</li>
+    </ul>
+  </div>
+</div>
+<p>6. Click the ‘Location’ icon and add plot location details.</p>
+<p>7. If additional plots are required, click ‘Add plot’. Once the required plot data has been added click ‘OK’. Note that adding a plot to the ‘Location’ field will also add a plot to the ‘Composition’, ‘Structure’ and ‘Function’ condition score fields.</p>
+<p>8. Select ‘Composition condition score’ and enter composition data.</p>
+<p>9. Click ‘Recalculate’ to update calculation of the composition score for the zone, or ‘OK’ to update and close the composition score pop-up.</p>
+<p>10. Select the ‘Calculation results’ tab on the ‘Zone composition data’ pop-up to see the underlying data used to calculate the score.</p>
+<p>11. Click ‘OK ‘.</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <p>The following calculations are shown in the composition condition section:</p>
+    <ul>
+      <li><b>Benchmarks</b> – these values indicate benchmark reference values for the vegetation class/IBRA combination of the zone.</li>
+      <li><b>Observed mean</b> – this is the average of observed values entered for all plots for a specific growth form group.</li>
+      <li><b>Unweighted composition score</b> – BAM-C calculates and displays the unweighted condition score for the relevant growth form group. This calculation converts observed mean values to continuous unweighted condition scores using a Weibull (continuous probability) distribution.</li>
+      <li><b>Weighted composition score</b> – BAM-C calculates and displays the weighted condition score for the relevant growth form group. This calculation applies a dynamic weighting based on the proportional contribution of each growth form group benchmark function to the benchmark total function (sum of benchmark function across all growth form groups).</li>
+      <li><b>Dynamic weighting</b> – The BAM-C calculates and displays a dynamic weighting based on the proportional contribution of each growth form group benchmark condition attribute to the benchmark total condition (sum of benchmark condition attributes across all growth form groups).</li>
+      <li>Weightings for structure and function are calculated using a similar approach. For further information on these weightings and calculations refer to Appendix H of the BAM 2020.</li>
+      <li>For further information on determining the VI score refer to Appendix H of the BAM 2020.</li>
+    </ul>
+  </div>
+</div>
+<p>12. Select ‘Structure condition score’ to open the pop-up and repeat steps 8–11 above to calculate the structure score.</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <p>The same calculations as those described for composition are performed for structure (see BAM 2020, Appendix H).</p>
+  </div>
+</div>
+<p>13. Select ‘Function condition score’ to open the pop-up and repeat steps 8–11 above to calculate the function score.</p>
+<p>14. Select the ‘Calculation results’ tab to see the underlying data used to calculate the score.</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>Some fields in the function tab will be restricted based on the PCT selected. For example, for grassland PCTs the fields relating to trees will be greyed out.</li>
+      <li>Weightings for function are static rather than dynamic, as defined in BAM 2020, Appendix H.3.</li>
+      <li>Unwanted plot(s) can be removed by deleting them in the ‘Location’ pop-up. If you delete a plot, the applicable plot data will also be deleted from the composition, structure and function fields.</li>
+    </ul>
+  </div>
+</div>
+<p>15. After completing the composition, structure and function condition calculations, the current VI score will be displayed.</p>
+
+<h2 id="calculate-management-zones">5.3.4 Calculate vegetation integrity for sites with multiple management zones (optional)</h2>
+<p>Management zones can be added to an assessment to identify areas of a vegetation zone that will have different levels of impact (referred to as partial loss). Refer to Subsection 4.1.2 of the Biodiversity Assessment Method 2020 Operational Manual – Stage 2 for information on generating VI scores for partial loss (see Appendix B).</p>
+<p>1. To add a management zone to the assessment, click the icon under ‘Management zones’.</p>
+<p>2. The ‘Area’ value is automatically populated based on the area of the vegetation zone. Add a name, then click ‘Add zone’ and then ‘OK’.</p>
+<p>3. The sum of the areas of all management zones in a vegetation zone must equal the ‘Area (ha)’ field value for the vegetation zone. If you add a second management zone, enter another name and the area, then correct the area entered for the first management zone so the sum of both management zones is equal to the area of the vegetation zone. Click ‘Add zone’, and then ‘OK’.</p>
+<p>4. The management zones are displayed in the ‘Vegetation zones (Future vegetation integrity score)’ section. The composition, structure and function scores can be modified (from zero) for the management zone where only partial loss will occur.</p>
+
+<h2 id="calculate-future-vi">5.3.5 Calculate the future vegetation integrity score</h2>
+<p>In the ‘Vegetation zones (Future vegetation integrity score)’ section, ‘Composition condition score’, ‘Structure condition score’, ‘Function condition score’ and ‘Vegetation integrity (VI) score’ default to a score of zero.</p>
+<p>The VI score is an estimate of the future condition of the site when compared to the benchmark score. For any area where partial loss (not full loss) is expected to occur, the future VI score can be modified from zero to display the expected VI score after development/clearing. Refer to Subsection 4.1.2 of the Biodiversity Assessment Method 2020 Operational Manual – Stage 2 for information on how to generate future VI scores.</p>
+<p>1. To enter an expected future condition score to reflect partial loss of VI, select the ‘Composition condition score’ field.</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <ul>
+      <li>Unless assuming a partial loss of VI, there is no need to enter data in the ‘Future vegetation integrity score’ section. The BAM-C assumes a zero value for future observations.</li>
+    </ul>
+  </div>
+</div>
+<p>2. Enter a value greater than zero in the relevant ‘Future mean (x̄)’ fields.</p>
+<p>3. Click ‘Recalculate’ to prompt calculation of the composition score for the zone.</p>
+<p>4. Click ‘OK’.</p>
+<p>5. To enter an expected future condition score to reflect partial loss of VI for structure condition, select the ‘Structure condition score’ field and follow steps 2–4 above.</p>
+<p>6. To enter an expected future condition score to reflect partial loss of VI for function condition, select the ‘Function condition score’ field and follow steps 2–4 above.</p>
+<p>7. After completing the composition, structure and function calculations, the BAM-C will display the future VI score and the change in VI score (the difference between the current and future VI scores).</p>
+<p>8. When all required information has been entered, click ‘Next’ to move to Tab 4.</p>
+<div class="nsw-in-page-alert nsw-in-page-alert--info">
+  <span class="material-icons nsw-material-icons nsw-in-page-alert__icon" focusable="false" aria-hidden="true">info</span>
+  <div class="nsw-in-page-alert__content">
+    <p class="nsw-h5">Tip</p>
+    <p>Save your assessment regularly to ensure data is not lost.</p>
+  </div>
+</div>
+</div>
+  </div>
      
       <footer class="nsw-footer nsw-docs-footer">
         <div class="nsw-footer__lower">
