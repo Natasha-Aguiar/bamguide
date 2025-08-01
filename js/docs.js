@@ -729,9 +729,9 @@
       const originalButtonText = this.buttonText.innerText;
       this.buttonText.innerText = 'Building PDF...';
       html2canvas(this.content).then(canvas => {
-        const base64image = canvas.toDataURL('image/png');
+        const base64image = canvas.toDataURL('image/jpg');
         const pdf = new jsPDF('p', 'px', [canvas.width, canvas.height]);
-        pdf.addImage(base64image, 'PNG', 0, 0, canvas.width, canvas.height);
+        pdf.addImage(base64image, 'jpg', 0, 0, canvas.width, canvas.height);
         pdf.save(`${this.name}.pdf`);
         this.buttonText.innerText = originalButtonText;
       }).catch(error => {
