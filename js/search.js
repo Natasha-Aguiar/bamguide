@@ -42,7 +42,7 @@ function runSearch(query) {
     const excerpt = getExcerpt(item.content, query);
     resultsContainer.innerHTML += `
       <div class="search-result">
-        <h2><a href="/bamguide/${item.url}">${item.title}</a></h2>
+        <h2><a href="/bamguide/core/${item.url}">${item.title}</a></h2>
         <p>${excerpt}</p>
       </div>
     `;
