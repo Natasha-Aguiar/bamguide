@@ -1,379 +1,78 @@
 (function (factory) {
   typeof define === 'function' && define.amd ? define('NSW', factory) :
-  factory();
-})((function () { 'use strict';
+    factory();
+})((function () {
+  'use strict';
 
-  const searchValues = [{
-    label: 'Accordion',
-    template: 'result',
-    keywords: 'show, hide, Collapse, Expand, expandable, vertical, panels',
-    url: '/components/accordion/index.html'
-  }, {
-    label: 'Breadcrumbs',
-    template: 'result',
-    keywords: 'navigation, information architecture, IA',
-    url: '/components/breadcrumbs/index.html'
-  }, {
-    label: 'Buttons',
-    template: 'result',
-    keywords: 'blue diamond, links, submit, call to action, transaction',
-    url: '/components/button/index.html'
-  }, {
-    label: 'Callout',
-    template: 'result',
-    keywords: 'action, highlight, attention',
-    url: '/components/callout/index.html'
-  }, {
-    label: 'Cards',
-    template: 'result',
-    keywords: 'Highlight, Content, images, links, summary, related content, navigation',
-    url: '/components/card/index.html'
-  }, {
-    label: 'Content blocks',
-    template: 'result',
-    keywords: 'columns, links, content',
-    url: '/components/content-block/index.html'
-  }, {
-    label: 'Cookie consent',
-    template: 'result',
-    keywords: 'cookie, consent, consent banner, privacy, GDPR, CCPA, cookie policy, cookie preferences, cookie consent solution, cookie banner design, tracking consent, online privacy compliance, data protection, cookie management, privacy notice, user data consent, web compliance, privacy settings, regulatory compliance, digital consent',
-    url: '/components/cookie-consent/index.html'
-  }, {
-    label: 'Date input',
-    template: 'result',
-    keywords: 'date, day, month, year, calendar, input field, manual entry, form field, accessibility, validation, format, required, date format, user input, form date, date input, date field',
-    url: '/components/date-input/index.html'
-  }, {
-    label: 'Date picker',
-    template: 'result',
-    keywords: 'date, calendar, UI picker, dropdown calendar, select date, form, input field, visual selector, accessibility, date selection, required field, user-friendly, mobile-friendly, form date, date input, date field',
-    url: '/components/date-picker/index.html'
-  }, {
-    label: 'Dialog',
-    template: 'result',
-    keywords: 'modal, window, alert, message, action, information, notification, required, response, Transactional, single, call to action, Danger, Dismissible',
-    url: '/components/dialog/index.html'
-  }, {
-    label: 'Filters',
-    template: 'result',
-    keywords: 'results, data, refine',
-    url: '/components/filters/index.html'
-  }, {
-    label: 'Footer',
-    template: 'result',
-    keywords: 'links, copyright, blue diamond, social, privacy, contact',
-    url: '/components/footer/index.html'
-  }, {
-    label: 'Forms',
-    template: 'result',
-    keywords: 'data, input, field, Freeform, Selection, label, checkbox, Dropdown, radio, list, Validation, help text, placeholder, autofill, autocorrect, blue diamond',
-    url: '/components/form/index.html'
-  }, {
-    label: 'Global alert',
-    template: 'result',
-    keywords: 'attention, important, critical',
-    url: '/components/global-alert/index.html'
-  }, {
-    label: 'Header',
-    template: 'result',
-    keywords: 'logo, site descriptors, Search, masthead, blue diamond',
-    url: '/components/header/index.html'
-  }, {
-    label: 'Hero banner',
-    template: 'result',
-    keywords: 'landing page, homepage',
-    url: '/components/hero-banner/index.html'
-  }, {
-    label: 'Hero search',
-    template: 'result',
-    keywords: '',
-    url: '/components/hero-search/index.html'
-  }, {
-    label: 'In-page alert',
-    template: 'result',
-    keywords: '',
-    url: '/components/in-page-alert/index.html'
-  }, {
-    label: 'In-page navigation',
-    template: 'result',
-    keywords: 'table of contents, anchor, links',
-    url: '/components/in-page-nav/index.html'
-  }, {
-    label: 'Link list',
-    template: 'result',
-    keywords: '',
-    url: '/components/link-list/index.html'
-  }, {
-    label: 'List items',
-    template: 'result',
-    keywords: '',
-    url: '/components/list-item/index.html'
-  }, {
-    label: 'Main navigation',
-    template: 'result',
-    keywords: 'information, architecture, IA, orientate, Mega, menu, navigation, top level, Search, off-canvas, animation, slide-in, Offcanvas',
-    url: '/components/main-nav/index.html'
-  }, {
-    label: 'Masthead',
-    template: 'result',
-    keywords: 'topbar, Top, bar, blue diamond, alert',
-    url: '/components/masthead/index.html'
-  }, {
-    label: 'Media',
-    template: 'result',
-    keywords: 'visual, elements, images, video, Captions, figure, figcaption',
-    url: '/components/media/index.html'
-  }, {
-    label: 'Pagination',
-    template: 'result',
-    keywords: 'total, navigation, listing',
-    url: '/components/pagination/index.html'
-  }, {
-    label: 'Progress Indicator',
-    template: 'result',
-    keywords: 'step',
-    url: '/components/progress-indicator/index.html'
-  }, {
-    label: 'Results bar',
-    template: 'result',
-    keywords: 'list, sort, counter, filter',
-    url: '/components/results-bar/index.html'
-  }, {
-    label: 'Side navigation',
-    template: 'result',
-    keywords: 'hierarchy, Single, Multiple, level, nesting, nav',
-    url: '/components/side-nav/index.html'
-  }, {
-    label: 'Steps',
-    template: 'result',
-    keywords: 'Steps, stages, timeline, wizard, sequences, Sequential',
-    url: '/components/steps/index.html'
-  }, {
-    label: 'Support list',
-    template: 'result',
-    keywords: 'support list, contact list, help, assistance, user support, government support, design system, resource links, navigation, customer service, accessibility',
-    url: '/components/support-list/index.html'
-  }, {
-    label: 'Tables',
-    template: 'result',
-    keywords: 'data, rows, columns, scan, sort, compare, information, Horizontal lined, Stripped, Bordered, Stripe, Border',
-    url: '/components/table/index.html'
-  }, {
-    label: 'Tabs',
-    template: 'result',
-    keywords: 'ui, design, Toolbar, interface, navigation, panels, tabbed content, tab switcher, content grouping, horizontal tabs, accessibility, interactive, layout, tab interface, section control',
-    url: '/components/tabs/index.html'
-  }, {
-    label: 'Tags',
-    template: 'result',
-    keywords: 'badge, button, chip, marker, mark, identification, label, categorise, checkbox, tag, toggle, status, pill, filter, selection, selectable, metadata, classification, option, category, token, indicator, visual tag, highlight',
-    url: '/components/tag/index.html'
-  }, {
-    label: 'Logo',
-    template: 'result',
-    keywords: 'Branding, visual, representation, Primary Logo, Usage and placement, Clear space, Sizing, Masterbrand, Co-brand, Endorsed, Independent, blue diamond',
-    url: '/core/logo/index.html'
-  }, {
-    label: 'Colour',
-    template: 'result',
-    keywords: 'consistent, visual, identify, digital, base, theme, Brand, colours, Grey, Text, Status, palette, dark, light, brand, supplementary, accent, blue diamond',
-    url: '/core/colour/index.html'
-  }, {
-    label: 'Typography',
-    template: 'result',
-    keywords: 'font, headings, body text, lists, paragraphs, styles, Public Sans, font stack, CSS, Links, Blockquote, Unordered, Ordered, Definition, blue diamond',
-    url: '/core/typography/index.html'
-  }, {
-    label: 'Iconography',
-    template: 'result',
-    keywords: 'Icons, illustrate, actions, communicate, status, interaction, attention, information, Usage, Styling, Application, Designing, Accessibility, Text, Button, Colour, Sizing, Spacing, Material Design, SVG, scalable vector graphics, rotation, blue diamond',
-    url: '/core/iconography/index.html'
-  }, {
-    label: 'Pictograms',
-    template: 'result',
-    keywords: 'word, simple, clean, illustration, idea, Usage, Styling, Designing, SVG, utility classes, Styling, Brand, blue diamond',
-    url: '/core/pictograms/index.html'
-  }, {
-    label: 'Grid',
-    template: 'result',
-    keywords: 'Breakpoints, Content, 12 column, responsive, viewport, Token, Container, fixed, Gutters, Max active content, area, layouts, Whole, Half, Third, Quarter, Offset, grids',
-    url: '/core/grid/index.html'
-  }, {
-    label: 'Layout',
-    template: 'result',
-    keywords: 'Page, layouts, standard, Full width, Two column, Left, Right, Usage, Main, content, desktop, viewport',
-    url: '/core/layout/index.html'
-  }, {
-    label: 'Section',
-    template: 'result',
-    keywords: 'Flexible, layout, component, content, consistent, vertical, spacing, Usage, style, container, Image, Box, Colour, Inverted, colours, dark background',
-    url: '/core/section/index.html'
-  }, {
-    label: 'Graphic elements',
-    template: 'result',
-    keywords: 'Logo positioning, details, hierarchy, interactions, digital branding, brand, Border radius, Drop shadow, Application, Line System, Examples,  tabs, card, in-page navigation, blue diamond',
-    url: '/core/graphic-elements/index.html'
-  }, {
-    label: 'Search & Filters',
-    template: 'result',
-    keywords: 'explore, keywords, phrases, find, results, Predictive, suggestions, autocomplete',
-    url: '/docs/content/methods/search.html'
-  }, {
-    label: 'Maps',
-    template: 'result',
-    keywords: 'Markers, Mapbox, MapMarker.io, leaflet.js, location, pin',
-    url: '/docs/content/methods/maps.html'
-  }, {
-    label: 'Data visualisation',
-    template: 'result',
-    keywords: 'Comparison, data, trends, Display, statistics, Processes, workflows, Mapping, diagramming, Colours, theming, charts.js, charts, graphs, Screen readers',
-    url: '/docs/content/methods/data-visualisation.html'
-  }, {
-    label: 'You are here',
-    template: 'result',
-    keywords: 'Where am I, Where can I go, Who is speaking, orientate, Breadcrumbs, Hero banner, Typography, hierarchy, navigation, Main navigation, Side navigation',
-    url: '/docs/content/methods/you-are-here.html'
-  }, {
-    label: 'Templates',
-    template: 'result',
-    keywords: 'Homepage, Content, Search, Sample, Example, Hero banner, Featured list, Hero search, Simple, Filters, No results, Side navigation, Article, Filters, Form, Maps, Location, primary, sub filters, Equal value filters, Theming, Masterbrand,Full page, Content, Partial',
-    url: '/templates/index.html'
-  }, {
-    label: 'What is Design System',
-    template: 'result',
-    keywords: 'Benefits, Build faster and at scale, brand and accessibility compliance, Consistent code and design language, Quality across all layers, Support, Questions, Report issues, Issues tracker, Report a bug',
-    url: '/docs/content/about/what-is-design-system.html'
-  }, {
-    label: 'Supporting different roles',
-    template: 'result',
-    keywords: 'Product Managers, Designers, Developers, UI, UX',
-    url: '/docs/content/about/supporting-different-roles.html'
-  }, {
-    label: 'Our ecosystem',
-    template: 'result',
-    keywords: 'Digital Visual Identity, Core styles and components, Digital NSW Community, Built in accessibility, UX, content guidance, UI, code starter kits',
-    url: '/docs/content/about/our-ecosystem.html'
-  }, {
-    label: "What's happening",
-    template: 'result',
-    keywords: 'Releases, Work in progress, Consulting with community, Backlog, Changelog, changed, Version, Change logs',
-    url: '/docs/content/about/whats-happening.html'
-  }, {
-    label: 'Getting Started',
-    template: 'result',
-    keywords: 'Core styles, Base components, UX Guidance, First steps',
-    url: '/docs/content/design/getting-started.html'
-  }, {
-    label: 'Figma UI Kit',
-    template: 'result',
-    keywords: 'guides, video tutorials, file, UI, Design',
-    url: '/docs/content/design/figma-ui-kit.html'
-  }, {
-    label: 'Extending',
-    template: 'result',
-    keywords: 'core elements, create, consistent, building, accessible, Core styles, Components, UX Guidance, Contributing, customise, custom, unique, adapt, adapting',
-    url: '/docs/content/design/extending.html'
-  }, {
-    label: 'Design Theming',
-    template: 'result',
-    keywords: 'colours, consistent, branding, colour palette, Dark, Light, Brand, Supplementary, Accent, non corporate, cobrand, Masterbrand corporate, non-corporate, co-brand, independent',
-    url: '/docs/content/design/theming.html'
-  }, {
-    label: 'Guides',
-    template: 'result',
-    keywords: 'Using the design system, Designing, Collaborating, Prototyping, Guidance, ',
-    url: '/docs/content/design/guides.html'
-  }, {
-    label: 'Getting Started',
-    template: 'result',
-    keywords: 'npm, CDN, starter kit, Installing, Import styles, Core and selected components, Public Sans, Material Icons, Node, SASS, base theme, typography, mixins, functions, javascript, JSDelivr, Browser support, starter kit',
-    url: '/docs/content/develop/getting-started.html'
-  }, {
-    label: 'Develop Theming',
-    template: 'result',
-    keywords: 'customisation, branding, CSS Variables, Full page, Content only, Partial, brand',
-    url: '/docs/content/develop/theming.html'
-  }, {
-    label: 'Background Utility Classes',
-    template: 'result',
-    keywords: 'Background colour, Opacity, Hover state, color',
-    url: '/docs/content/utilities/background.html'
-  }, {
-    label: 'Border Utility Classes',
-    template: 'result',
-    keywords: 'Border radius, width, style, color, borders',
-    url: '/docs/content/utilities/borders.html'
-  }, {
-    label: 'Box Shadow Utility Class',
-    template: 'result',
-    keywords: 'Box Shadow, box-shadow, shadow',
-    url: '/docs/content/utilities/box-shadow.html'
-  }, {
-    label: 'Display Utility Classes',
-    template: 'result',
-    keywords: 'display, inline, inline-block, block, grid, inline-grid, flex, inline-flex, hide, show',
-    url: '/docs/content/utilities/displayu.html'
-  }, {
-    label: 'Flex Utility Classes',
-    template: 'result',
-    keywords: 'Flex, Direction, Justify content, Align items, Align self, Fill, Grow, shrink, Wrap, Order, content',
-    url: '/docs/content/utilities/flex.html'
-  }, {
-    label: 'Float Utility Classes',
-    template: 'result',
-    keywords: 'Float, wrapping, ',
-    url: '/docs/content/utilities/float.html'
-  }, {
-    label: 'Overflow Utility Classes',
-    template: 'result',
-    keywords: 'Overflow, auto, hidden, visible, scroll',
-    url: '/docs/content/utilities/overflow.html'
-  }, {
-    label: 'Position Utility Classes',
-    template: 'result',
-    keywords: 'Position, static, relative, absolute, fixed, sticky',
-    url: '/docs/content/utilities/position.html'
-  }, {
-    label: 'Spacing',
-    template: 'result',
-    keywords: 'Responsive, units, alignment, consistent, 8-pixel grid, Spacing token, Helper classes, margin, padding, banner',
-    url: '/docs/content/utilities/spacing.html'
-  }, {
-    label: 'SVG Utility Classes',
-    template: 'result',
-    keywords: 'SVG, fill, stroke, stroke width, icons, pictograms',
-    url: '/docs/content/utilities/svg.html'
-  }, {
-    label: 'Text Utility Classes',
-    template: 'result',
-    keywords: 'Text, alignment, wrapping, font, weight, overflow, colour',
-    url: '/docs/content/utilities/text.html'
-  }, {
-    label: 'Vertical alignment Utility Classes',
-    template: 'result',
-    keywords: 'Vertical align, alignment, inline, inline-block, inline-table, table, baseline, top, middle, bottom, text-bottom, text-top',
-    url: '/docs/content/utilities/vertical-align.html'
-  }, {
-    label: 'Visibility Utility Classes',
-    template: 'result',
-    keywords: 'Visibility, show, hide',
-    url: '/docs/content/utilities/visibility.html'
-  }, {
-    label: 'Z-index Classes',
-    template: 'result',
-    keywords: 'Z-index, stack order, three-dimensional, positioning, 3D',
-    url: '/docs/content/utilities/z-index.html'
-  }, {
-    label: 'Close button',
-    template: 'result',
-    keywords: 'Dialog, Global Alert, dismiss, icon, button',
-    url: '/components/close-button/index.html'
-  }, {
-    label: 'Popover',
-    template: 'result',
-    keywords: 'tooltips, toggletip, dropdown, menu',
-    url: '/components/popover/index.html'
-  }];
+  const searchValues = [{ label: '1.1 Purpose Of This Guide', template: 'result', keywords: 'purpose guide, biodiversity assessment method calculator, scope structure guide, introduction, bam-c, user guide, purpose, scope, how to use, biodiversity offsets scheme, bam 2020, threatened species, plant community type, vegetation integrity, like-for-like rules', url: 'core/1-get-started/1.1-purpose-of-this-guide.html' },
+  { label: '1.2 Biodiversity Assessment Method Calculator', template: 'result', keywords: 'biodiversity assessment method calculator, bam-c overview, tool functions, user guide, calculator purpose, data inputs, outputs, biodiversity offsets scheme, bam 2020, threatened species, vegetation integrity, credit calculation, assessment workflow', url: 'core/1-get-started/1.2-biodiversity-assessment-method-calculator.html' },
+  { label: '1.3 Scope And Structure Of The Guide', template: 'result', keywords: 'scope structure guide, document structure, sections overview, how to use, navigation, conventions, bam-c, biodiversity offsets scheme, bam 2020, assessment types, tabs overview', url: 'core/1-get-started/1.3-scope-and-structure-of-the-guide.html' },
+  { label: 'Introduction', template: 'result', keywords: 'introduction, guide overview, bam-c, purpose, scope, how to use, biodiversity offsets scheme, bam 2020, threatened species, vegetation, assessments', url: 'core/1-get-started/introduction.html' },
+  { label: 'Shortened Forms', template: 'result', keywords: 'abbreviations, acronyms, glossary, terms, bam-c, bam 2020, pct, tec, vi, boams, ibra', url: 'core/1-get-started/shortened-forms.html' },
+
+  { label: '2.1 Creating A Case Number', template: 'result', keywords: 'create case number, boams, start assessment, case management, new case, setup, login, bam-c', url: 'core/2-using-BOAMS/2.1-creating-a-case-number.html' },
+  { label: '2.2 Bam C User Access', template: 'result', keywords: 'user access, permissions, roles, login, boams access, accredited assessor, account setup, bam-c', url: 'core/2-using-BOAMS/2.2-bam-c-user-access.html' },
+  { label: '2.3 Updates To Bam C Functionality Or Data', template: 'result', keywords: 'updates, data refresh, functionality changes, release notes, versions, bionet, pct updates, bam-c', url: 'core/2-using-BOAMS/2.3-updates-to-bam-c-functionality-or-data.html' },
+  { label: '2.4 Download Supporting Documentation', template: 'result', keywords: 'download documents, supporting docs, templates, reports, resources, attachments, boams, bam-c', url: 'core/2-using-BOAMS/2.4-download-supporting-documentation.html' },
+  { label: '2.5 Delete Cases', template: 'result', keywords: 'delete case, remove case, archive, case management, boams, bam-c, data removal', url: 'core/2-using-BOAMS/2.5-delete-cases.html' },
+  { label: 'Using Biodiversity Offsets', template: 'result', keywords: 'boams, access bam-c, manage cases, workflows, submissions, consent authority, offsets scheme', url: 'core/2-using-BOAMS/using-biodiversity-offsets.html' },
+
+  { label: '3.1 Open An Existing Assessment Revision', template: 'result', keywords: 'open revision, load assessment, continue work, case revision, versioning, bam-c', url: 'core/3-general-functions/3.1-open-an-existing-assessment-revision.html' },
+  { label: '3.2 Save An Assessment', template: 'result', keywords: 'save assessment, draft save, autosave, progress, bam-c, data entry', url: 'core/3-general-functions/3.2-save-an-assessment.html' },
+  { label: '3.3 Save A New Revision', template: 'result', keywords: 'new revision, version control, duplicate revision, copy, bam-c, case updates', url: 'core/3-general-functions/3.3-save-a-new-revision.html' },
+  { label: '3.4 Cancel An Assessment', template: 'result', keywords: 'cancel assessment, stop work, close case, terminate revision, bam-c', url: 'core/3-general-functions/3.4-cancel-an-assessment.html' },
+  { label: '3.5 Delete An Assessment Revision', template: 'result', keywords: 'delete revision, remove version, clean up, manage revisions, bam-c', url: 'core/3-general-functions/3.5-delete-an-assessment-revision.html' },
+  { label: '3.6 Finalise An Assessment Revision', template: 'result', keywords: 'finalise revision, lock assessment, complete, submission ready, validation, bam-c', url: 'core/3-general-functions/3.6-finalise-an-assessment-revision.html' },
+  { label: '3.7 Reopen A Revision After Finalising', template: 'result', keywords: 'reopen revision, undo finalise, edit after finalisation, revision control, bam-c', url: 'core/3-general-functions/3.7-reopen-a-revision-after-finalising.html' },
+  { label: '3.8 Use Boams To Submit Consent Authority', template: 'result', keywords: 'submit case, consent authority, boams submission, lodgement, workflow, bam-c', url: 'core/3-general-functions/3.8-use-BOAMS-to-submit-consent-authority.html' },
+  { label: '3.9 Print A Report', template: 'result', keywords: 'print report, export, pdf, reporting, outputs, summary, bam-c', url: 'core/3-general-functions/3.9-print-a-report.html' },
+  { label: 'General Functions', template: 'result', keywords: 'general functions, case management, revisions, save, finalise, submit, print, bam-c', url: 'core/3-general-functions/general-functions.html' },
+
+  { label: '4.1 Assessment Details Tab 1', template: 'result', keywords: 'assessment details, development clearing, tab 1, project info, assessor details, site info', url: 'core/4-development-clearing/4.1-assessment-details-tab-1.html' },
+  { label: '4.2 Site Context Tab 2', template: 'result', keywords: 'site context, constraints, mapping, ibra subregion, landscapes, proximity, tab 2', url: 'core/4-development-clearing/4.2-site-context-tab-2.html' },
+  { label: '4.3 Vegetation Tab 3', template: 'result', keywords: 'vegetation, pct, condition, zones, benchmarks, mapping, tab 3', url: 'core/4-development-clearing/4.3-vegetation-tab-3.html' },
+  { label: '4.4 Habitat Suitability Predicted Tab 4', template: 'result', keywords: 'habitat suitability predicted, species habitat, modeled presence, filters, tab 4', url: 'core/4-development-clearing/4.4-habitat-suitability-predicted-tab-4.html' },
+  { label: '4.5 Habitat Suitability Candidate Tab 5', template: 'result', keywords: 'habitat suitability candidate, candidate species, survey triggers, tab 5', url: 'core/4-development-clearing/4.5-habitat-suitability-candidate-tab-5.html' },
+  { label: '4.6 Habitat Survey Tab 6', template: 'result', keywords: 'habitat survey, plot, transect, survey effort, detection, tab 6', url: 'core/4-development-clearing/4.6-habitat-survey-tab-6.html' },
+  { label: '4.7 Credits Tab 7', template: 'result', keywords: 'credits, ecosystem credits, species credits, calculations, tab 7', url: 'core/4-development-clearing/4.7-credits-tab-7.html' },
+  { label: '4.8 Credit Classes Tab 8', template: 'result', keywords: 'credit classes, like-for-like, otg, vegetation class, tec, tab 8', url: 'core/4-development-clearing/4.8-credit-classes-tab-8.html' },
+  { label: '4.9 Price Tab 9', template: 'result', keywords: 'price, cost estimate, credit price, calculator, tab 9', url: 'core/4-development-clearing/4.9-price-tab-9.html' },
+  { label: 'Creating A Development Clearing Assessment', template: 'result', keywords: 'development assessment, clearing, workflow, tabs, vegetation, habitat, credits, price', url: 'core/4-development-clearing/creating-a-development-clearing-assessment.html' },
+
+  { label: '5.1 Assessment Details Tab 1', template: 'result', keywords: 'assessment details, small area, streamlined module, tab 1, project info, limits', url: 'core/5-small-area/5.1-assessment-details-tab-1.html' },
+  { label: '5.2 Site Context Tab 2', template: 'result', keywords: 'site context, small area, mapping, constraints, ibra, tab 2', url: 'core/5-small-area/5.2-site-context-tab-2.html' },
+  { label: '5.3 Vegetation Tab 3', template: 'result', keywords: 'vegetation, small area, pct, condition, zones, benchmarks, tab 3', url: 'core/5-small-area/5.3-vegetation-tab-3.html' },
+  { label: '5.4 Habitat Suitability Predicted Tab 4', template: 'result', keywords: 'habitat suitability predicted, small area, modeled presence, species list, tab 4', url: 'core/5-small-area/5.4-habitat-suitability-predicted-tab-4.html' },
+  { label: '5.5 Habitat Suitability Candidate Tab 5', template: 'result', keywords: 'habitat suitability candidate, small area, candidate species, survey needs, tab 5', url: 'core/5-small-area/5.5-habitat-suitability-candidate-tab-5.html' },
+  { label: '5.6 Habitat Survey Tab 6', template: 'result', keywords: 'habitat survey, small area, plots, effort, detection, tab 6', url: 'core/5-small-area/5.6-habitat-survey-tab-6.html' },
+  { label: '5.7 Credits Tab 7', template: 'result', keywords: 'credits, small area, ecosystem credits, species credits, tab 7', url: 'core/5-small-area/5.7-credits-tab-7.html' },
+  { label: '5.8 Credit Classes Tab 8', template: 'result', keywords: 'credit classes, small area, like-for-like, otg, vegetation class, tab 8', url: 'core/5-small-area/5.8-credit-classes-tab-8.html' },
+  { label: '5.9 Price Tab 9', template: 'result', keywords: 'price, small area, cost estimate, credit price, tab 9', url: 'core/5-small-area/5.9-price-tab-9.html' },
+  { label: 'Creating A Small Area Assessment', template: 'result', keywords: 'small area assessment, streamlined, area limits, workflow, tabs, credits, price', url: 'core/5-small-area/creating-a-small-area-assessment.html' },
+
+  { label: '6.1 Assessment Details Tab 1', template: 'result', keywords: 'assessment details, scattered trees, tab 1, project info, tree counts', url: 'core/6-scattered-trees/6.1-assessment-details-tab-1.html' },
+  { label: '6.2 Site Context Tab 2', template: 'result', keywords: 'site context, scattered trees, mapping, constraints, tab 2', url: 'core/6-scattered-trees/6.2-site-context-tab-2.html' },
+  { label: '6.3 Vegetation Tab 3', template: 'result', keywords: 'vegetation, scattered trees, condition, zones, benchmarks, tab 3', url: 'core/6-scattered-trees/6.3-vegetation-tab-3.html' },
+  { label: '6.4 Habitat Suitability Predicted Tab 4', template: 'result', keywords: 'habitat suitability predicted, scattered trees, species habitat, tab 4', url: 'core/6-scattered-trees/6.4-habitat-suitability-predicted-tab-4.html' },
+  { label: '6.5 Habitat Suitability Candidate Tab 5', template: 'result', keywords: 'habitat suitability candidate, scattered trees, candidate species, tab 5', url: 'core/6-scattered-trees/6.5-habitat-suitability-candidate-tab-5.html' },
+  { label: '6.6 Habitat Survey Tab 6', template: 'result', keywords: 'habitat survey, scattered trees, plots, methods, detection, tab 6', url: 'core/6-scattered-trees/6.6-habitat-survey-tab-6.html' },
+  { label: '6.7 Credits Tab 7', template: 'result', keywords: 'credits, scattered trees, ecosystem credits, species credits, tab 7', url: 'core/6-scattered-trees/6.7-credits-tab-7.html' },
+  { label: '6.8 Credit Classes Tab 8', template: 'result', keywords: 'credit classes, scattered trees, like-for-like, otg, tab 8', url: 'core/6-scattered-trees/6.8-credit-classes-tab-8.html' },
+  { label: '6.9 Price Tab 9', template: 'result', keywords: 'price, scattered trees, cost estimate, credit price, tab 9', url: 'core/6-scattered-trees/6.9-price-tab-9.html' },
+  { label: 'Creating A Scattered Trees Assessment', template: 'result', keywords: 'scattered trees assessment, workflow, tabs, habitat, credits, price', url: 'core/6-scattered-trees/creating-a-scattered-trees-assessment.html' },
+
+  { label: '7.1 Assessment Details Tab 1', template: 'result', keywords: 'assessment details, stewardship, offset site, project info, tab 1', url: 'core/7-stewardship/7.1-assessment-details-tab-1.html' },
+  { label: '7.2 Site Context Tab 2', template: 'result', keywords: 'site context, stewardship, offset site, mapping, constraints, ibra, tab 2', url: 'core/7-stewardship/7.2-site-context-tab-2.html' },
+  { label: '7.3 Vegetation Tab 3', template: 'result', keywords: 'vegetation, stewardship, pct, condition, vegetation zones, benchmarks, tab 3', url: 'core/7-stewardship/7.3-vegetation-tab-3.html' },
+  { label: '7.4 Habitat Suitability Predicted Tab 4', template: 'result', keywords: 'habitat suitability predicted, stewardship, species habitat, tab 4', url: 'core/7-stewardship/7.4-habitat-suitability-predicted-tab-4.html' },
+  { label: '7.5 Habitat Suitability Candidate Tab 5', template: 'result', keywords: 'habitat suitability candidate, stewardship, candidate species, tab 5', url: 'core/7-stewardship/7.5-habitat-suitability-candidate-tab-5.html' },
+  { label: '7.6 Habitat Survey Tab 6', template: 'result', keywords: 'habitat survey, stewardship, plots, methods, detection, tab 6', url: 'core/7-stewardship/7.6-habitat-survey-tab-6.html' },
+  { label: '7.7 Credits Tab 7', template: 'result', keywords: 'credits, stewardship, ecosystem credits, species credits, calculations, tab 7', url: 'core/7-stewardship/7.7-credits-tab-7.html' },
+  { label: '7.8 Credit Classes Tab 8', template: 'result', keywords: 'credit classes, stewardship, like-for-like, otg, tec, tab 8', url: 'core/7-stewardship/7.8-credit-classes-tab-8.html' },
+  { label: 'Creating A Stewardship Assessment', template: 'result', keywords: 'stewardship assessment, offset site, workflow, tabs, ecosystem credits, species credits', url: 'core/7-stewardship/creating-a-stewardship-assessment.html' },
+
+  { label: 'Appendix A Clearing The Bam C Cache', template: 'result', keywords: 'clear cache, devtools, hard reload, legacy pct, troubleshoot, bam-c, chrome, edge', url: 'core/appendix/appendix-a-clearing-the-bam-c-cache.html' },
+  { label: 'Appendix B Resources', template: 'result', keywords: 'resources, links, bionet, legislation, manuals, boams, maps, offset rules', url: 'core/appendix/appendix-b-resources.html' }];
 
   const defaults = {
     debounce: 200,
@@ -620,14 +319,14 @@
       data.forEach(item => {
         innerHtml += this.getItemHtml(item);
       });
-      if (this.options.populate) this.resultsList.innerHTML = innerHtml;else if (cb) cb(innerHtml);
+      if (this.options.populate) this.resultsList.innerHTML = innerHtml; else if (cb) cb(innerHtml);
     }
     getItemHtml(data) {
       this.clone = this.getClone(data);
       this.clone.setAttribute('tabindex', '-1');
       Object.keys(data).forEach(key => {
         if (Object.prototype.hasOwnProperty.call(data, key)) {
-          if (key === 'label') this.setLabel(data[key]);else if (key === 'class') this.setClass(data[key]);else if (key === 'url') this.setUrl(data[key]);else if (key === 'src') this.setSrc(data[key]);else this.setKey(key, data[key]);
+          if (key === 'label') this.setLabel(data[key]); else if (key === 'class') this.setClass(data[key]); else if (key === 'url') this.setUrl(data[key]); else if (key === 'src') this.setSrc(data[key]); else this.setKey(key, data[key]);
         }
       });
       return this.clone.outerHTML;
@@ -670,7 +369,7 @@
     setKey(key, value) {
       const subElement = this.clone.querySelector(`[data-autocomplete-${key}]`);
       if (subElement) {
-        if (subElement.hasAttribute('data-autocomplete-html')) subElement.innerHTML = value;else subElement.textContent = value;
+        if (subElement.hasAttribute('data-autocomplete-html')) subElement.innerHTML = value; else subElement.textContent = value;
       }
     }
   }
