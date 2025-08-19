@@ -4,7 +4,6 @@ if (!window.docss) {
 }
 
 const searchInput = document.getElementById('search-query');
-const resultsContainer = document.getElementById('search-results');
 
 // Set up Fuse.js options
 const fuse = new Fuse(window.docss, {
@@ -14,29 +13,35 @@ const fuse = new Fuse(window.docss, {
   minMatchCharLength: 2
 });
 
-// If search term passed in query string, run search
+// Get query string
 const params = new URLSearchParams(window.location.search);
-const initialQuery = params.get('q');
-if (initialQuery) {
-  searchInput.value = initialQuery;
-  runSearch(initialQuery);
+const query = params.get('q')?.toLowerCase() || '';
+
+// Grab search container
+const resultsContainer = document.querySelector('#search-results');
+
+if (query && resultsContainer) {
+  const results = SEARCH_DOCS.filter(doc => {
+    return (
+      doc.label.toLowerCase().includes(query) ||
+      doc.keywords.toLowerCase().includes(query)
+    );
+  });
+
+  if (results.length) {
+    resultsContainer.innerHTML = results.map(doc => `
+      <li class="nsw-results-list__item">
+        <a href="${doc.url}">
+          <h3 class="nsw-results-list__title">${doc.label}</h3>
+          <p class="nsw-results-list__summary">${doc.keywords}</p>
+        </a>
+      </li>
+    `).join('');
+  } else {
+    resultsContainer.innerHTML = `<p>No results found for "${query}".</p>`;
+  }
 }
 
-// Search input live updates
-searchInput.addEventListener('input', (e) => {
-  runSearch(e.target.value);
-});
-
-function runSearch(query) {
-  resultsContainer.innerHTML = '';
-  if (!query.trim()) return;
-
-  const results = fuse.search(query);
-
-  if (!results.length) {
-    resultsContainer.innerHTML = '<p>No results found.</p>';
-    return;
-  }
 
   results.forEach(({ item }) => {
     const excerpt = getExcerpt(item.content, query);
@@ -47,7 +52,7 @@ function runSearch(query) {
       </div>
     `;
   });
-}
+
 
 function getExcerpt(content, term, length = 150) {
   const idx = content.toLowerCase().indexOf(term.toLowerCase());
