@@ -3,6 +3,27 @@ if (!window.docss) {
   console.error('docs.js not found or failed to load');
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  if (!window.docss || !Array.isArray(window.docss)) {
+    console.error('Search dataset (window.docss) not loaded.');
+    return;
+  }
+  if (typeof Fuse === 'undefined') {
+    console.error('Fuse.js not loaded.');
+    return;
+  }
+
+  const searchInput = document.getElementById('search-query');
+  const fuse = new Fuse(window.docss, {
+    keys: ['title', 'content'],
+    includeScore: true,
+    threshold: 0.4,
+    minMatchCharLength: 2
+  });
+
+  // read ?q=… and run search + render as your file already does…
+});
+
 const searchInput = document.getElementById('search-query');
 
 // Set up Fuse.js options
