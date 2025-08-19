@@ -400,14 +400,15 @@
   const params = new URLSearchParams(window.location.search);
   const query = params.get("q")?.toLowerCase() || "";
 
-  const container = document.getElementById("search-results");
+  const resultsContainer = document.getElementById("results");
+  const countContainer = document.getElementById("results-count");
   const results = [];
 
   if (query) {
-    docss.forEach(doc => {
+    searchData.forEach(doc => {
       if (
-        doc.title.toLowerCase().includes(query) ||
-        doc.content.toLowerCase().includes(query)
+        doc.label.toLowerCase().includes(query) ||
+        doc.keywords.toLowerCase().includes(query)
       ) {
         results.push(doc);
       }
@@ -415,22 +416,25 @@
   }
 
   if (results.length) {
-    container.innerHTML = results
+    countContainer.textContent = `${results.length} result(s) found for "${query}"`;
+    resultsContainer.innerHTML = results
       .map(
         doc => `
         <div class="nsw-list-item">
           <div class="nsw-list-item__content">
-            <div class="nsw-list-item__title"><a href="${doc.url}">${doc.title}</a></div>
-            <div class="nsw-list-item__copy">${doc.content.substring(0, 160)}...</div>
+            <div class="nsw-list-item__title"><a href="${doc.url}">${doc.label}</a></div>
+            <div class="nsw-list-item__copy">${doc.keywords}</div>
           </div>
         </div>
       `
       )
       .join("");
   } else {
-    container.innerHTML = "<p>No results found.</p>";
+    countContainer.textContent = `No results found for "${query}"`;
+    resultsContainer.innerHTML = "";
   }
 </script>
+
 
   <script>
     hljs.initHighlightingOnLoad();
