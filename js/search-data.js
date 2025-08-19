@@ -1,4 +1,4 @@
-var documents = [
+window.docss = [
   {
     "title": "NSW Biodiversity Assessment Method Calculator User guide",
     "url": "core/search.html",
