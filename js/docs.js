@@ -4,75 +4,373 @@
 })((function () {
   'use strict';
 
-  const searchValues = [{ label: '1.1 Purpose Of This Guide', template: 'result', keywords: 'purpose guide, biodiversity assessment method calculator, scope structure guide, introduction, bam-c, user guide, purpose, scope, how to use, biodiversity offsets scheme, bam 2020, threatened species, plant community type, vegetation integrity, like-for-like rules', url: 'core/1-get-started/1.1-purpose-of-this-guide.html' },
-  { label: '1.2 Biodiversity Assessment Method Calculator', template: 'result', keywords: 'biodiversity assessment method calculator, bam-c overview, tool functions, user guide, calculator purpose, data inputs, outputs, biodiversity offsets scheme, bam 2020, threatened species, vegetation integrity, credit calculation, assessment workflow', url: 'core/1-get-started/1.2-biodiversity-assessment-method-calculator.html' },
-  { label: '1.3 Scope And Structure Of The Guide', template: 'result', keywords: 'scope structure guide, document structure, sections overview, how to use, navigation, conventions, bam-c, biodiversity offsets scheme, bam 2020, assessment types, tabs overview', url: 'core/1-get-started/1.3-scope-and-structure-of-the-guide.html' },
-  { label: 'Introduction', template: 'result', keywords: 'introduction, guide overview, bam-c, purpose, scope, how to use, biodiversity offsets scheme, bam 2020, threatened species, vegetation, assessments', url: 'core/1-get-started/introduction.html' },
-  { label: 'Shortened Forms', template: 'result', keywords: 'abbreviations, acronyms, glossary, terms, bam-c, bam 2020, pct, tec, vi, boams, ibra', url: 'core/1-get-started/shortened-forms.html' },
-
-  { label: '2.1 Creating A Case Number', template: 'result', keywords: 'create case number, boams, start assessment, case management, new case, setup, login, bam-c', url: 'core/2-using-BOAMS/2.1-creating-a-case-number.html' },
-  { label: '2.2 Bam C User Access', template: 'result', keywords: 'user access, permissions, roles, login, boams access, accredited assessor, account setup, bam-c', url: 'core/2-using-BOAMS/2.2-bam-c-user-access.html' },
-  { label: '2.3 Updates To Bam C Functionality Or Data', template: 'result', keywords: 'updates, data refresh, functionality changes, release notes, versions, bionet, pct updates, bam-c', url: 'core/2-using-BOAMS/2.3-updates-to-bam-c-functionality-or-data.html' },
-  { label: '2.4 Download Supporting Documentation', template: 'result', keywords: 'download documents, supporting docs, templates, reports, resources, attachments, boams, bam-c', url: 'core/2-using-BOAMS/2.4-download-supporting-documentation.html' },
-  { label: '2.5 Delete Cases', template: 'result', keywords: 'delete case, remove case, archive, case management, boams, bam-c, data removal', url: 'core/2-using-BOAMS/2.5-delete-cases.html' },
-  { label: 'Using Biodiversity Offsets', template: 'result', keywords: 'boams, access bam-c, manage cases, workflows, submissions, consent authority, offsets scheme', url: 'core/2-using-BOAMS/using-biodiversity-offsets.html' },
-
-  { label: '3.1 Open An Existing Assessment Revision', template: 'result', keywords: 'open revision, load assessment, continue work, case revision, versioning, bam-c', url: 'core/3-general-functions/3.1-open-an-existing-assessment-revision.html' },
-  { label: '3.2 Save An Assessment', template: 'result', keywords: 'save assessment, draft save, autosave, progress, bam-c, data entry', url: 'core/3-general-functions/3.2-save-an-assessment.html' },
-  { label: '3.3 Save A New Revision', template: 'result', keywords: 'new revision, version control, duplicate revision, copy, bam-c, case updates', url: 'core/3-general-functions/3.3-save-a-new-revision.html' },
-  { label: '3.4 Cancel An Assessment', template: 'result', keywords: 'cancel assessment, stop work, close case, terminate revision, bam-c', url: 'core/3-general-functions/3.4-cancel-an-assessment.html' },
-  { label: '3.5 Delete An Assessment Revision', template: 'result', keywords: 'delete revision, remove version, clean up, manage revisions, bam-c', url: 'core/3-general-functions/3.5-delete-an-assessment-revision.html' },
-  { label: '3.6 Finalise An Assessment Revision', template: 'result', keywords: 'finalise revision, lock assessment, complete, submission ready, validation, bam-c', url: 'core/3-general-functions/3.6-finalise-an-assessment-revision.html' },
-  { label: '3.7 Reopen A Revision After Finalising', template: 'result', keywords: 'reopen revision, undo finalise, edit after finalisation, revision control, bam-c', url: 'core/3-general-functions/3.7-reopen-a-revision-after-finalising.html' },
-  { label: '3.8 Use Boams To Submit Consent Authority', template: 'result', keywords: 'submit case, consent authority, boams submission, lodgement, workflow, bam-c', url: 'core/3-general-functions/3.8-use-BOAMS-to-submit-consent-authority.html' },
-  { label: '3.9 Print A Report', template: 'result', keywords: 'print report, export, pdf, reporting, outputs, summary, bam-c', url: 'core/3-general-functions/3.9-print-a-report.html' },
-  { label: 'General Functions', template: 'result', keywords: 'general functions, case management, revisions, save, finalise, submit, print, bam-c', url: 'core/3-general-functions/general-functions.html' },
-
-  { label: '4.1 Assessment Details Tab 1', template: 'result', keywords: 'assessment details, development clearing, tab 1, project info, assessor details, site info', url: 'core/4-development-clearing/4.1-assessment-details-tab-1.html' },
-  { label: '4.2 Site Context Tab 2', template: 'result', keywords: 'site context, constraints, mapping, ibra subregion, landscapes, proximity, tab 2', url: 'core/4-development-clearing/4.2-site-context-tab-2.html' },
-  { label: '4.3 Vegetation Tab 3', template: 'result', keywords: 'vegetation, pct, condition, zones, benchmarks, mapping, tab 3', url: 'core/4-development-clearing/4.3-vegetation-tab-3.html' },
-  { label: '4.4 Habitat Suitability Predicted Tab 4', template: 'result', keywords: 'habitat suitability predicted, species habitat, modeled presence, filters, tab 4', url: 'core/4-development-clearing/4.4-habitat-suitability-predicted-tab-4.html' },
-  { label: '4.5 Habitat Suitability Candidate Tab 5', template: 'result', keywords: 'habitat suitability candidate, candidate species, survey triggers, tab 5', url: 'core/4-development-clearing/4.5-habitat-suitability-candidate-tab-5.html' },
-  { label: '4.6 Habitat Survey Tab 6', template: 'result', keywords: 'habitat survey, plot, transect, survey effort, detection, tab 6', url: 'core/4-development-clearing/4.6-habitat-survey-tab-6.html' },
-  { label: '4.7 Credits Tab 7', template: 'result', keywords: 'credits, ecosystem credits, species credits, calculations, tab 7', url: 'core/4-development-clearing/4.7-credits-tab-7.html' },
-  { label: '4.8 Credit Classes Tab 8', template: 'result', keywords: 'credit classes, like-for-like, otg, vegetation class, tec, tab 8', url: 'core/4-development-clearing/4.8-credit-classes-tab-8.html' },
-  { label: '4.9 Price Tab 9', template: 'result', keywords: 'price, cost estimate, credit price, calculator, tab 9', url: 'core/4-development-clearing/4.9-price-tab-9.html' },
-  { label: 'Creating A Development Clearing Assessment', template: 'result', keywords: 'development assessment, clearing, workflow, tabs, vegetation, habitat, credits, price', url: 'core/4-development-clearing/creating-a-development-clearing-assessment.html' },
-
-  { label: '5.1 Assessment Details Tab 1', template: 'result', keywords: 'assessment details, small area, streamlined module, tab 1, project info, limits', url: 'core/5-small-area/5.1-assessment-details-tab-1.html' },
-  { label: '5.2 Site Context Tab 2', template: 'result', keywords: 'site context, small area, mapping, constraints, ibra, tab 2', url: 'core/5-small-area/5.2-site-context-tab-2.html' },
-  { label: '5.3 Vegetation Tab 3', template: 'result', keywords: 'vegetation, small area, pct, condition, zones, benchmarks, tab 3', url: 'core/5-small-area/5.3-vegetation-tab-3.html' },
-  { label: '5.4 Habitat Suitability Predicted Tab 4', template: 'result', keywords: 'habitat suitability predicted, small area, modeled presence, species list, tab 4', url: 'core/5-small-area/5.4-habitat-suitability-predicted-tab-4.html' },
-  { label: '5.5 Habitat Suitability Candidate Tab 5', template: 'result', keywords: 'habitat suitability candidate, small area, candidate species, survey needs, tab 5', url: 'core/5-small-area/5.5-habitat-suitability-candidate-tab-5.html' },
-  { label: '5.6 Habitat Survey Tab 6', template: 'result', keywords: 'habitat survey, small area, plots, effort, detection, tab 6', url: 'core/5-small-area/5.6-habitat-survey-tab-6.html' },
-  { label: '5.7 Credits Tab 7', template: 'result', keywords: 'credits, small area, ecosystem credits, species credits, tab 7', url: 'core/5-small-area/5.7-credits-tab-7.html' },
-  { label: '5.8 Credit Classes Tab 8', template: 'result', keywords: 'credit classes, small area, like-for-like, otg, vegetation class, tab 8', url: 'core/5-small-area/5.8-credit-classes-tab-8.html' },
-  { label: '5.9 Price Tab 9', template: 'result', keywords: 'price, small area, cost estimate, credit price, tab 9', url: 'core/5-small-area/5.9-price-tab-9.html' },
-  { label: 'Creating A Small Area Assessment', template: 'result', keywords: 'small area assessment, streamlined, area limits, workflow, tabs, credits, price', url: 'core/5-small-area/creating-a-small-area-assessment.html' },
-
-  { label: '6.1 Assessment Details Tab 1', template: 'result', keywords: 'assessment details, scattered trees, tab 1, project info, tree counts', url: 'core/6-scattered-trees/6.1-assessment-details-tab-1.html' },
-  { label: '6.2 Site Context Tab 2', template: 'result', keywords: 'site context, scattered trees, mapping, constraints, tab 2', url: 'core/6-scattered-trees/6.2-site-context-tab-2.html' },
-  { label: '6.3 Vegetation Tab 3', template: 'result', keywords: 'vegetation, scattered trees, condition, zones, benchmarks, tab 3', url: 'core/6-scattered-trees/6.3-vegetation-tab-3.html' },
-  { label: '6.4 Habitat Suitability Predicted Tab 4', template: 'result', keywords: 'habitat suitability predicted, scattered trees, species habitat, tab 4', url: 'core/6-scattered-trees/6.4-habitat-suitability-predicted-tab-4.html' },
-  { label: '6.5 Habitat Suitability Candidate Tab 5', template: 'result', keywords: 'habitat suitability candidate, scattered trees, candidate species, tab 5', url: 'core/6-scattered-trees/6.5-habitat-suitability-candidate-tab-5.html' },
-  { label: '6.6 Habitat Survey Tab 6', template: 'result', keywords: 'habitat survey, scattered trees, plots, methods, detection, tab 6', url: 'core/6-scattered-trees/6.6-habitat-survey-tab-6.html' },
-  { label: '6.7 Credits Tab 7', template: 'result', keywords: 'credits, scattered trees, ecosystem credits, species credits, tab 7', url: 'core/6-scattered-trees/6.7-credits-tab-7.html' },
-  { label: '6.8 Credit Classes Tab 8', template: 'result', keywords: 'credit classes, scattered trees, like-for-like, otg, tab 8', url: 'core/6-scattered-trees/6.8-credit-classes-tab-8.html' },
-  { label: '6.9 Price Tab 9', template: 'result', keywords: 'price, scattered trees, cost estimate, credit price, tab 9', url: 'core/6-scattered-trees/6.9-price-tab-9.html' },
-  { label: 'Creating A Scattered Trees Assessment', template: 'result', keywords: 'scattered trees assessment, workflow, tabs, habitat, credits, price', url: 'core/6-scattered-trees/creating-a-scattered-trees-assessment.html' },
-
-  { label: '7.1 Assessment Details Tab 1', template: 'result', keywords: 'assessment details, stewardship, offset site, project info, tab 1', url: 'core/7-stewardship/7.1-assessment-details-tab-1.html' },
-  { label: '7.2 Site Context Tab 2', template: 'result', keywords: 'site context, stewardship, offset site, mapping, constraints, ibra, tab 2', url: 'core/7-stewardship/7.2-site-context-tab-2.html' },
-  { label: '7.3 Vegetation Tab 3', template: 'result', keywords: 'vegetation, stewardship, pct, condition, vegetation zones, benchmarks, tab 3', url: 'core/7-stewardship/7.3-vegetation-tab-3.html' },
-  { label: '7.4 Habitat Suitability Predicted Tab 4', template: 'result', keywords: 'habitat suitability predicted, stewardship, species habitat, tab 4', url: 'core/7-stewardship/7.4-habitat-suitability-predicted-tab-4.html' },
-  { label: '7.5 Habitat Suitability Candidate Tab 5', template: 'result', keywords: 'habitat suitability candidate, stewardship, candidate species, tab 5', url: 'core/7-stewardship/7.5-habitat-suitability-candidate-tab-5.html' },
-  { label: '7.6 Habitat Survey Tab 6', template: 'result', keywords: 'habitat survey, stewardship, plots, methods, detection, tab 6', url: 'core/7-stewardship/7.6-habitat-survey-tab-6.html' },
-  { label: '7.7 Credits Tab 7', template: 'result', keywords: 'credits, stewardship, ecosystem credits, species credits, calculations, tab 7', url: 'core/7-stewardship/7.7-credits-tab-7.html' },
-  { label: '7.8 Credit Classes Tab 8', template: 'result', keywords: 'credit classes, stewardship, like-for-like, otg, tec, tab 8', url: 'core/7-stewardship/7.8-credit-classes-tab-8.html' },
-  { label: 'Creating A Stewardship Assessment', template: 'result', keywords: 'stewardship assessment, offset site, workflow, tabs, ecosystem credits, species credits', url: 'core/7-stewardship/creating-a-stewardship-assessment.html' },
-
-  { label: 'Appendix A Clearing The Bam C Cache', template: 'result', keywords: 'clear cache, devtools, hard reload, legacy pct, troubleshoot, bam-c, chrome, edge', url: 'core/appendix/appendix-a-clearing-the-bam-c-cache.html' },
-  { label: 'Appendix B Resources', template: 'result', keywords: 'resources, links, bionet, legislation, manuals, boams, maps, offset rules', url: 'core/appendix/appendix-b-resources.html' }];
+  const searchValues = [{ 
+    label: '1.1 Purpose Of This Guide', 
+    template: 'result', 
+    keywords: 'purpose guide, biodiversity assessment method calculator, scope structure guide, introduction, bam-c, user guide, purpose, scope, how to use, biodiversity offsets scheme, bam 2020, threatened species, plant community type, vegetation integrity, like-for-like rules', 
+    url: 'core/1-get-started/1.1-purpose-of-this-guide.html' 
+  },{ 
+    label: '1.2 Biodiversity Assessment Method Calculator', 
+    template: 'result', 
+    keywords: 'biodiversity assessment method calculator, bam-c overview, tool functions, user guide, calculator purpose, data inputs, outputs, biodiversity offsets scheme, bam 2020, threatened species, vegetation integrity, credit calculation, assessment workflow', 
+    url: 'core/1-get-started/1.2-biodiversity-assessment-method-calculator.html' 
+  },{ 
+    label: '1.3 Scope And Structure Of The Guide', 
+    template: 'result', 
+    keywords: 'scope structure guide, document structure, sections overview, how to use, navigation, conventions, bam-c, biodiversity offsets scheme, bam 2020, assessment types, tabs overview', 
+    url: 'core/1-get-started/1.3-scope-and-structure-of-the-guide.html' 
+  },{ 
+    label: 'Introduction', 
+    template: 'result', 
+    keywords: 'introduction, guide overview, bam-c, purpose, scope, how to use, biodiversity offsets scheme, bam 2020, threatened species, vegetation, assessments', 
+    url: 'core/1-get-started/introduction.html' 
+  },
+  { 
+    label: 'Shortened Forms', 
+    template: 'result', 
+    keywords: 'abbreviations, acronyms, glossary, terms, bam-c, bam 2020, pct, tec, vi, boams, ibra', 
+    url: 'core/1-get-started/shortened-forms.html' 
+  },
+  { 
+    label: '2.1 Creating A Case Number', 
+    template: 'result', 
+    keywords: 'create case number, boams, start assessment, case management, new case, setup, login, bam-c', 
+    url: 'core/2-using-BOAMS/2.1-creating-a-case-number.html' 
+  },
+  { 
+    label: '2.2 Bam C User Access', 
+    template: 'result', 
+    keywords: 'user access, permissions, roles, login, boams access, accredited assessor, account setup, bam-c', 
+    url: 'core/2-using-BOAMS/2.2-bam-c-user-access.html' 
+  },
+  { 
+    label: '2.3 Updates To Bam C Functionality Or Data', 
+    template: 'result', 
+    keywords: 'updates, data refresh, functionality changes, release notes, versions, bionet, pct updates, bam-c', 
+    url: 'core/2-using-BOAMS/2.3-updates-to-bam-c-functionality-or-data.html' 
+  },
+  { 
+    label: '2.4 Download Supporting Documentation', 
+    template: 'result', 
+    keywords: 'download documents, supporting docs, templates, reports, resources, attachments, boams, bam-c', 
+    url: 'core/2-using-BOAMS/2.4-download-supporting-documentation.html' 
+  },
+  { 
+    label: '2.5 Delete Cases', 
+    template: 'result', 
+    keywords: 'delete case, remove case, archive, case management, boams, bam-c, data removal', 
+    url: 'core/2-using-BOAMS/2.5-delete-cases.html' 
+  },
+  { 
+    label: 'Using Biodiversity Offsets', 
+    template: 'result', 
+    keywords: 'boams, access bam-c, manage cases, workflows, submissions, consent authority, offsets scheme', 
+    url: 'core/2-using-BOAMS/using-biodiversity-offsets.html' 
+  },
+  { 
+    label: '3.1 Open An Existing Assessment Revision', 
+    template: 'result', 
+    keywords: 'open revision, load assessment, continue work, case revision, versioning, bam-c', 
+    url: 'core/3-general-functions/3.1-open-an-existing-assessment-revision.html' 
+  },
+  { 
+    label: '3.2 Save An Assessment', 
+    template: 'result', 
+    keywords: 'save assessment, draft save, autosave, progress, bam-c, data entry', 
+    url: 'core/3-general-functions/3.2-save-an-assessment.html' 
+  },
+  { 
+    label: '3.3 Save A New Revision', 
+    template: 'result', 
+    keywords: 'new revision, version control, duplicate revision, copy, bam-c, case updates', 
+    url: 'core/3-general-functions/3.3-save-a-new-revision.html' 
+  },
+  { 
+    label: '3.4 Cancel An Assessment', 
+    template: 'result', 
+    keywords: 'cancel assessment, stop work, close case, terminate revision, bam-c', 
+    url: 'core/3-general-functions/3.4-cancel-an-assessment.html' 
+  },
+  { 
+    label: '3.5 Delete An Assessment Revision', 
+    template: 'result', 
+    keywords: 'delete revision, remove version, clean up, manage revisions, bam-c', 
+    url: 'core/3-general-functions/3.5-delete-an-assessment-revision.html' 
+  },
+  { 
+    label: '3.6 Finalise An Assessment Revision', 
+    template: 'result', 
+    keywords: 'finalise revision, lock assessment, complete, submission ready, validation, bam-c', 
+    url: 'core/3-general-functions/3.6-finalise-an-assessment-revision.html' 
+  },
+  { 
+    label: '3.7 Reopen A Revision After Finalising', 
+    template: 'result', 
+    keywords: 'reopen revision, undo finalise, edit after finalisation, revision control, bam-c', 
+    url: 'core/3-general-functions/3.7-reopen-a-revision-after-finalising.html' 
+  },
+  { 
+    label: '3.8 Use Boams To Submit Consent Authority', 
+    template: 'result', 
+    keywords: 'submit case, consent authority, boams submission, lodgement, workflow, bam-c', 
+    url: 'core/3-general-functions/3.8-use-BOAMS-to-submit-consent-authority.html' 
+  },
+  { 
+    label: '3.9 Print A Report', 
+    template: 'result', 
+    keywords: 'print report, export, pdf, reporting, outputs, summary, bam-c', 
+    url: 'core/3-general-functions/3.9-print-a-report.html' 
+  },
+  { 
+    label: 'General Functions', 
+    template: 'result', 
+    keywords: 'general functions, case management, revisions, save, finalise, submit, print, bam-c', 
+    url: 'core/3-general-functions/general-functions.html' 
+  },
+  { 
+    label: '4.1 Assessment Details Tab 1', 
+    template: 'result', 
+    keywords: 'assessment details, development clearing, tab 1, project info, assessor details, site info', 
+    url: 'core/4-development-clearing/4.1-assessment-details-tab-1.html' 
+  },
+  { 
+    label: '4.2 Site Context Tab 2', 
+    template: 'result', 
+    keywords: 'site context, constraints, mapping, ibra subregion, landscapes, proximity, tab 2', 
+    url: 'core/4-development-clearing/4.2-site-context-tab-2.html' 
+  },
+  { 
+    label: '4.3 Vegetation Tab 3', 
+    template: 'result', 
+    keywords: 'vegetation, pct, condition, zones, benchmarks, mapping, tab 3', 
+    url: 'core/4-development-clearing/4.3-vegetation-tab-3.html' 
+  },
+  { 
+    label: '4.4 Habitat Suitability Predicted Tab 4', 
+    template: 'result', 
+    keywords: 'habitat suitability predicted, species habitat, modeled presence, filters, tab 4', 
+    url: 'core/4-development-clearing/4.4-habitat-suitability-predicted-tab-4.html' 
+  },
+  { 
+    label: '4.5 Habitat Suitability Candidate Tab 5', 
+    template: 'result', 
+    keywords: 'habitat suitability candidate, candidate species, survey triggers, tab 5', 
+    url: 'core/4-development-clearing/4.5-habitat-suitability-candidate-tab-5.html' 
+  },
+  { 
+    label: '4.6 Habitat Survey Tab 6', 
+    template: 'result', 
+    keywords: 'habitat survey, plot, transect, survey effort, detection, tab 6', 
+    url: 'core/4-development-clearing/4.6-habitat-survey-tab-6.html' 
+  },
+  { 
+    label: '4.7 Credits Tab 7', 
+    template: 'result', 
+    keywords: 'credits, ecosystem credits, species credits, calculations, tab 7', 
+    url: 'core/4-development-clearing/4.7-credits-tab-7.html' 
+  },
+  { 
+    label: '4.8 Credit Classes Tab 8', 
+    template: 'result', 
+    keywords: 'credit classes, like-for-like, otg, vegetation class, tec, tab 8', 
+    url: 'core/4-development-clearing/4.8-credit-classes-tab-8.html' 
+  },
+  { 
+    label: '4.9 Price Tab 9', 
+    template: 'result', 
+    keywords: 'price, cost estimate, credit price, calculator, tab 9', url: 'core/4-development-clearing/4.9-price-tab-9.html' 
+  },
+  { 
+    label: 'Creating A Development Clearing Assessment', 
+    template: 'result', 
+    keywords: 'development assessment, clearing, workflow, tabs, vegetation, habitat, credits, price', 
+    url: 'core/4-development-clearing/creating-a-development-clearing-assessment.html' 
+  },
+  { 
+    label: '5.1 Assessment Details Tab 1', 
+    template: 'result', 
+    keywords: 'assessment details, small area, streamlined module, tab 1, project info, limits', 
+    url: 'core/5-small-area/5.1-assessment-details-tab-1.html' 
+  },
+  { 
+    label: '5.2 Site Context Tab 2', 
+    template: 'result', 
+    keywords: 'site context, small area, mapping, constraints, ibra, tab 2', 
+    url: 'core/5-small-area/5.2-site-context-tab-2.html' 
+  },
+  { 
+    label: '5.3 Vegetation Tab 3', 
+    template: 'result', 
+    keywords: 'vegetation, small area, pct, condition, zones, benchmarks, tab 3', 
+    url: 'core/5-small-area/5.3-vegetation-tab-3.html' 
+  },
+  { 
+    label: '5.4 Habitat Suitability Predicted Tab 4', 
+    template: 'result', 
+    keywords: 'habitat suitability predicted, small area, modeled presence, species list, tab 4', 
+    url: 'core/5-small-area/5.4-habitat-suitability-predicted-tab-4.html' 
+  },
+  { 
+    label: '5.5 Habitat Suitability Candidate Tab 5', 
+    template: 'result', 
+    keywords: 'habitat suitability candidate, small area, candidate species, survey needs, tab 5', 
+    url: 'core/5-small-area/5.5-habitat-suitability-candidate-tab-5.html' 
+  },
+  { 
+    label: '5.6 Habitat Survey Tab 6', 
+    template: 'result', 
+    keywords: 'habitat survey, small area, plots, effort, detection, tab 6', 
+    url: 'core/5-small-area/5.6-habitat-survey-tab-6.html' 
+  },
+  { 
+    label: '5.7 Credits Tab 7', 
+    template: 'result', 
+    keywords: 'credits, small area, ecosystem credits, species credits, tab 7', 
+    url: 'core/5-small-area/5.7-credits-tab-7.html' 
+  },
+  { 
+    label: '5.8 Credit Classes Tab 8', 
+    template: 'result', 
+    keywords: 'credit classes, small area, like-for-like, otg, vegetation class, tab 8', 
+    url: 'core/5-small-area/5.8-credit-classes-tab-8.html' 
+  },
+  { 
+    label: '5.9 Price Tab 9', 
+    template: 'result', 
+    keywords: 'price, small area, cost estimate, credit price, tab 9', 
+    url: 'core/5-small-area/5.9-price-tab-9.html' 
+  },
+  { 
+    label: 'Creating A Small Area Assessment', 
+    template: 'result', 
+    keywords: 'small area assessment, streamlined, area limits, workflow, tabs, credits, price', 
+    url: 'core/5-small-area/creating-a-small-area-assessment.html' 
+  },
+  { 
+    label: '6.1 Assessment Details Tab 1', 
+    template: 'result', 
+    keywords: 'assessment details, scattered trees, tab 1, project info, tree counts', 
+    url: 'core/6-scattered-trees/6.1-assessment-details-tab-1.html' 
+  },
+  { 
+    label: '6.2 Site Context Tab 2', 
+    template: 'result', 
+    keywords: 'site context, scattered trees, mapping, constraints, tab 2', 
+    url: 'core/6-scattered-trees/6.2-site-context-tab-2.html' 
+  },
+  { 
+    label: '6.3 Vegetation Tab 3', 
+    template: 'result', 
+    keywords: 'vegetation, scattered trees, condition, zones, benchmarks, tab 3', 
+    url: 'core/6-scattered-trees/6.3-vegetation-tab-3.html' 
+  },
+  { 
+    label: '6.4 Habitat Suitability Predicted Tab 4', 
+    template: 'result', 
+    keywords: 'habitat suitability predicted, scattered trees, species habitat, tab 4', 
+    url: 'core/6-scattered-trees/6.4-habitat-suitability-predicted-tab-4.html' 
+  },
+  { 
+    label: '6.5 Habitat Suitability Candidate Tab 5', 
+    template: 'result', 
+    keywords: 'habitat suitability candidate, scattered trees, candidate species, tab 5', 
+    url: 'core/6-scattered-trees/6.5-habitat-suitability-candidate-tab-5.html' 
+  },
+  { 
+    label: '6.6 Habitat Survey Tab 6', 
+    template: 'result', 
+    keywords: 'habitat survey, scattered trees, plots, methods, detection, tab 6', 
+    url: 'core/6-scattered-trees/6.6-habitat-survey-tab-6.html' 
+  },
+  { 
+    label: '6.7 Credits Tab 7', 
+    template: 'result', 
+    keywords: 'credits, scattered trees, ecosystem credits, species credits, tab 7', 
+    url: 'core/6-scattered-trees/6.7-credits-tab-7.html' 
+  },
+  { 
+    label: '6.8 Credit Classes Tab 8', 
+    template: 'result', 
+    keywords: 'credit classes, scattered trees, like-for-like, otg, tab 8', 
+    url: 'core/6-scattered-trees/6.8-credit-classes-tab-8.html' 
+  },
+  { 
+    label: '6.9 Price Tab 9', 
+    template: 'result', 
+    keywords: 'price, scattered trees, cost estimate, credit price, tab 9', 
+    url: 'core/6-scattered-trees/6.9-price-tab-9.html' 
+  },
+  { 
+    label: 'Creating A Scattered Trees Assessment', 
+    template: 'result', 
+    keywords: 'scattered trees assessment, workflow, tabs, habitat, credits, price', 
+    url: 'core/6-scattered-trees/creating-a-scattered-trees-assessment.html' 
+  },
+  { label: '7.1 Assessment Details Tab 1', 
+    template: 'result', 
+    keywords: 'assessment details, stewardship, offset site, project info, tab 1', 
+    url: 'core/7-stewardship/7.1-assessment-details-tab-1.html' 
+  },
+  { 
+    label: '7.2 Site Context Tab 2', 
+    template: 'result', 
+    keywords: 'site context, stewardship, offset site, mapping, constraints, ibra, tab 2', 
+    url: 'core/7-stewardship/7.2-site-context-tab-2.html' 
+  },
+  { 
+    label: '7.3 Vegetation Tab 3', 
+    template: 'result', 
+    keywords: 'vegetation, stewardship, pct, condition, vegetation zones, benchmarks, tab 3', 
+    url: 'core/7-stewardship/7.3-vegetation-tab-3.html' 
+  },
+  { 
+    label: '7.4 Habitat Suitability Predicted Tab 4', 
+    template: 'result', 
+    keywords: 'habitat suitability predicted, stewardship, species habitat, tab 4', 
+    url: 'core/7-stewardship/7.4-habitat-suitability-predicted-tab-4.html' 
+  },
+  { 
+    label: '7.5 Habitat Suitability Candidate Tab 5', 
+    template: 'result', 
+    keywords: 'habitat suitability candidate, stewardship, candidate species, tab 5', 
+    url: 'core/7-stewardship/7.5-habitat-suitability-candidate-tab-5.html' 
+  },
+  { 
+    label: '7.6 Habitat Survey Tab 6', 
+    template: 'result', 
+    keywords: 'habitat survey, stewardship, plots, methods, detection, tab 6', 
+    url: 'core/7-stewardship/7.6-habitat-survey-tab-6.html' 
+  },
+  { 
+    label: '7.7 Credits Tab 7', 
+    template: 'result', 
+    keywords: 'credits, stewardship, ecosystem credits, species credits, calculations, tab 7', 
+    url: 'core/7-stewardship/7.7-credits-tab-7.html' 
+  },
+  { 
+    label: '7.8 Credit Classes Tab 8', 
+    template: 'result', 
+    keywords: 'credit classes, stewardship, like-for-like, otg, tec, tab 8', 
+    url: 'core/7-stewardship/7.8-credit-classes-tab-8.html' 
+  },
+  { 
+    label: 'Creating A Stewardship Assessment', 
+    template: 'result', 
+    keywords: 'stewardship assessment, offset site, workflow, tabs, ecosystem credits, species credits', 
+    url: 'core/7-stewardship/creating-a-stewardship-assessment.html' 
+  },
+  { 
+    label: 'Appendix A Clearing The Bam C Cache', 
+    template: 'result', 
+    keywords: 'clear cache, devtools, hard reload, legacy pct, troubleshoot, bam-c, chrome, edge', 
+    url: 'core/appendix/appendix-a-clearing-the-bam-c-cache.html' 
+  },
+  { 
+    label: 'Appendix B Resources', 
+    template: 'result', 
+    keywords: 'resources, links, bionet, legislation, manuals, boams, maps, offset rules', 
+    url: 'core/appendix/appendix-b-resources.html' 
+  }];
 
   const defaults = {
     debounce: 200,
