@@ -395,47 +395,6 @@
   <script src="/bamguide/js/search.js" defer></script>
 
 
-
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const query = params.get("q")?.toLowerCase() || "";
-
-  const resultsContainer = document.getElementById("results");
-  const countContainer = document.getElementById("results-count");
-  const results = [];
-
-  if (query) {
-    searchData.forEach(doc => {
-      if (
-        doc.label.toLowerCase().includes(query) ||
-        doc.keywords.toLowerCase().includes(query)
-      ) {
-        results.push(doc);
-      }
-    });
-  }
-
-  if (results.length) {
-    countContainer.textContent = `${results.length} result(s) found for "${query}"`;
-    resultsContainer.innerHTML = results
-      .map(
-        doc => `
-        <div class="nsw-list-item">
-          <div class="nsw-list-item__content">
-            <div class="nsw-list-item__title"><a href="${doc.url}">${doc.label}</a></div>
-            <div class="nsw-list-item__copy">${doc.keywords}</div>
-          </div>
-        </div>
-      `
-      )
-      .join("");
-  } else {
-    countContainer.textContent = `No results found for "${query}"`;
-    resultsContainer.innerHTML = "";
-  }
-</script>
-
-
   <script>
     hljs.initHighlightingOnLoad();
   </script>
