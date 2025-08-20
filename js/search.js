@@ -1,5 +1,4 @@
 // search.js
-
 console.log("✅ search.js loaded");
 
 // Wait for DOM
