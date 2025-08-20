@@ -1,30 +1,29 @@
 // search.js
 
-// Confirm script is loaded
 console.log("✅ search.js loaded");
 
-// Ensure dataset is loaded
-if (!window.docss || !Array.isArray(window.docss)) {
-  console.error("❌ Search dataset not found (check search-data.js)");
-}
-
-// Wait for DOM to load
+// Wait for DOM
 document.addEventListener("DOMContentLoaded", function () {
-  if (!window.docss) return;
+  if (!window.docss || !Array.isArray(window.docss)) {
+    console.error("❌ Search dataset (window.docss) not loaded or not an array");
+    return;
+  }
+
+  console.log(`✅ Search dataset loaded: ${window.docss.length} entries`);
 
   const searchInput = document.getElementById("search-query");
   const resultsContainer = document.getElementById("results");
   const resultsCount = document.getElementById("results-count");
 
-  // Use Fuse.js for fuzzy search
+  // Init Fuse.js
   const fuse = new Fuse(window.docss, {
     keys: ["title", "content"],
     includeScore: true,
-    threshold: 0.4, // smaller = stricter matching
-    minMatchCharLength: 2
+    threshold: 0.4,
+    minMatchCharLength: 2,
   });
 
-  // Get query string from ?q=
+  // Read ?q= from URL
   const params = new URLSearchParams(window.location.search);
   const query = params.get("q")?.trim();
 
@@ -33,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     doSearch(query);
   }
 
-  // Run search when typing
+  // Live typing
   searchInput.addEventListener("input", (e) => {
     doSearch(e.target.value.trim());
   });
