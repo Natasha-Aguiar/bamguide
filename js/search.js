@@ -1,80 +1,81 @@
 // search.js
-document.addEventListener('DOMContentLoaded', () => {
-  // Ensure the dataset is available
-  if (!window.docss || !Array.isArray(window.docss)) {
-    console.error('Search dataset not found (check search-data.js).');
-    return;
-  }
 
-  // Grab query (?q=...) from URL
+// Confirm script is loaded
+console.log("✅ search.js loaded");
+
+// Ensure dataset is loaded
+if (!window.docss || !Array.isArray(window.docss)) {
+  console.error("❌ Search dataset not found (check search-data.js)");
+}
+
+// Wait for DOM to load
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.docss) return;
+
+  const searchInput = document.getElementById("search-query");
+  const resultsContainer = document.getElementById("results");
+  const resultsCount = document.getElementById("results-count");
+
+  // Use Fuse.js for fuzzy search
+  const fuse = new Fuse(window.docss, {
+    keys: ["title", "content"],
+    includeScore: true,
+    threshold: 0.4, // smaller = stricter matching
+    minMatchCharLength: 2
+  });
+
+  // Get query string from ?q=
   const params = new URLSearchParams(window.location.search);
-  const query = params.get('q') ? params.get('q').toLowerCase() : '';
+  const query = params.get("q")?.trim();
 
-  const input = document.getElementById('search-query');
-  const resultsContainer = document.getElementById('results');
-  const resultsCount = document.getElementById('results-count');
-
-  // Populate the input with the query (so it shows what was searched)
-  if (input && query) {
-    input.value = query;
+  if (query) {
+    searchInput.value = query;
+    doSearch(query);
   }
 
-  // Simple search function
-  function runSearch(term) {
+  // Run search when typing
+  searchInput.addEventListener("input", (e) => {
+    doSearch(e.target.value.trim());
+  });
+
+  function doSearch(term) {
     if (!term) {
-      resultsContainer.innerHTML = '<p>Please enter a search term.</p>';
-      resultsCount.textContent = '';
+      resultsContainer.innerHTML = "<p>Type to search…</p>";
+      resultsCount.textContent = "";
       return;
     }
 
-    const results = window.docss.filter(doc =>
-      (doc.title && doc.title.toLowerCase().includes(term)) ||
-      (doc.content && doc.content.toLowerCase().includes(term))
-    );
+    const results = fuse.search(term);
 
-    if (results.length === 0) {
-      resultsContainer.innerHTML = `<p>No results found for "<strong>${term}</strong>".</p>`;
-      resultsCount.textContent = '';
-      return;
-    }
+    if (results.length) {
+      resultsCount.textContent = `${results.length} result(s) found for "${term}"`;
 
-    resultsCount.textContent = `${results.length} result${results.length !== 1 ? 's' : ''} found`;
-
-    resultsContainer.innerHTML = results.map(doc => {
-      const excerpt = getExcerpt(doc.content, term);
-      return `
-        <div class="nsw-list-item">
-          <div class="nsw-list-item__content">
-            <div class="nsw-list-item__title">
-              <a href="/bamguide/${doc.url}">${doc.title}</a>
+      resultsContainer.innerHTML = results
+        .map(({ item }) => {
+          const excerpt = getExcerpt(item.content, term);
+          return `
+            <div class="nsw-list-item">
+              <div class="nsw-list-item__content">
+                <div class="nsw-list-item__title">
+                  <a href="/bamguide/${item.url}">${item.title}</a>
+                </div>
+                <div class="nsw-list-item__copy">${excerpt}</div>
+              </div>
             </div>
-            <div class="nsw-list-item__copy">${excerpt}</div>
-          </div>
-        </div>
-      `;
-    }).join('');
+          `;
+        })
+        .join("");
+    } else {
+      resultsCount.textContent = `No results found for "${term}"`;
+      resultsContainer.innerHTML = "";
+    }
   }
 
-  // Create a small excerpt around the search term
-  function getExcerpt(content, term, length = 150) {
+  function getExcerpt(content, term, length = 160) {
     const idx = content.toLowerCase().indexOf(term.toLowerCase());
-    if (idx === -1) return content.slice(0, length) + '...';
+    if (idx === -1) return content.slice(0, length) + "...";
     const start = Math.max(0, idx - length / 2);
     const end = Math.min(content.length, idx + length / 2);
-    return '...' + content.slice(start, end) + '...';
-  }
-
-  // Run search immediately if ?q= is present
-  if (query) {
-    runSearch(query);
-  }
-
-  // Also allow searching again if user types and presses Enter
-  if (input) {
-    input.addEventListener('keypress', e => {
-      if (e.key === 'Enter') {
-        runSearch(input.value.toLowerCase().trim());
-      }
-    });
+    return "..." + content.slice(start, end) + "...";
   }
 });
