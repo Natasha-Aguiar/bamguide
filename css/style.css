@@ -15,6 +15,7 @@
 
 div#results-count {
     font-style: italic;
+	padding-top: 6px;
 }
 
 /* Custom highlight for search terms */
