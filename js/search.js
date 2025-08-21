@@ -1,14 +1,5 @@
 // search.js
-console.log("✅ search.js loaded");
-
 document.addEventListener("DOMContentLoaded", function () {
-  // Make sure dataset is available
-  if (!window.docss || !Array.isArray(window.docss)) {
-    console.error("❌ Search dataset (window.docss) not loaded or not an array");
-    return;
-  }
-
-  console.log(`✅ Search dataset loaded: ${window.docss.length} entries`);
 
   const searchInput = document.getElementById("search-query");
   const resultsContainer = document.getElementById("results");
