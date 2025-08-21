@@ -15,8 +15,7 @@
 
 /* Custom highlight for search terms */
 mark {
-  background-color: #00698f; /* NSW dark blue */
-  color: #fff;              /* white text */
+  background-color: ##FDE79A; /* NSW yellow */
   padding: 0 2px;
   border-radius: 2px;
   font-weight: bold;
