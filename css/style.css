@@ -13,11 +13,6 @@
 		padding:0px 5px;
 }
 
-div#results-count {
-    font-style: italic;
-	padding-top: 6px;
-}
-
 /* Custom highlight for search terms */
 mark {
   background-color: #00698f; /* NSW dark blue */
