@@ -1,8 +1,8 @@
 // search.js
 console.log("✅ search.js loaded");
 
-// Wait for DOM
 document.addEventListener("DOMContentLoaded", function () {
+  // Make sure dataset is available
   if (!window.docss || !Array.isArray(window.docss)) {
     console.error("❌ Search dataset (window.docss) not loaded or not an array");
     return;
@@ -14,13 +14,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const resultsContainer = document.getElementById("results");
   const resultsCount = document.getElementById("results-count");
 
-  // Init Fuse.js
-  const fuse = new Fuse(window.docss, {
-    keys: ["title", "content"],
-    includeScore: true,
-    threshold: 0.4,
-    minMatchCharLength: 2,
-  });
+  let useFuse = typeof Fuse !== "undefined";
+
+  // Init Fuse.js if available
+  let fuse = null;
+  if (useFuse) {
+    fuse = new Fuse(window.docss, {
+      keys: ["title", "content"],
+      includeScore: true,
+      threshold: 0.4,
+      minMatchCharLength: 2,
+    });
+    console.log("✅ Fuse.js ready");
+  } else {
+    console.warn("⚠️ Fuse.js not found, falling back to basic search");
+  }
 
   // Read ?q= from URL
   const params = new URLSearchParams(window.location.search);
@@ -43,13 +51,23 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const results = fuse.search(term);
+    let results = [];
+
+    if (useFuse && fuse) {
+      results = fuse.search(term).map(r => r.item);
+    } else {
+      // fallback: simple substring search
+      results = window.docss.filter(doc =>
+        doc.title.toLowerCase().includes(term.toLowerCase()) ||
+        doc.content.toLowerCase().includes(term.toLowerCase())
+      );
+    }
 
     if (results.length) {
       resultsCount.textContent = `${results.length} result(s) found for "${term}"`;
 
       resultsContainer.innerHTML = results
-        .map(({ item }) => {
+        .map(item => {
           const excerpt = getExcerpt(item.content, term);
           return `
             <div class="nsw-list-item">
