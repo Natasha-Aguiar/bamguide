@@ -13,6 +13,23 @@
 		padding:0px 5px;
 }
 
+.nav-next-prev {
+    padding: 20px 0px;
+    border-top: 1px solid #d3d3d3;
+    margin-top: 30px;
+    display: inline-flex;
+    width: 100%;
+}
+
+.nav-prev {
+    width: 50%;
+}
+
+.nav-next {
+    width: 50%;
+    text-align: right;
+}
+
 /* Custom highlight for search terms */
 mark {
   background-color: #FDE79A; /* NSW yellow */
