@@ -19,6 +19,8 @@
 
 .publication-details.full {
     display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .left-col {
