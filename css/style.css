@@ -17,8 +17,13 @@
     margin-top: 1rem;
 }
 
-.left-col{
-width: 30%;
+.publication-details.full {
+    display: flex;
+}
+
+.left-col {
+    width: 30%;
+    margin-right: 20px;
 }
 
 .right-col{
@@ -63,11 +68,4 @@ mark {
 	 max-width:75%;
  }
 
- .left-col{
-width: 100%;
-}
-
-.right-col{
-width: 100%;
-}
  }
