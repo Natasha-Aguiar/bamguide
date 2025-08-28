@@ -79,25 +79,12 @@
           <div class="nsw-header__search-area nsw-autocomplete js-search-area js-autocomplete" id="header-autocomplete" hidden>
             <div role="search">
               <label for="nsw-header-autocomplete" class="sr-only">Search site for:</label>
-              <input class="nsw-header__input js-autocomplete__input js-search-input" type="text" autocomplete="off" id="nsw-header-autocomplete" name="input-autocomplete" placeholder="Search the BAM-C user guide">
+              <input class="nsw-header__input" type="text" autocomplete="off" id="nsw-header-autocomplete" name="input-autocomplete" placeholder="Search the BAM-C user guide">
 
               <button class="nsw-icon-button nsw-icon-button--flex js-open-search" aria-expanded="true" aria-controls="header-autocomplete">
                 <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span>
                 <span class="sr-only">Search</span>
               </button>
-
-              <div class="nsw-autocomplete__results js-autocomplete__results">
-                <ul id="autocomplete" class="nsw-autocomplete__list js-autocomplete__list">
-                  <li class="nsw-autocomplete__item nsw-text-truncate js-autocomplete__item" data-autocomplete-template="result">
-                    <a href="" data-autocomplete-url data-autocomplete-label></a>
-                  </li>
-                  <li class="nsw-autocomplete__item nsw-autocomplete__no-results nsw-text-truncate js-autocomplete__item" data-autocomplete-template="no-results" role="presentation"></li>
-                </ul>
-              </div>
-
-              <p class="sr-only" aria-live="polite" aria-atomic="true">
-                <span class="js-autocomplete__aria-results">0</span> results found.
-              </p>
 
             </div>
             <button class="nsw-icon-button js-close-search" aria-expanded="true" aria-controls="header-autocomplete">
