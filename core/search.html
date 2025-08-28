@@ -395,6 +395,17 @@
   <script src="/bamguide/js/search.js" defer></script>
 
 
+<!-- Your search logic -->
+  <script>
+    document.querySelector('.nsw-header__input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    const term = encodeURIComponent(e.target.value.trim());
+    if (term) {
+      window.location.href = `/bamguide/core/search.html?q=${term}`;
+    }
+  }
+});
+  </script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>

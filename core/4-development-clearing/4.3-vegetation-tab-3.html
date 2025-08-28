@@ -814,6 +814,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/bamguide/js/docs.js"></script>
+<!-- Your search logic -->
+  <script>
+    document.querySelector('.nsw-header__input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    const term = encodeURIComponent(e.target.value.trim());
+    if (term) {
+      window.location.href = `/bamguide/core/search.html?q=${term}`;
+    }
+  }
+});
+  </script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>
