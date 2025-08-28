@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-  <title>NSW Biodiversity Assessment Method Calculator User guide</title>
+  <title>4.1 Assessment details (Tab 1) | NSW BAM-C User guide</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,25 +79,12 @@
           <div class="nsw-header__search-area nsw-autocomplete js-search-area js-autocomplete" id="header-autocomplete" hidden>
             <div role="search">
               <label for="nsw-header-autocomplete" class="sr-only">Search site for:</label>
-              <input class="nsw-header__input js-autocomplete__input js-search-input" type="text" autocomplete="off" id="nsw-header-autocomplete" name="input-autocomplete">
+              <input class="nsw-header__input" type="text" autocomplete="off" id="nsw-header-autocomplete" name="input-autocomplete" placeholder="Search the BAM-C user guide">
 
               <button class="nsw-icon-button nsw-icon-button--flex js-open-search" aria-expanded="true" aria-controls="header-autocomplete">
                 <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span>
                 <span class="sr-only">Search</span>
               </button>
-
-              <div class="nsw-autocomplete__results js-autocomplete__results">
-                <ul id="autocomplete" class="nsw-autocomplete__list js-autocomplete__list">
-                  <li class="nsw-autocomplete__item nsw-text-truncate js-autocomplete__item" data-autocomplete-template="result">
-                    <a href="" data-autocomplete-url data-autocomplete-label></a>
-                  </li>
-                  <li class="nsw-autocomplete__item nsw-autocomplete__no-results nsw-text-truncate js-autocomplete__item" data-autocomplete-template="no-results" role="presentation"></li>
-                </ul>
-              </div>
-
-              <p class="sr-only" aria-live="polite" aria-atomic="true">
-                <span class="js-autocomplete__aria-results">0</span> results found.
-              </p>
 
             </div>
             <button class="nsw-icon-button js-close-search" aria-expanded="true" aria-controls="header-autocomplete">
@@ -333,7 +320,7 @@
   </div>
 </li>
 
-<li><a href="/bamguide/core/appendix/appendix-A-clearing-the-BAM-C-cache.html"><span>Appendix A – Clearing the BAM-C cache</span></a></li>
+<li><a href="/bamguide/core/appendix/appendix-a-clearing-the-BAM-C-cache.html"><span>Appendix A – Clearing the BAM-C cache</span></a></li>
 <li><a href="/bamguide/core/appendix/appendix-b-resources.html"><span>Appendix B – Resources</span></a></li>
           </ul>
         </nav>
@@ -343,7 +330,8 @@
 
   <div class="nsw-docs__intro">
         <div class="nsw-docs__container">
-<h2>4.1 Assessment details (Tab 1)</h2>
+<h4>Creating a development/ clearing assessment</h4>
+<h2 class="title-space">4.1 Assessment details (Tab 1)</h2>
  </div>
   </div>
   
@@ -449,6 +437,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/bamguide/js/docs.js"></script>
+<!-- Your search logic -->
+  <script>
+    document.querySelector('.nsw-header__input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    const term = encodeURIComponent(e.target.value.trim());
+    if (term) {
+      window.location.href = `/bamguide/core/search.html?q=${term}`;
+    }
+  }
+});
+  </script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>
