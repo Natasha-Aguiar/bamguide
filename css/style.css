@@ -2,6 +2,19 @@
  background-color: var(--nsw-palette-grey-04);
  }
 
+ /* Desktop: force search bar to always show */
+@media (min-width: 768px) {
+  #header-autocomplete {
+    display: block !important;
+    position: static !important;
+    visibility: visible !important;
+  }
+  #header-autocomplete[hidden] {
+    display: block !important;
+  }
+}
+
+
  img{
 	 max-width:100%;
 	 padding: 10px 0px;
@@ -12,6 +25,8 @@
 	    display: inline;
 		padding:0px 5px;
 }
+
+
 
 .title-space{
     margin-top: 1rem;
