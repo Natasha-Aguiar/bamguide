@@ -55,23 +55,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (results.length) {
-      resultsCount.textContent = `${results.length} result(s) found for "${term}"`;
-
-      resultsContainer.innerHTML = results
-        .map(item => {
-          const excerpts = getAllExcerpts(item.content, term);
-          return `
-            <div class="nsw-list-item">
-              <div class="nsw-list-item__content">
-                <div class="nsw-list-item__title">
-                  <a href="/bamguide/${item.url}">${item.title}</a>
-                </div>
-                <div class="nsw-list-item__copy">${excerpts}</div>
+      // Count all matches across all docs
+      let totalMatches = 0;
+      const renderedResults = results.map(item => {
+        const excerpts = getAllExcerpts(item.content, term);
+        totalMatches += countMatches(item.content, term);
+        return `
+          <div class="nsw-list-item">
+            <div class="nsw-list-item__content">
+              <div class="nsw-list-item__title">
+                <a href="/bamguide/${item.url}">${item.title}</a>
               </div>
+              <div class="nsw-list-item__copy">${excerpts}</div>
             </div>
-          `;
-        })
-        .join("");
+          </div>
+        `;
+      });
+
+      resultsCount.textContent = `${totalMatches} result(s) found for "${term}" across ${results.length} page(s)`;
+      resultsContainer.innerHTML = renderedResults.join("");
     } else {
       resultsCount.textContent = `No results found for "${term}"`;
       resultsContainer.innerHTML = "";
@@ -85,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Get multiple excerpts instead of just one
-  function getAllExcerpts(content, term, length = 160, maxSnippets = 20) {
+  function getAllExcerpts(content, term, length = 160, maxSnippets = 5) {
     const regex = new RegExp(term, "gi");
     let match;
     let snippets = [];
@@ -101,6 +103,12 @@ document.addEventListener("DOMContentLoaded", function () {
       count++;
     }
 
-    return snippets.join("<br><br>");
+    return snippets.join("<br/><br/>");
+  }
+
+  // Count matches of term in text
+  function countMatches(content, term) {
+    const regex = new RegExp(term, "gi");
+    return (content.match(regex) || []).length;
   }
 });
