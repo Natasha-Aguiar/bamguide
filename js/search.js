@@ -101,6 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
       count++;
     }
 
-    return snippets.join("<br>");
+    return snippets.join("<br><br>");
   }
 });
