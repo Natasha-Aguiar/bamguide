@@ -17,8 +17,8 @@
         analytics: {}
       },
       consentBanner: {
-        title: 'Cookies on the NSW Design System website',
-        description: "We've added essential and additional cookies to ensure this service works effectively, track how it's being used, and make necessary improvements. You can <a href='#'>manage your cookie settings</a> by visiting the 'Cookies' page, found at the bottom of this page.",
+        title: 'Cookies on the BAM Calculator User guide website',
+        description: "We've added essential and additional cookies to ensure this service works effectively, track how it's being used, and make necessary improvements. You can <a href='#cookie-consent'>manage your cookie settings</a> by visiting the 'Cookies' page, found at the bottom of this page.",
         acceptAllBtn: 'Accept all',
         acceptNecessaryBtn: 'Only necessary cookies',
         showPreferencesBtn: 'Manage your preferences',

@@ -59,14 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       resultsContainer.innerHTML = results
         .map(item => {
-          const excerpt = getExcerpt(item.content, term);
+          const excerpts = getAllExcerpts(item.content, term);
           return `
             <div class="nsw-list-item">
               <div class="nsw-list-item__content">
                 <div class="nsw-list-item__title">
                   <a href="/bamguide/${item.url}">${item.title}</a>
                 </div>
-                <div class="nsw-list-item__copy">${excerpt}</div>
+                <div class="nsw-list-item__copy">${excerpts}</div>
               </div>
             </div>
           `;
@@ -84,12 +84,23 @@ document.addEventListener("DOMContentLoaded", function () {
     return text.replace(regex, "<mark>$1</mark>");
   }
 
-  function getExcerpt(content, term, length = 160) {
-    const idx = content.toLowerCase().indexOf(term.toLowerCase());
-    if (idx === -1) return content.slice(0, length) + "...";
-    const start = Math.max(0, idx - length / 2);
-    const end = Math.min(content.length, idx + length / 2);
-    const snippet = content.slice(start, end);
-    return highlightText(snippet, term) + "...";
+  // Get multiple excerpts instead of just one
+  function getAllExcerpts(content, term, length = 160, maxSnippets = 20) {
+    const regex = new RegExp(term, "gi");
+    let match;
+    let snippets = [];
+    let count = 0;
+
+    while ((match = regex.exec(content)) !== null && count < maxSnippets) {
+      const idx = match.index;
+      const start = Math.max(0, idx - length / 2);
+      const end = Math.min(content.length, idx + length / 2);
+      let snippet = content.slice(start, end);
+      snippet = highlightText(snippet, term);
+      snippets.push("…" + snippet + "…");
+      count++;
+    }
+
+    return snippets.join("<br>");
   }
 });
