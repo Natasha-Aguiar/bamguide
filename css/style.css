@@ -12,6 +12,9 @@
   }
 }
 
+div#header-autocomplete form {
+    margin: 0px;
+}
 
  img{
 	 max-width:100%;
