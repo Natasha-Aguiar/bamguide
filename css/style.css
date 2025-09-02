@@ -3,11 +3,9 @@
  }
 
  /* Desktop: force search bar to always show */
-@media (min-width: 768px) {
+@media (min-width: 990px) {
   #header-autocomplete {
     display: block !important;
-    position: static !important;
-    visibility: visible !important;
   }
   #header-autocomplete[hidden] {
     display: block !important;
