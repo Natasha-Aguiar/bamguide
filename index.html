@@ -66,32 +66,25 @@
               </div>
             </div>
 
-            <div class="nsw-header__search">
-              <button type="button" class="js-open-search" aria-expanded="false" aria-controls="header-autocomplete">
-                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span>
-                <span><span class="sr-only">Show</span> Search</span>
-              </button>
-            </div>
+            <div class="nsw-header__search-area nsw-autocomplete js-search-area js-autocomplete" id="header-autocomplete">
+  <div role="search">
+    <form action="/bamguide/search.html" method="get">
+      <label for="nsw-header-autocomplete" class="sr-only">Search site for:</label>
+      <input 
+        class="nsw-header__input" 
+        type="text" 
+        id="nsw-header-autocomplete" 
+        name="q" 
+        placeholder="Search the BAM-C user guide">
 
-          </div>
-
-          <div class="nsw-header__search-area nsw-autocomplete js-search-area js-autocomplete" id="header-autocomplete" hidden>
-            <div role="search">
-              <label for="nsw-header-autocomplete" class="sr-only">Search site for:</label>
-              <input class="nsw-header__input" type="text" autocomplete="off" id="nsw-header-autocomplete" name="input-autocomplete" placeholder="Search the BAM-C user guide">
-
-              <button class="nsw-icon-button nsw-icon-button--flex js-open-search" aria-expanded="true" aria-controls="header-autocomplete">
-                <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">search</span>
-                <span class="sr-only">Search</span>
-              </button>
-
-            </div>
-            <button class="nsw-icon-button js-close-search" aria-expanded="true" aria-controls="header-autocomplete">
-              <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">close</span>
-              <span class="sr-only">Close search</span>
-            </button>
-
-          </div>
+      <!-- Make search button submit form -->
+      <button type="submit" class="nsw-icon-button nsw-icon-button--flex">
+        <span class="material-icons nsw-material-icons" aria-hidden="true">search</span>
+        <span class="sr-only">Search</span>
+      </button>
+    </form>
+  </div>
+</div>
 
         </div>
       </header>
