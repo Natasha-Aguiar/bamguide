@@ -111,11 +111,10 @@
             </button>
           </div>
           <ul class="nsw-main-nav__list">
-                  <li>
-              <a href="#" onclick="download()">
-                <span>Download PDF</span>
-              </a>
-            </li>
+                  <li class="nsw-utility-list__item js-download-page" data-pdf-content="nsw-docs__main">
+      <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">download</span>
+      <span>Download as PDF</span>
+    </li>
       <li>
               <a href="/bamguide/core/1-get-started/shortened-forms.html">
                 <span>Shortened Forms</span>
@@ -5700,11 +5699,6 @@ Alternatively, to use the revised NSW PCTs select ‘Current classification (liv
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script>
-function download() {
-      print()
-}
-</script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>     
