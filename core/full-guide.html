@@ -5700,7 +5700,17 @@ Alternatively, to use the revised NSW PCTs select ‘Current classification (liv
 });
   </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector(".js-download-page");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    // Trigger browser print dialog (user can save as PDF)
+    window.print();
+  });
+});
+</script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>     
