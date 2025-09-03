@@ -5704,7 +5704,14 @@ Alternatively, to use the revised NSW PCTs select ‘Current classification (liv
 });
   </script>
 
-
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initialise DownloadPDF for all buttons
+    document.querySelectorAll('.js-download-page').forEach(el => {
+      new DownloadPDF(el).init();
+    });
+  });
+</script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>     
