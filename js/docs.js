@@ -727,7 +727,7 @@ downloadEvent() {
   this.buttonText.innerText = 'Building PDF...';
   html2canvas(this.content).then(canvas => {
     const base64image = canvas.toDataURL('image/jpg');
-    const { jsPDF } = window.jspdf; // ✅ fix for UMD build
+    const jsPDF = window.jsPDF;
     const pdf = new jsPDF('p', 'px', [canvas.width, canvas.height]);
     pdf.addImage(base64image, 'JPG', 0, 0, canvas.width, canvas.height);
     pdf.save(`${this.name}.pdf`);
