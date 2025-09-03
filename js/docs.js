@@ -737,6 +737,7 @@ downloadEvent() {
     this.buttonText.innerText = originalButtonText;
   });
 }
+  }
 
   class ColorSwatches {
     constructor(element, opts) {
