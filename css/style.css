@@ -28,7 +28,6 @@ div#header-autocomplete form {
 }
 
 
-
 .title-space{
     margin-top: 1rem;
 }
@@ -86,4 +85,21 @@ mark {
 	 max-width:75%;
  }
 
+ }
+
+
+
+
+
+ @media print{
+
+    .nsw-docs__header{
+        /* Styles for header in print */
+            display: block !important; /* Ensure visibility */
+            position: fixed; /* For repeating on each page */
+            top: 0;
+            width: 100%;
+            /* Add padding to prevent content overlap */
+            padding-bottom: 20px; 
+    }
  }
