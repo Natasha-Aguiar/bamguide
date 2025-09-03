@@ -112,7 +112,7 @@
           </div>
           <ul class="nsw-main-nav__list">
                   <li>
-              <a href="#">
+              <a href="#" id="download-pdf">
                 <span>Download PDF</span>
               </a>
             </li>
@@ -5698,6 +5698,22 @@ Alternatively, to use the revised NSW PCTs select ‘Current classification (liv
   }
 });
   </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  document.getElementById("download-pdf").addEventListener("click", function (e) {
+    e.preventDefault();
+    const element = document.body; // whole guide
+    const opt = {
+      margin:       0.5,
+      filename:     'bam-user-guide.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+  });
+</script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>     
