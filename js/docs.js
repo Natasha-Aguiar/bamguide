@@ -722,21 +722,21 @@
         }
       });
     }
-    downloadEvent() {
-      const originalButtonText = this.buttonText.innerText;
-      this.buttonText.innerText = 'Building PDF...';
-      html2canvas(this.content).then(canvas => {
-        const base64image = canvas.toDataURL('image/jpg');
-        const pdf = new jsPDF('p', 'px', [canvas.width, canvas.height]);
-        pdf.addImage(base64image, 'jpg', 0, 0, canvas.width, canvas.height);
-        pdf.save(`${this.name}.pdf`);
-        this.buttonText.innerText = originalButtonText;
-      }).catch(error => {
-        console.error('An error occurred:', error);
-        this.buttonText.innerText = originalButtonText;
-      });
-    }
-  }
+downloadEvent() {
+  const originalButtonText = this.buttonText.innerText;
+  this.buttonText.innerText = 'Building PDF...';
+  html2canvas(this.content).then(canvas => {
+    const base64image = canvas.toDataURL('image/jpg');
+    const { jsPDF } = window.jspdf; // ✅ fix for UMD build
+    const pdf = new jsPDF('p', 'px', [canvas.width, canvas.height]);
+    pdf.addImage(base64image, 'JPG', 0, 0, canvas.width, canvas.height);
+    pdf.save(`${this.name}.pdf`);
+    this.buttonText.innerText = originalButtonText;
+  }).catch(error => {
+    console.error('An error occurred:', error);
+    this.buttonText.innerText = originalButtonText;
+  });
+}
 
   class ColorSwatches {
     constructor(element, opts) {
