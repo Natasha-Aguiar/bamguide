@@ -88,7 +88,21 @@ mark {
  }
 
 
+.doc-header-title{
+        display: flex;
+}
 
+.doc-header-title .nsw-header__name {
+    margin: 0px;
+}
+
+.doc-header-title span.nsw-docs__version{
+    margin: 0px;
+}
+
+.print-only-header {
+    padding-right: 30px;
+}
 
 /* ---------------------------
    Print header: show only in print
