@@ -91,6 +91,15 @@ mark {
 .doc-header-title {
     display: inline-flex;
 }
+.doc-header-title .nsw-header__waratah {
+    justify-content: left;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+}
+.doc-header-title h1#breakpoints {
+    margin-top: 0px;
+}
 
 .doc-header-title .nsw-header__name {
     margin: 0px;
