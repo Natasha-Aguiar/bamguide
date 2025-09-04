@@ -92,22 +92,18 @@ mark {
 
 
 @media print {
-  /* Make sure the header is visible */
+  /* Ensure header prints at the top of the first page */
   .nsw-header__main {
     display: block !important;
-    position: static !important;
+    position: relative !important;  /* not fixed */
     height: auto !important;
     visibility: visible !important;
+    page-break-after: avoid !important; /* don’t force it onto its own page */
   }
 
   /* Hide menus/navigation if you don’t want them */
   .nsw-main-nav,
   .nsw-utility-list {
     display: none !important;
-  }
-
-  /* Ensure header only prints on first page */
-  .nsw-header__main {
-    page-break-after: always;
   }
 }
