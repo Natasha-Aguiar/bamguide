@@ -91,15 +91,23 @@ mark {
 
 
 
- @media print{
+@media print {
+  /* Make sure the header is visible */
+  .nsw-header__main {
+    display: block !important;
+    position: static !important;
+    height: auto !important;
+    visibility: visible !important;
+  }
 
-    .nsw-docs__header{
-        /* Styles for header in print */
-            display: block !important; /* Ensure visibility */
-            position: fixed; /* For repeating on each page */
-            top: 0;
-            width: 100%;
-            /* Add padding to prevent content overlap */
-            padding-bottom: 20px; 
-    }
- }
+  /* Hide menus/navigation if you don’t want them */
+  .nsw-main-nav,
+  .nsw-utility-list {
+    display: none !important;
+  }
+
+  /* Ensure header only prints on first page */
+  .nsw-header__main {
+    page-break-after: always;
+  }
+}
