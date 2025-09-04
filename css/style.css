@@ -90,20 +90,59 @@ mark {
 
 
 
+/* ---------------------------
+   Print header: show only in print
+   --------------------------- */
+.print-only-header { display: none; }
 
+/* Make sure this block is loaded after any other CSS so it wins (important rule usage) */
 @media print {
-  /* Ensure header prints at the top of the first page */
-  .nsw-header__main {
-    display: block !important;
-    position: relative !important;  /* not fixed */
-    height: auto !important;
-    visibility: visible !important;
-    page-break-after: avoid !important; /* don’t force it onto its own page */
+  /* Hide the normal site header/navigation to avoid duplication */
+  .nsw-docs__header,
+  .nsw-main-nav,
+  .nsw-utility-list,
+  .nsw-header__menu,
+  .nsw-header__search-area,
+  .nsw-header__search {
+    display: none !important;
+    visibility: hidden !important;
   }
 
-  /* Hide menus/navigation if you don’t want them */
-  .nsw-main-nav,
-  .nsw-utility-list {
-    display: none !important;
+  /* Show the print-only header (the one we injected into the content) */
+  .print-only-header {
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
+    width: 100% !important;
+    margin: 0 0 12px 0 !important;
+    padding-bottom: 6px !important;
+    box-sizing: border-box !important;
+    /* prevent the header from being cut across pages */
+    page-break-inside: avoid !important;
+  }
+
+  /* inner layout for the header */
+  .print-header-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .print-header-inner img,
+  .print-header-inner svg {
+    max-height: 48px;
+    height: auto;
+    display: block;
+  }
+
+  /* Optional: make guide content start on same page directly after header */
+  .nsw-docs__main {
+    /* don't force a new page before content — let it flow after the print header */
+    page-break-before: avoid !important;
+  }
+
+  /* Ensure colours and backgrounds are printed as expected (some browsers require this) */
+  html, body {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
   }
 }
