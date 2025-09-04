@@ -727,7 +727,7 @@ downloadEvent() {
   this.buttonText.innerText = 'Building PDF...';
   html2canvas(this.content).then(canvas => {
     const base64image = canvas.toDataURL('image/jpg');
-    const jsPDF = window.jsPDF;
+    const { jsPDF } = window.jspdf; // correct for UMD build
     const pdf = new jsPDF('p', 'px', [canvas.width, canvas.height]);
     pdf.addImage(base64image, 'JPG', 0, 0, canvas.width, canvas.height);
     pdf.save(`${this.name}.pdf`);
@@ -738,6 +738,14 @@ downloadEvent() {
   });
 }
   }
+
+  // Initialise PDF download buttons
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.js-download-page').forEach(el => {
+    const dl = new DownloadPDF(el);
+    dl.init();
+  });
+});
 
   class ColorSwatches {
     constructor(element, opts) {
