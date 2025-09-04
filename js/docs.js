@@ -722,14 +722,40 @@
         }
       });
     }
+
+
+    
 downloadEvent() {
   const originalButtonText = this.buttonText.innerText;
   this.buttonText.innerText = 'Building PDF...';
+
   html2canvas(this.content).then(canvas => {
-    const base64image = canvas.toDataURL('image/jpg');
-    const { jsPDF } = window.jspdf; // correct for UMD build
-    const pdf = new jsPDF('p', 'px', [canvas.width, canvas.height]);
-    pdf.addImage(base64image, 'JPG', 0, 0, canvas.width, canvas.height);
+    const { jsPDF } = window.jspdf; // correct UMD import
+    const imgData = canvas.toDataURL('image/png');
+
+    // A4 page size in px at 96dpi
+    const pdf = new jsPDF('p', 'pt', 'a4');
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+
+    const imgWidth = pageWidth;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    // Add first page
+    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+    heightLeft -= pageHeight;
+
+    // Add more pages if content overflows
+    while (heightLeft > 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+    }
+
     pdf.save(`${this.name}.pdf`);
     this.buttonText.innerText = originalButtonText;
   }).catch(error => {
@@ -737,6 +763,7 @@ downloadEvent() {
     this.buttonText.innerText = originalButtonText;
   });
 }
+
   }
 
   // Initialise PDF download buttons
