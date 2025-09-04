@@ -88,8 +88,8 @@ mark {
  }
 
 
-.doc-header-title{
-        display: flex;
+.doc-header-title {
+    display: inline-flex;
 }
 
 .doc-header-title .nsw-header__name {
@@ -101,7 +101,7 @@ mark {
 }
 
 .print-only-header {
-    padding-right: 30px;
+    padding-right: 10px;
 }
 
 /* ---------------------------
