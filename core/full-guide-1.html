@@ -671,6 +671,15 @@
   }
 });
   </script>
+
+  <script>
+  // Instantiate DownloadPDF for every .js-download-page element
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.js-download-page').forEach(function (el) {
+      new DownloadPDF(el).init();
+    });
+  });
+</script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>
