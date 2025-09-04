@@ -121,19 +121,6 @@ mark {
     page-break-inside: avoid !important;
   }
 
-  /* inner layout for the header */
-  .print-header-inner {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .print-header-inner img,
-  .print-header-inner svg {
-    max-height: 48px;
-    height: auto;
-    display: block;
-  }
-
   /* Optional: make guide content start on same page directly after header */
   .nsw-docs__main {
     /* don't force a new page before content — let it flow after the print header */
@@ -143,6 +130,6 @@ mark {
   /* Ensure colours and backgrounds are printed as expected (some browsers require this) */
   html, body {
     -webkit-print-color-adjust: exact !important;
-    color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
