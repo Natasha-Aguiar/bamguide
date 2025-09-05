@@ -471,36 +471,95 @@
   }
 });
   </script>
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const hash = window.location.hash;
-  if (hash.startsWith("#match-")) {
-    const [ , pageIdx, matchIdx ] = hash.split("-");
-    const query = new URLSearchParams(window.location.search).get("q");
+<script>
+/*
+  Highlight & scroll to an nth-match anchor.
+  Required: The search links must include ?q=searchTerm (the search.js provided does that).
+  It will: read ?q=term (or sessionStorage fallback), find the nth occurrence inside .nsw-docs__main,
+  wrap it in <mark id="match-X-Y">...</mark> and scroll into view.
+*/
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    const hash = window.location.hash || '';
+    if (!hash.startsWith('#match-')) return;
 
-    if (query) {
-      let count = 0;
-      const regex = new RegExp(query, "gi");
-      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    // parse hash: "#match-<pageIdx>-<matchIdx>"
+    const parts = hash.replace('#', '').split('-');
+    if (parts.length < 3) return;
+    const matchIdx = parseInt(parts[2], 10); // 1-based
 
-      while (walker.nextNode()) {
-        const node = walker.currentNode;
-        let match;
-        while ((match = regex.exec(node.nodeValue)) !== null) {
-          count++;
-          if (count == matchIdx) {
-            const span = document.createElement("span");
-            span.id = `match-${pageIdx}-${matchIdx}`;
-            span.innerHTML = node.nodeValue.substring(0, match.index) +
-              "<mark>" + node.nodeValue.substr(match.index, query.length) + "</mark>" +
-              node.nodeValue.substring(match.index + query.length);
-            node.parentNode.replaceChild(span, node);
-            span.scrollIntoView({ behavior: "smooth", block: "center" });
-            return;
+    // get the search term: ?q= OR sessionStorage fallback or referrer
+    const params = new URLSearchParams(window.location.search);
+    let term = params.get('q') || sessionStorage.getItem('bamguide-search-term') || null;
+    if (!term) {
+      // try referrer
+      try {
+        const ref = new URL(document.referrer);
+        term = ref.searchParams.get('q');
+      } catch (e) { /* ignore */ }
+    }
+    if (!term) return;
+    term = decodeURIComponent(term);
+
+    // Restrict the search root to the main docs content (avoid header/nav)
+    const root = document.querySelector('.nsw-docs__main') || document.body;
+
+    // build safe regex
+    const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(esc(term), 'gi');
+
+    // walk text nodes inside `root`
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        // reject nodes that are inside navigation/header/footer or inside anchors/scripts/styles
+        let p = node.parentNode;
+        while (p && p !== document.body) {
+          if (p.matches && (p.matches('script, style, noscript, a, nav, header, footer, .nsw-main-nav, .nsw-docs__nav'))) {
+            return NodeFilter.FILTER_REJECT;
           }
+          p = p.parentNode;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }, false);
+
+    let count = 0;
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      let m;
+      while ((m = regex.exec(node.nodeValue)) !== null) {
+        count++;
+        if (count === matchIdx) {
+          // Build wrapper span with id and mark inside
+          const wrapper = document.createElement('span');
+          const id = `match-${parts[1]}-${parts[2]}`;
+          wrapper.id = id;
+
+          const before = node.nodeValue.slice(0, m.index);
+          const matched = node.nodeValue.slice(m.index, m.index + m[0].length);
+          const after = node.nodeValue.slice(m.index + m[0].length);
+
+          if (before) wrapper.appendChild(document.createTextNode(before));
+          const mark = document.createElement('mark');
+          mark.textContent = matched;
+          wrapper.appendChild(mark);
+          if (after) wrapper.appendChild(document.createTextNode(after));
+
+          node.parentNode.replaceChild(wrapper, node);
+
+          // scroll into view (center)
+          setTimeout(() => {
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 50);
+
+          // done
+          return;
         }
       }
     }
+  } catch (err) {
+    console.error('Anchor highlight script error:', err);
   }
 });
 </script>
