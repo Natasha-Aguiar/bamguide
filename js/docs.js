@@ -1504,7 +1504,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   initDocs();
 
-}));
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -1580,4 +1580,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 80);
   }
 });
+
+}));
+
+
 
