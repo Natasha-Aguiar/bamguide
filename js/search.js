@@ -104,11 +104,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const anchorId = `match-${pageIndex + 1}-${count + 1}`;
 
-    snippets.push(`
-      <a href="/bamguide/${window.docss[pageIndex].url}#${anchorId}">
-        …${snippet}…
-      </a>
-    `);
+    snippets.push(
+  `…<a href="/bamguide/${item.url}#match-${docIdx}-${count + 1}">${highlightText(snippet, term)}</a>…`
+);
+
 
     count++;
   }
