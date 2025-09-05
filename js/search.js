@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="nsw-list-item">
             <div class="nsw-list-item__content">
               <div class="nsw-list-item__title">
-                <a href="/bamguide/${item.url}">${item.title}</a>
+                ${item.title}
               </div>
               <div class="nsw-list-item__copy">
                 ${snippets}
