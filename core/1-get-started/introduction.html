@@ -479,10 +479,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const hash = window.location.hash || '';
   if (!term) return;
 
-  // targetMatch is the *absolute* occurrence index (the second number in #match-<page>-<occurrence>)
+  // target occurrence index from #match-x-y
   let targetMatch = null;
   if (hash.startsWith('#match-')) {
-    const parts = hash.slice(1).split('-'); // ["match","<page>","<occurrence>"]
+    const parts = hash.slice(1).split('-');
     if (parts.length >= 3) {
       targetMatch = parseInt(parts[2], 10);
     }
@@ -491,17 +491,19 @@ document.addEventListener('DOMContentLoaded', function () {
   function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
   const regex = new RegExp(escapeRegExp(term), 'gi');
 
-  // collect text nodes we can safely operate on
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+  // 🔑 restrict search to main content area
+  const main = document.querySelector('.nsw-docs__main');
+  if (!main) return;
+
+  const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
       if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
       const parent = node.parentNode;
       if (!parent) return NodeFilter.FILTER_REJECT;
       const tag = parent.nodeName.toLowerCase();
-      // skip script/style/code/pre/textarea and links (to avoid messing with anchors)
+      // skip script/style/code/pre/textarea and links
       const skip = ['script', 'style', 'textarea', 'code', 'pre', 'noscript', 'a'];
       if (skip.includes(tag)) return NodeFilter.FILTER_REJECT;
-      // don't double-process nodes inside our own snippets/marks
       if (parent.closest && parent.closest('.search-snippet')) return NodeFilter.FILTER_REJECT;
       return NodeFilter.FILTER_ACCEPT;
     }
@@ -520,43 +522,31 @@ document.addEventListener('DOMContentLoaded', function () {
     while ((m = regex.exec(text)) !== null) {
       const idx = m.index;
       const matched = m[0];
-      // push the part before the match
       if (idx > lastIdx) frag.appendChild(document.createTextNode(text.slice(lastIdx, idx)));
       matchCount++;
-      // create the highlighted element
       const mk = document.createElement('mark');
       mk.className = 'search-highlight';
       mk.textContent = matched;
-      // if this is the target occurrence, assign the full id so the link works
       if (targetMatch && matchCount === targetMatch && hash.startsWith('#match-')) {
-        mk.id = hash.slice(1); // e.g. "match-2-8"
+        mk.id = hash.slice(1);
       }
       frag.appendChild(mk);
       lastIdx = idx + matched.length;
     }
 
-    // if we didn't find any matches in this node: skip replacing
     if (lastIdx === 0) return;
-    // append trailing text
     if (lastIdx < text.length) frag.appendChild(document.createTextNode(text.slice(lastIdx)));
-    // replace original text node
     node.parentNode.replaceChild(frag, node);
   });
 
-  // Now scroll to the anchored match (if present)
   if (hash && document.getElementById(hash.slice(1))) {
     const el = document.getElementById(hash.slice(1));
-    // small timeout to allow browser layout to settle on large pages
     setTimeout(() => {
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 80);
   }
 });
 </script>
-
-
-
-
 
   <script>
     hljs.initHighlightingOnLoad();
