@@ -36,51 +36,51 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function doSearch(term) {
-  if (!term) {
-    resultsContainer.innerHTML = "<p>Type to search…</p>";
-    resultsCount.textContent = "";
-    return;
-  }
+    if (!term) {
+      resultsContainer.innerHTML = "<p>Type to search…</p>";
+      resultsCount.textContent = "";
+      return;
+    }
 
-  let results = [];
+    let results = [];
 
-  if (useFuse && fuse) {
-    results = fuse.search(term).map(r => r.item);
-  } else {
-    results = window.docss.filter(doc =>
-      doc.title.toLowerCase().includes(term.toLowerCase()) ||
-      doc.content.toLowerCase().includes(term.toLowerCase())
-    );
-  }
+    if (useFuse && fuse) {
+      results = fuse.search(term).map(r => r.item);
+    } else {
+      results = window.docss.filter(doc =>
+        doc.title.toLowerCase().includes(term.toLowerCase()) ||
+        doc.content.toLowerCase().includes(term.toLowerCase())
+      );
+    }
 
-  if (results.length) {
-    let totalMatches = 0;
+    if (results.length) {
+      let totalMatches = 0;
 
-    const renderedResults = results.map((item, pageIndex) => {
-      const snippets = getAllExcerpts(item.content, term, 160, 10, pageIndex); // pass pageIndex for unique anchors
-      totalMatches += countMatches(item.content, term);
+      const renderedResults = results.map((item, pageIndex) => {
+        const snippets = getAllExcerpts(item.url, item.content, term, 160, 10, pageIndex);
+        totalMatches += countMatches(item.content, term);
 
-      return `
-        <div class="nsw-list-item">
-          <div class="nsw-list-item__content">
-            <div class="nsw-list-item__title">
-              <a href="/bamguide/${item.url}">${item.title}</a>
-            </div>
-            <div class="nsw-list-item__copy">
-              ${snippets}
+        return `
+          <div class="nsw-list-item">
+            <div class="nsw-list-item__content">
+              <div class="nsw-list-item__title">
+                <a href="/bamguide/${item.url}">${item.title}</a>
+              </div>
+              <div class="nsw-list-item__copy">
+                ${snippets}
+              </div>
             </div>
           </div>
-        </div>
-      `;
-    });
+        `;
+      });
 
-    resultsCount.textContent = `${totalMatches} result(s) found for "${term}" across ${results.length} page(s)`;
-    resultsContainer.innerHTML = renderedResults.join("");
-  } else {
-    resultsCount.textContent = `No results found for "${term}"`;
-    resultsContainer.innerHTML = "";
+      resultsCount.textContent = `${totalMatches} result(s) found for "${term}" across ${results.length} page(s)`;
+      resultsContainer.innerHTML = renderedResults.join("");
+    } else {
+      resultsCount.textContent = `No results found for "${term}"`;
+      resultsContainer.innerHTML = "";
+    }
   }
-}
 
   // Highlight matching term in string
   function highlightText(text, term) {
@@ -88,33 +88,31 @@ document.addEventListener("DOMContentLoaded", function () {
     return text.replace(regex, "<mark>$1</mark>");
   }
 
-  // Get multiple excerpts instead of just one
-  function getAllExcerpts(content, term, length = 160, maxSnippets = 5, pageIndex = 0) {
-  const regex = new RegExp(term, "gi");
-  let match;
-  let snippets = [];
-  let count = 0;
+  // Get multiple excerpts and link each to its own match anchor
+  function getAllExcerpts(url, content, term, length = 160, maxSnippets = 5, pageIndex = 0) {
+    const regex = new RegExp(term, "gi");
+    let match;
+    let snippets = [];
+    let count = 0;
 
-  while ((match = regex.exec(content)) !== null && count < maxSnippets) {
-    const idx = match.index;
-    const start = Math.max(0, idx - length / 2);
-    const end = Math.min(content.length, idx + length / 2);
-    let snippet = content.slice(start, end);
-    snippet = highlightText(snippet, term);
+    while ((match = regex.exec(content)) !== null && count < maxSnippets) {
+      const idx = match.index;
+      const start = Math.max(0, idx - length / 2);
+      const end = Math.min(content.length, idx + length / 2);
+      let snippet = content.slice(start, end);
+      snippet = highlightText(snippet, term);
 
-    const anchorId = `match-${pageIndex + 1}-${count + 1}`;
+      const anchorId = `match-${pageIndex + 1}-${count + 1}`;
 
-    snippets.push(
-  `…<a href="/bamguide/${item.url}#match-${docIdx}-${count + 1}">${highlightText(snippet, term)}</a>…`
-);
+      snippets.push(
+        `…<a href="/bamguide/${url}#${anchorId}">${snippet}</a>…`
+      );
 
+      count++;
+    }
 
-    count++;
+    return snippets.join("<br/><br/>");
   }
-
-  return snippets.join("<br/><br/>");
-}
-
 
   // Count matches of term in text
   function countMatches(content, term) {
