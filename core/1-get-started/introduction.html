@@ -472,6 +472,42 @@
 });
   </script>
   <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const hash = window.location.hash;
+  if (hash.startsWith("#match-")) {
+    const [ , docIdx, matchIdx ] = hash.split("-");
+    const query = new URLSearchParams(window.location.search).get("q");
+
+    if (query) {
+      let count = 0;
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        const idx = node.nodeValue.toLowerCase().indexOf(query.toLowerCase());
+        if (idx !== -1) {
+          if (count == matchIdx) {
+            // Wrap the match with an anchor
+            const span = document.createElement("span");
+            span.id = `match-${docIdx}-${matchIdx}`;
+            span.innerHTML = node.nodeValue.substring(0, idx) +
+              "<mark>" + node.nodeValue.substring(idx, idx + query.length) + "</mark>" +
+              node.nodeValue.substring(idx + query.length);
+
+            node.parentNode.replaceChild(span, node);
+
+            // Scroll to it
+            span.scrollIntoView({ behavior: "smooth", block: "center" });
+            break;
+          }
+          count++;
+        }
+      }
+    }
+  }
+});
+</script>
+
+  <script>
     hljs.initHighlightingOnLoad();
   </script>
 </body>

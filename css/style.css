@@ -87,8 +87,10 @@ mark {
 
  }
 
-.sub-title-guide{
+.sub-title-guide {
     font-size: var(--nsw-font-size-xl-desktop);
+    display: block;
+    padding-top: 20px;
 }
 
 .doc-header-title .nsw-header__waratah {

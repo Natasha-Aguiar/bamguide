@@ -57,20 +57,39 @@ document.addEventListener("DOMContentLoaded", function () {
     if (results.length) {
       // Count all matches across all docs
       let totalMatches = 0;
-      const renderedResults = results.map(item => {
-        const excerpts = getAllExcerpts(item.content, term);
-        totalMatches += countMatches(item.content, term);
-        return `
-          <div class="nsw-list-item">
-            <div class="nsw-list-item__content">
-              <div class="nsw-list-item__title">
-                <a href="/bamguide/${item.url}">${item.title}</a>
-              </div>
-              <div class="nsw-list-item__copy">${excerpts}</div>
-            </div>
+      const renderedResults = results.map((item, docIdx) => {
+  const regex = new RegExp(term, "gi");
+  let match;
+  let snippets = [];
+  let matchIdx = 0;
+
+  while ((match = regex.exec(item.content)) !== null) {
+    const idx = match.index;
+    const start = Math.max(0, idx - 80);
+    const end = Math.min(item.content.length, idx + 80);
+    let snippet = item.content.slice(start, end);
+    snippet = highlightText(snippet, term);
+
+    snippets.push(`
+      <div class="nsw-list-item">
+        <div class="nsw-list-item__content">
+          <div class="nsw-list-item__title">
+            <a href="/bamguide/${item.url}#match-${docIdx}-${matchIdx}">
+              ${item.title}
+            </a>
           </div>
-        `;
-      });
+          <div class="nsw-list-item__copy">…${snippet}…</div>
+        </div>
+      </div>
+    `);
+
+    matchIdx++;
+    totalMatches++;
+  }
+
+  return snippets.join("");
+});
+
 
       resultsCount.textContent = `${totalMatches} result(s) found for "${term}" across ${results.length} page(s)`;
       resultsContainer.innerHTML = renderedResults.join("");
