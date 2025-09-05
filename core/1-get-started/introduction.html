@@ -471,95 +471,89 @@
   }
 });
   </script>
+<!-- paste this in a <script> block AFTER docs.js (or append to docs.js) -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  try {
-    const hash = window.location.hash || '';
-    if (!hash.startsWith('#match-')) return;
+  const params = new URLSearchParams(window.location.search);
+  const term = params.get('q');
+  const hash = window.location.hash || '';
+  if (!term) return;
 
-    // parse hash: "#match-<pageIdx>-<matchIdx>"
-    const parts = hash.replace('#', '').split('-');
-    if (parts.length < 3) return;
-    const targetIndex = parseInt(parts[2], 10); // 1-based
-
-    // get the search term: ?q= OR sessionStorage fallback or referrer
-    const params = new URLSearchParams(window.location.search);
-    let term = params.get('q') || sessionStorage.getItem('bamguide-search-term') || null;
-    if (!term) {
-      try {
-        const ref = new URL(document.referrer);
-        term = ref.searchParams.get('q');
-      } catch (e) { /* ignore */ }
+  // targetMatch is the *absolute* occurrence index (the second number in #match-<page>-<occurrence>)
+  let targetMatch = null;
+  if (hash.startsWith('#match-')) {
+    const parts = hash.slice(1).split('-'); // ["match","<page>","<occurrence>"]
+    if (parts.length >= 3) {
+      targetMatch = parseInt(parts[2], 10);
     }
-    if (!term) return;
-    term = decodeURIComponent(term);
+  }
 
-    const root = document.querySelector('.nsw-docs__main') || document.body;
+  function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  const regex = new RegExp(escapeRegExp(term), 'gi');
 
-    // build safe regex
-    const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(esc(term), 'gi');
+  // collect text nodes we can safely operate on
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      const parent = node.parentNode;
+      if (!parent) return NodeFilter.FILTER_REJECT;
+      const tag = parent.nodeName.toLowerCase();
+      // skip script/style/code/pre/textarea and links (to avoid messing with anchors)
+      const skip = ['script', 'style', 'textarea', 'code', 'pre', 'noscript', 'a'];
+      if (skip.includes(tag)) return NodeFilter.FILTER_REJECT;
+      // don't double-process nodes inside our own snippets/marks
+      if (parent.closest && parent.closest('.search-snippet')) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
 
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
-    let count = 0;
-    const highlightNodes = [];
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
 
-    while (walker.nextNode()) {
-      const node = walker.currentNode;
-      if (!node.nodeValue.trim()) continue;
-      if (node.parentNode.closest('script, style, noscript, nav, header, footer, .nsw-main-nav, .nsw-docs__nav')) {
-        continue; // skip irrelevant areas
+  let matchCount = 0;
+  nodes.forEach(node => {
+    const text = node.nodeValue;
+    let lastIdx = 0;
+    let m;
+    const frag = document.createDocumentFragment();
+
+    while ((m = regex.exec(text)) !== null) {
+      const idx = m.index;
+      const matched = m[0];
+      // push the part before the match
+      if (idx > lastIdx) frag.appendChild(document.createTextNode(text.slice(lastIdx, idx)));
+      matchCount++;
+      // create the highlighted element
+      const mk = document.createElement('mark');
+      mk.className = 'search-highlight';
+      mk.textContent = matched;
+      // if this is the target occurrence, assign the full id so the link works
+      if (targetMatch && matchCount === targetMatch && hash.startsWith('#match-')) {
+        mk.id = hash.slice(1); // e.g. "match-2-8"
       }
-
-      let text = node.nodeValue;
-      let match;
-      let lastIndex = 0;
-      const fragments = [];
-
-      while ((match = regex.exec(text)) !== null) {
-        // text before match
-        if (match.index > lastIndex) {
-          fragments.push(document.createTextNode(text.slice(lastIndex, match.index)));
-        }
-
-        // matched word
-        count++;
-        const mark = document.createElement('mark');
-        mark.textContent = match[0];
-
-        // Give the clicked one an ID
-        if (count === targetIndex) {
-          mark.id = `match-${parts[1]}-${parts[2]}`;
-          highlightNodes.push(mark);
-        }
-
-        fragments.push(mark);
-        lastIndex = match.index + match[0].length;
-      }
-
-      // trailing text
-      if (lastIndex < text.length) {
-        fragments.push(document.createTextNode(text.slice(lastIndex)));
-      }
-
-      if (fragments.length) {
-        const span = document.createElement('span');
-        fragments.forEach(f => span.appendChild(f));
-        node.parentNode.replaceChild(span, node);
-      }
+      frag.appendChild(mk);
+      lastIdx = idx + matched.length;
     }
 
-    // Scroll to the targeted one
-    if (highlightNodes.length) {
-      setTimeout(() => {
-        highlightNodes[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 50);
-    }
-  } catch (err) {
-    console.error('Anchor highlight script error:', err);
+    // if we didn't find any matches in this node: skip replacing
+    if (lastIdx === 0) return;
+    // append trailing text
+    if (lastIdx < text.length) frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+    // replace original text node
+    node.parentNode.replaceChild(frag, node);
+  });
+
+  // Now scroll to the anchored match (if present)
+  if (hash && document.getElementById(hash.slice(1))) {
+    const el = document.getElementById(hash.slice(1));
+    // small timeout to allow browser layout to settle on large pages
+    setTimeout(() => {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 80);
   }
 });
 </script>
+
 
 
 

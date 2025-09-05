@@ -1,58 +1,39 @@
-// search.js — replace your current file with this
+// search.js
 document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-query');
   const resultsContainer = document.getElementById('results');
   const resultsCount = document.getElementById('results-count');
+  if (!searchInput || !resultsContainer || !resultsCount) return;
 
   const useFuse = typeof Fuse !== 'undefined';
   let fuse = null;
-  if (useFuse) {
-    fuse = new Fuse(window.docss || [], {
+  if (useFuse && Array.isArray(window.docss)) {
+    fuse = new Fuse(window.docss, {
       keys: ['title', 'content'],
       includeScore: true,
       threshold: 0.4,
-      minMatchCharLength: 2,
+      minMatchCharLength: 2
     });
     console.log('✅ Fuse.js ready');
+  } else {
+    console.warn('⚠️ Fuse.js not found or dataset missing — falling back to basic search');
   }
 
-  function escapeRegExp(s) {
-    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-
-  // read ?q=
   const params = new URLSearchParams(window.location.search);
   const initialQuery = params.get('q')?.trim() || '';
-
-  if (initialQuery && searchInput) {
+  if (initialQuery) {
     searchInput.value = initialQuery;
     doSearch(initialQuery);
   }
 
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      doSearch(e.target.value.trim());
-    });
-  }
-
-  // store clicked term in sessionStorage (fallback)
-  if (resultsContainer) {
-    resultsContainer.addEventListener('click', (e) => {
-      const a = e.target.closest('a');
-      if (!a) return;
-      // if link includes our "#match-" anchor, store the search term
-      if (a.hash && a.hash.indexOf('#match-') === 0) {
-        const termToStore = (searchInput && searchInput.value) || initialQuery || '';
-        if (termToStore) sessionStorage.setItem('bamguide-search-term', termToStore);
-        // Allow navigation
-      }
-    });
-  }
+  searchInput.addEventListener('input', (e) => {
+    doSearch(e.target.value.trim());
+  });
 
   function doSearch(term) {
     if (!term) {
-      if (resultsContainer) resultsContainer.innerHTML = '<p>Type to search…</p>';
-      if (resultsCount) resultsCount.textContent = '';
+      resultsContainer.innerHTML = '<p>Type to search…</p>';
+      resultsCount.textContent = '';
       return;
     }
 
@@ -60,84 +41,94 @@ document.addEventListener('DOMContentLoaded', () => {
     if (useFuse && fuse) {
       results = fuse.search(term).map(r => r.item);
     } else {
-      results = (window.docss || []).filter(doc =>
-        (doc.title || '').toLowerCase().includes(term.toLowerCase()) ||
-        (doc.content || '').toLowerCase().includes(term.toLowerCase())
+      const data = Array.isArray(window.docss) ? window.docss : [];
+      results = data.filter(doc =>
+        (doc.title && doc.title.toLowerCase().includes(term.toLowerCase())) ||
+        (doc.content && doc.content.toLowerCase().includes(term.toLowerCase()))
       );
     }
 
     if (!results.length) {
-      if (resultsCount) resultsCount.textContent = `No results found for "${term}"`;
-      if (resultsContainer) resultsContainer.innerHTML = '';
+      resultsCount.textContent = `No results found for "${term}"`;
+      resultsContainer.innerHTML = '';
       return;
     }
 
-    // Build results: one page block with multiple snippet links per page
     let totalMatches = 0;
-    const rendered = results.map((item, pageIndex) => {
-      const { snippets, matches } = getAllExcerpts(item, term, 160, 10, pageIndex);
-      totalMatches += matches;
-
-      // Show title once, snippets underneath — link includes ?q=term so content page can read it
+    const renderedResults = results.map((item, pageIndex) => {
+      const excerpts = getAllExcerpts(item.content || '', term, 160, 5, pageIndex, item.url || '');
+      totalMatches += countMatches(item.content || '', term);
       return `
         <div class="nsw-list-item">
           <div class="nsw-list-item__content">
             <div class="nsw-list-item__title">
-              <a href="/bamguide/${item.url}?q=${encodeURIComponent(term)}">${item.title}</a>
+              <a href="/bamguide/${item.url}">${item.title}</a>
             </div>
             <div class="nsw-list-item__copy">
-              ${snippets}
+              ${excerpts}
             </div>
           </div>
         </div>
       `;
     });
 
-    if (resultsCount) resultsCount.textContent = `${totalMatches} result(s) found for "${term}" across ${results.length} page(s)`;
-    if (resultsContainer) resultsContainer.innerHTML = rendered.join('');
+    resultsCount.textContent = `${totalMatches} result${totalMatches !== 1 ? 's' : ''} found for "${term}" across ${results.length} page${results.length !== 1 ? 's' : ''}`;
+    resultsContainer.innerHTML = renderedResults.join('');
+  }
+
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
   function highlightText(text, term) {
-    const re = new RegExp(`(${escapeRegExp(term)})`, 'gi');
-    return text.replace(re, '<mark>$1</mark>');
+    const regex = new RegExp(escapeRegExp(term), 'gi');
+    return text.replace(regex, '<mark>$&</mark>');
   }
 
-  // returns { snippets: HTMLstring, matches: number }
-  function getAllExcerpts(item, term, length = 160, maxSnippets = 5, pageIndex = 0) {
-    const content = item.content || '';
-    const re = new RegExp(escapeRegExp(term), 'gi');
-    let match;
-    let snippets = [];
-    let matches = 0;
-    let lastStart = -Infinity;
-    let snippetIndex = 0;
+  function countMatches(content, term) {
+    const regex = new RegExp(escapeRegExp(term), 'gi');
+    return (content.match(regex) || []).length;
+  }
 
-    while ((match = re.exec(content)) !== null && snippetIndex < maxSnippets) {
-      const idx = match.index;
+  // Return multiple *non-overlapping* snippet links for a single page.
+  // IMPORTANT: we compute the absolute match index (1-based) so anchors line up with the page-side highlighting.
+  function getAllExcerpts(content, term, length = 160, maxSnippets = 5, pageIndex = 0, url = '') {
+    const regex = new RegExp(escapeRegExp(term), 'gi');
+    const allMatchPositions = [];
+    let m;
+    while ((m = regex.exec(content)) !== null) {
+      allMatchPositions.push(m.index);
+    }
+    if (allMatchPositions.length === 0) return '';
 
-      // If this match falls very close to the previous snippet center, skip it (dedupe)
-      if (idx <= lastStart + (length / 2)) {
-        matches++;
+    const snippets = [];
+    const seen = new Set();
+    const minDistance = Math.floor(length / 2); // avoid near-duplicate overlapping snippets
+    let lastIdx = -Infinity;
+
+    for (let i = 0; i < allMatchPositions.length && snippets.length < maxSnippets; i++) {
+      const idx = allMatchPositions[i];
+      if (idx - lastIdx < minDistance) {
+        // skip matches that are too close to the previously used one
         continue;
       }
+      lastIdx = idx;
 
       const start = Math.max(0, idx - Math.floor(length / 2));
       const end = Math.min(content.length, idx + Math.floor(length / 2));
       let snippet = content.slice(start, end).trim();
 
-      // highlight the term inside the snippet
-      snippet = highlightText(snippet, term);
+      // simple dedupe (avoid showing two nearly identical snippets)
+      const norm = snippet.replace(/\s+/g, ' ').toLowerCase();
+      if (seen.has(norm)) continue;
+      seen.add(norm);
 
-      // create anchor that includes ?q=term and the hash with page+match index
-      const matchNum = snippetIndex + 1;
-      const href = `/bamguide/${item.url}?q=${encodeURIComponent(term)}#match-${pageIndex + 1}-${matchNum}`;
-
-      snippets.push(`…<a href="${href}">${snippet}</a>…`);
-      lastStart = idx;
-      snippetIndex++;
-      matches++;
+      const absoluteMatchIndex = i + 1; // 1-based index among all matches in this page
+      const href = `/bamguide/${url}?q=${encodeURIComponent(term)}#match-${pageIndex + 1}-${absoluteMatchIndex}`;
+      const linked = `<a class="search-snippet" href="${href}">${highlightText(snippet, term)}</a>`;
+      snippets.push(linked);
     }
 
-    return { snippets: snippets.join('<br/><br/>') || '…', matches };
+    return snippets.join('<br/><br/>');
   }
 });
