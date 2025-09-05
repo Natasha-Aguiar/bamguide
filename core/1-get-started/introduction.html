@@ -473,39 +473,30 @@
   </script>
   <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const hash = window.location.hash;
-  if (hash.startsWith("#match-")) {
-    const [ , docIdx, matchIdx ] = hash.split("-");
-    const query = new URLSearchParams(window.location.search).get("q");
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("q");
 
-    if (query) {
-      let count = 0;
-      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-      while (walker.nextNode()) {
-        const node = walker.currentNode;
-        const idx = node.nodeValue.toLowerCase().indexOf(query.toLowerCase());
-        if (idx !== -1) {
-          if (count == matchIdx) {
-            // Wrap the match with an anchor
-            const span = document.createElement("span");
-            span.id = `match-${docIdx}-${matchIdx}`;
-            span.innerHTML = node.nodeValue.substring(0, idx) +
-              "<mark>" + node.nodeValue.substring(idx, idx + query.length) + "</mark>" +
-              node.nodeValue.substring(idx + query.length);
+  if (!query) return;
 
-            node.parentNode.replaceChild(span, node);
+  const regex = new RegExp(query, "gi");
+  let count = 0;
+  let pageIndex = 1; // could make dynamic if needed
 
-            // Scroll to it
-            span.scrollIntoView({ behavior: "smooth", block: "center" });
-            break;
-          }
-          count++;
-        }
-      }
-    }
+  document.querySelectorAll(".nsw-docs__content, .nsw-docs__intro").forEach(container => {
+    container.innerHTML = container.innerHTML.replace(regex, (match) => {
+      count++;
+      return `<span id="match-${pageIndex}-${count}" class="search-hit">${match}</span>`;
+    });
+  });
+
+  // If a hash exists in the URL, scroll there
+  if (window.location.hash) {
+    const el = document.querySelector(window.location.hash);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 });
 </script>
+
 
   <script>
     hljs.initHighlightingOnLoad();
