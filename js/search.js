@@ -90,29 +90,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Get multiple excerpts and link each to its own match anchor
   function getAllExcerpts(url, content, term, length = 160, maxSnippets = 5, pageIndex = 0) {
-    const regex = new RegExp(term, "gi");
-    let match;
-    let snippets = [];
-    let count = 0;
+  const regex = new RegExp(term, "gi");
+  let match;
+  let snippets = [];
+  let count = 0;
+  let lastSnippet = "";
 
-    while ((match = regex.exec(content)) !== null && count < maxSnippets) {
-      const idx = match.index;
-      const start = Math.max(0, idx - length / 2);
-      const end = Math.min(content.length, idx + length / 2);
-      let snippet = content.slice(start, end);
-      snippet = highlightText(snippet, term);
+  while ((match = regex.exec(content)) !== null && count < maxSnippets) {
+    const idx = match.index;
+    const start = Math.max(0, idx - length / 2);
+    const end = Math.min(content.length, idx + length / 2);
+    let snippet = content.slice(start, end).trim();
 
-      const anchorId = `match-${pageIndex + 1}-${count + 1}`;
-
-      snippets.push(
-        `…<a href="/bamguide/${url}#${anchorId}">${snippet}</a>…`
-      );
-
-      count++;
+    // Skip if it's basically the same as the last snippet
+    if (lastSnippet && Math.abs(idx - lastSnippet.start) < length / 2) {
+      continue;
     }
 
-    return snippets.join("<br/><br/>");
+    snippet = highlightText(snippet, term);
+    const anchorId = `match-${pageIndex + 1}-${count + 1}`;
+    snippets.push(`…<a href="/bamguide/${url}#${anchorId}">${snippet}</a>…`);
+
+    lastSnippet = { start: idx, text: snippet };
+    count++;
   }
+
+  return snippets.join("<br/><br/>");
+}
+
 
   // Count matches of term in text
   function countMatches(content, term) {

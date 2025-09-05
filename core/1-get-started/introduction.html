@@ -473,28 +473,38 @@
   </script>
   <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const query = new URLSearchParams(window.location.search).get("q");
-  if (!query) return;
+  const hash = window.location.hash;
+  if (hash.startsWith("#match-")) {
+    const [ , pageIdx, matchIdx ] = hash.split("-");
+    const query = new URLSearchParams(window.location.search).get("q");
 
-  const regex = new RegExp(query, "gi");
-  const container = document.querySelector(".nsw-docs__main");
-  if (!container) return;
+    if (query) {
+      let count = 0;
+      const regex = new RegExp(query, "gi");
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
 
-  let matchIndex = 0;
-  container.innerHTML = container.innerHTML.replace(regex, (match) => {
-    matchIndex++;
-    return `<span id="match-0-${matchIndex}"><mark>${match}</mark></span>`;
-  });
-
-  // If the page was opened with a #match-x-y anchor, scroll there
-  if (window.location.hash.startsWith("#match-")) {
-    const target = document.querySelector(window.location.hash);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "center" });
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        let match;
+        while ((match = regex.exec(node.nodeValue)) !== null) {
+          count++;
+          if (count == matchIdx) {
+            const span = document.createElement("span");
+            span.id = `match-${pageIdx}-${matchIdx}`;
+            span.innerHTML = node.nodeValue.substring(0, match.index) +
+              "<mark>" + node.nodeValue.substr(match.index, query.length) + "</mark>" +
+              node.nodeValue.substring(match.index + query.length);
+            node.parentNode.replaceChild(span, node);
+            span.scrollIntoView({ behavior: "smooth", block: "center" });
+            return;
+          }
+        }
+      }
     }
   }
 });
 </script>
+
 
 
 
