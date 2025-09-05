@@ -472,12 +472,6 @@
 });
   </script>
 <script>
-/*
-  Highlight & scroll to an nth-match anchor.
-  Required: The search links must include ?q=searchTerm (the search.js provided does that).
-  It will: read ?q=term (or sessionStorage fallback), find the nth occurrence inside .nsw-docs__main,
-  wrap it in <mark id="match-X-Y">...</mark> and scroll into view.
-*/
 document.addEventListener('DOMContentLoaded', function () {
   try {
     const hash = window.location.hash || '';
@@ -486,13 +480,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // parse hash: "#match-<pageIdx>-<matchIdx>"
     const parts = hash.replace('#', '').split('-');
     if (parts.length < 3) return;
-    const matchIdx = parseInt(parts[2], 10); // 1-based
+    const targetIndex = parseInt(parts[2], 10); // 1-based
 
     // get the search term: ?q= OR sessionStorage fallback or referrer
     const params = new URLSearchParams(window.location.search);
     let term = params.get('q') || sessionStorage.getItem('bamguide-search-term') || null;
     if (!term) {
-      // try referrer
       try {
         const ref = new URL(document.referrer);
         term = ref.searchParams.get('q');
@@ -501,62 +494,66 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!term) return;
     term = decodeURIComponent(term);
 
-    // Restrict the search root to the main docs content (avoid header/nav)
     const root = document.querySelector('.nsw-docs__main') || document.body;
 
     // build safe regex
     const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const regex = new RegExp(esc(term), 'gi');
 
-    // walk text nodes inside `root`
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-      acceptNode: function (node) {
-        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-        // reject nodes that are inside navigation/header/footer or inside anchors/scripts/styles
-        let p = node.parentNode;
-        while (p && p !== document.body) {
-          if (p.matches && (p.matches('script, style, noscript, a, nav, header, footer, .nsw-main-nav, .nsw-docs__nav'))) {
-            return NodeFilter.FILTER_REJECT;
-          }
-          p = p.parentNode;
-        }
-        return NodeFilter.FILTER_ACCEPT;
-      }
-    }, false);
-
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
     let count = 0;
+    const highlightNodes = [];
+
     while (walker.nextNode()) {
       const node = walker.currentNode;
-      let m;
-      while ((m = regex.exec(node.nodeValue)) !== null) {
-        count++;
-        if (count === matchIdx) {
-          // Build wrapper span with id and mark inside
-          const wrapper = document.createElement('span');
-          const id = `match-${parts[1]}-${parts[2]}`;
-          wrapper.id = id;
-
-          const before = node.nodeValue.slice(0, m.index);
-          const matched = node.nodeValue.slice(m.index, m.index + m[0].length);
-          const after = node.nodeValue.slice(m.index + m[0].length);
-
-          if (before) wrapper.appendChild(document.createTextNode(before));
-          const mark = document.createElement('mark');
-          mark.textContent = matched;
-          wrapper.appendChild(mark);
-          if (after) wrapper.appendChild(document.createTextNode(after));
-
-          node.parentNode.replaceChild(wrapper, node);
-
-          // scroll into view (center)
-          setTimeout(() => {
-            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 50);
-
-          // done
-          return;
-        }
+      if (!node.nodeValue.trim()) continue;
+      if (node.parentNode.closest('script, style, noscript, nav, header, footer, .nsw-main-nav, .nsw-docs__nav')) {
+        continue; // skip irrelevant areas
       }
+
+      let text = node.nodeValue;
+      let match;
+      let lastIndex = 0;
+      const fragments = [];
+
+      while ((match = regex.exec(text)) !== null) {
+        // text before match
+        if (match.index > lastIndex) {
+          fragments.push(document.createTextNode(text.slice(lastIndex, match.index)));
+        }
+
+        // matched word
+        count++;
+        const mark = document.createElement('mark');
+        mark.textContent = match[0];
+
+        // Give the clicked one an ID
+        if (count === targetIndex) {
+          mark.id = `match-${parts[1]}-${parts[2]}`;
+          highlightNodes.push(mark);
+        }
+
+        fragments.push(mark);
+        lastIndex = match.index + match[0].length;
+      }
+
+      // trailing text
+      if (lastIndex < text.length) {
+        fragments.push(document.createTextNode(text.slice(lastIndex)));
+      }
+
+      if (fragments.length) {
+        const span = document.createElement('span');
+        fragments.forEach(f => span.appendChild(f));
+        node.parentNode.replaceChild(span, node);
+      }
+    }
+
+    // Scroll to the targeted one
+    if (highlightNodes.length) {
+      setTimeout(() => {
+        highlightNodes[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 50);
     }
   } catch (err) {
     console.error('Anchor highlight script error:', err);
