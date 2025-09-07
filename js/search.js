@@ -5,11 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultsCount = document.getElementById('results-count');
   if (!searchInput || !resultsContainer || !resultsCount) return;
 
-  const useFuse = typeof Fuse !== 'undefined';
+  const useFuse = typeof Fuse !== 'undefined' && Array.isArray(window.docss);
   let fuse = null;
-  if (useFuse && Array.isArray(window.docss)) {
+  if (useFuse) {
     fuse = new Fuse(window.docss, {
-      keys: ['title', 'content'],
+      keys: ['title', 'subtitle', 'content'],
       includeScore: true,
       threshold: 0.4,
       minMatchCharLength: 2
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.warn('⚠️ Fuse.js not found or dataset missing — falling back to basic search');
   }
 
+  // read initial ?q=
   const params = new URLSearchParams(window.location.search);
   const initialQuery = params.get('q')?.trim() || '';
   if (initialQuery) {
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = Array.isArray(window.docss) ? window.docss : [];
       results = data.filter(doc =>
         (doc.title && doc.title.toLowerCase().includes(term.toLowerCase())) ||
+        (doc.subtitle && doc.subtitle.toLowerCase().includes(term.toLowerCase())) ||
         (doc.content && doc.content.toLowerCase().includes(term.toLowerCase()))
       );
     }
@@ -56,14 +58,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let totalMatches = 0;
     const renderedResults = results.map((item, pageIndex) => {
-      const excerpts = getAllExcerpts(item.content || '', term, 160, 5, pageIndex, item.url || '');
-      totalMatches += countMatches(item.content || '', term);
+      const content = item.content || '';
+      const excerpts = getAllExcerpts(content, term, 160, 5, pageIndex, item.url || '');
+      totalMatches += countMatches(content, term);
+
+      const titleEsc = escapeHtml(item.title || '');
+      const subtitleHtml = item.subtitle ? `<div class="nsw-list-item__subtitle">${escapeHtml(item.subtitle)}</div>` : '';
+      const pageLink = `/bamguide/${item.url || ''}?q=${encodeURIComponent(term)}`;
+
       return `
         <div class="nsw-list-item">
           <div class="nsw-list-item__content">
+          ${subtitleHtml}
             <div class="nsw-list-item__title">
-              ${item.title}
+              ${titleEsc}
             </div>
+            
             <div class="nsw-list-item__copy">
               ${excerpts}
             </div>
@@ -76,13 +86,22 @@ document.addEventListener('DOMContentLoaded', () => {
     resultsContainer.innerHTML = renderedResults.join('');
   }
 
+  // utilities
   function escapeRegExp(s) {
     return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
+  function escapeHtml(unsafe) {
+    return (unsafe + '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
 
   function highlightText(text, term) {
-    const regex = new RegExp(escapeRegExp(term), 'gi');
-    return text.replace(regex, '<mark>$&</mark>');
+    const re = new RegExp(escapeRegExp(term), 'gi');
+    return text.replace(re, '<mark>$&</mark>');
   }
 
   function countMatches(content, term) {
@@ -90,9 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return (content.match(regex) || []).length;
   }
 
-  // Return multiple *non-overlapping* snippet links for a single page.
-  // IMPORTANT: we compute the absolute match index (1-based) so anchors line up with the page-side highlighting.
+  // Build multiple non-overlapping snippet links for a single page.
+  // The anchor format is: #match-<pageIndex+1>-<absoluteMatchIndex>
   function getAllExcerpts(content, term, length = 160, maxSnippets = 5, pageIndex = 0, url = '') {
+    if (!content) return '';
     const regex = new RegExp(escapeRegExp(term), 'gi');
     const allMatchPositions = [];
     let m;
@@ -103,30 +123,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const snippets = [];
     const seen = new Set();
-    const minDistance = Math.floor(length / 2); // avoid near-duplicate overlapping snippets
-    let lastIdx = -Infinity;
+    const minDistance = Math.floor(length / 2); // skip matches closer than this to previous chosen snippet
+
+    let lastChosenPos = -Infinity;
 
     for (let i = 0; i < allMatchPositions.length && snippets.length < maxSnippets; i++) {
       const idx = allMatchPositions[i];
-      if (idx - lastIdx < minDistance) {
-        // skip matches that are too close to the previously used one
+      if (idx - lastChosenPos < minDistance) {
+        // too close to previously chosen snippet - skip to avoid near-duplicates
         continue;
       }
-      lastIdx = idx;
+
+      lastChosenPos = idx;
 
       const start = Math.max(0, idx - Math.floor(length / 2));
       const end = Math.min(content.length, idx + Math.floor(length / 2));
       let snippet = content.slice(start, end).trim();
 
-      // simple dedupe (avoid showing two nearly identical snippets)
+      // basic dedupe by normalized text
       const norm = snippet.replace(/\s+/g, ' ').toLowerCase();
       if (seen.has(norm)) continue;
       seen.add(norm);
 
-      const absoluteMatchIndex = i + 1; // 1-based index among all matches in this page
+      // absolute match number is the index into allMatchPositions + 1 (1-based)
+      const absoluteMatchIndex = i + 1;
       const href = `/bamguide/${url}?q=${encodeURIComponent(term)}#match-${pageIndex + 1}-${absoluteMatchIndex}`;
-      const linked = `<a class="search-snippet" href="${href}">${highlightText(snippet, term)}</a>`;
-      snippets.push(linked);
+
+      // add class "search-snippet" so the page-side highlighter can skip this link's text nodes if needed
+      const linked = `<a class="search-snippet" href="${href}">${highlightText(escapeHtml(snippet), term)}</a>`;
+      snippets.push(`…${linked}…`);
     }
 
     return snippets.join('<br/><br/>');
