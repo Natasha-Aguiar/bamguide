@@ -1505,41 +1505,31 @@ document.addEventListener("DOMContentLoaded", () => {
   initDocs();
 
 
-// Highlight + scroll script
-document.addEventListener('DOMContentLoaded', function () {
+// Ensure DOM updates from initDocs have settled before running highlights
+setTimeout(runHighlightAndScroll, 50);
+
+function runHighlightAndScroll() {
   const params = new URLSearchParams(window.location.search);
   const term = params.get('q');
   const hash = window.location.hash || '';
   if (!term) return;
 
-  // target occurrence index from #match-x-y
+  // Extract target match index from hash
   let targetMatch = null;
   if (hash.startsWith('#match-')) {
     const parts = hash.slice(1).split('-');
-    if (parts.length >= 3) {
-      targetMatch = parseInt(parts[2], 10);
-    }
+    if (parts.length >= 3) targetMatch = parseInt(parts[2], 10);
   }
 
-  function escapeRegExp(s) {
-    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-  const regex = new RegExp(escapeRegExp(term), 'gi');
-
-  // 🔑 restrict search to main content area
   const main = document.querySelector('.nsw-docs__main');
   if (!main) return;
 
+  const regex = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
   const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
       if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-      const parent = node.parentNode;
-      if (!parent) return NodeFilter.FILTER_REJECT;
-      const tag = parent.nodeName.toLowerCase();
-      // skip script/style/code/pre/textarea and links
-      const skip = ['script', 'style', 'textarea', 'code', 'pre', 'noscript', 'a'];
-      if (skip.includes(tag)) return NodeFilter.FILTER_REJECT;
-      if (parent.closest && parent.closest('.search-snippet')) return NodeFilter.FILTER_REJECT;
+      const tag = node.parentNode?.nodeName.toLowerCase();
+      if (['script','style','code','pre','textarea','a','noscript'].includes(tag)) return NodeFilter.FILTER_REJECT;
       return NodeFilter.FILTER_ACCEPT;
     }
   });
@@ -1555,18 +1545,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const frag = document.createDocumentFragment();
 
     while ((m = regex.exec(text)) !== null) {
-      const idx = m.index;
-      const matched = m[0];
-      if (idx > lastIdx) frag.appendChild(document.createTextNode(text.slice(lastIdx, idx)));
+      if (m.index > lastIdx) frag.appendChild(document.createTextNode(text.slice(lastIdx, m.index)));
       matchCount++;
-      const mk = document.createElement('mark');
-      mk.className = 'search-highlight';
-      mk.textContent = matched;
+      const mark = document.createElement('mark');
+      mark.className = 'search-highlight';
+      mark.textContent = m[0];
       if (targetMatch && matchCount === targetMatch && hash.startsWith('#match-')) {
-        mk.id = hash.slice(1);
+        mark.id = hash.slice(1);
       }
-      frag.appendChild(mk);
-      lastIdx = idx + matched.length;
+      frag.appendChild(mark);
+      lastIdx = m.index + m[0].length;
     }
 
     if (lastIdx === 0) return;
@@ -1574,13 +1562,13 @@ document.addEventListener('DOMContentLoaded', function () {
     node.parentNode.replaceChild(frag, node);
   });
 
+  // Scroll if applicable
   if (hash && document.getElementById(hash.slice(1))) {
-    const el = document.getElementById(hash.slice(1));
     setTimeout(() => {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      document.getElementById(hash.slice(1)).scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 80);
   }
-});
+}
 
 }));
 
