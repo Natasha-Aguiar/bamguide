@@ -1505,8 +1505,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initDocs();
 
 
-
-
+// Highlight + scroll script
 document.addEventListener('DOMContentLoaded', function () {
   const params = new URLSearchParams(window.location.search);
   const term = params.get('q');
@@ -1522,7 +1521,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
   const regex = new RegExp(escapeRegExp(term), 'gi');
 
   // 🔑 restrict search to main content area
