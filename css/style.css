@@ -177,7 +177,4 @@ a.search-snippet {
     print-color-adjust: exact !important;
   }
 
-  h1 {
-    page-break-before: always;
-  }
 }
