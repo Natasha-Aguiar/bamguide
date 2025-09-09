@@ -12,6 +12,16 @@
   }
 }
 
+/*Mobile 
+@media (max-width: 990px) {
+.nsw-header__container.js-header {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    background-color: white;
+}
+}*/
+
 div#header-autocomplete form {
     margin: 0px;
 }
