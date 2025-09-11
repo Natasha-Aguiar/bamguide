@@ -1,3 +1,5 @@
+//In seach.html when link is clicked scroll to the linked section and highlight each instance of the word searched  
+
 document.addEventListener('DOMContentLoaded', function () {
   const params = new URLSearchParams(window.location.search);
   const term = params.get('q');

@@ -191,4 +191,10 @@ a.search-snippet {
     page-break-before: always;
   }
 
+  .nsw-in-page-alert--info {
+    background-color: var(--nsw-status-info-bg);
+    border-color: var(--nsw-status-info);
+    print-color-adjust: exact !important;
+}
+
 }

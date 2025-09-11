@@ -1,4 +1,4 @@
-// search.js
+// search.js making the search bar work on search.html
 document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-query');
   const resultsContainer = document.getElementById('results');
@@ -99,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/'/g, '&#039;');
   }
 
+  //highlighting the text on search page 
   function highlightText(text, term) {
     const re = new RegExp(escapeRegExp(term), 'gi');
     return text.replace(re, '<mark>$&</mark>');

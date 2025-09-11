@@ -1,3 +1,4 @@
+//Search page querries, content is whats being searched 
 window.docss = [
   {
     "title": "Download PDF",

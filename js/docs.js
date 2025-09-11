@@ -4,6 +4,7 @@
 })((function () {
   'use strict';
 
+  //autocomplete search/Dropdown search queries, not being used in the guide, it is using search-data.js instead - V.1.00 
   const searchValues = [{ 
     label: '1.1 Purpose Of This Guide', 
     template: 'result', 
@@ -702,6 +703,7 @@
     }
   }
 
+ //Downloading Pdf function not being used in this guide - V.1.00 
   /* eslint-disable new-cap */
   /* eslint-disable no-undef */
   class DownloadPDF {
